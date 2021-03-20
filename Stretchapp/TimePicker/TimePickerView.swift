@@ -16,15 +16,17 @@ class TimePickerView: UIView {
 
     // MARK: - Properties
 
-    static let preferredSize = CGSize(width: 160, height: 160)
+    static let preferredSize = CGSize(width: Style.buttonHeight, height: Style.buttonHeight)
 
-    var value: Int = 0
+    var value: Int
     var numberType: NumberType = .minutes
 
     // MARK: - Initializers
 
-    init() {
-        super.init(frame: .zero)
+    init(_ initialValue: Int = 0) {
+        self.value = initialValue
+
+        super.init(frame: CGRect(origin: .zero, size: Self.preferredSize))
 
         setup()
         addSubviewsAndConstraints()
@@ -37,11 +39,20 @@ class TimePickerView: UIView {
     // MARK: - Methods
 
     private func setup() {
-        backgroundColor = .green
-        layer.cornerRadius = 24
+        backgroundColor = .card
+        layer.cornerRadius = Style.cornerRadius
     }
 
     private func addSubviewsAndConstraints() {
+        let lbl = UILabel()
+        lbl.text = String(value)
+        lbl.textAlignment = .center
+        lbl.font = UIFont.round(.black, 40)
+        lbl.textColor = .black
 
+        addSubview(lbl)
+        lbl.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
 }

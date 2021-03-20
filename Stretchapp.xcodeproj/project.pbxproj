@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,13 @@
 		DD1B7B972606553200CB9AA4 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B962606553200CB9AA4 /* Style.swift */; };
 		DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */; };
 		DD1B7B9F26065B3600CB9AA4 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B9E26065B3600CB9AA4 /* TimePickerView.swift */; };
+		DD1B7BA826067F2900CB9AA4 /* Fulbo-Argenta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BA726067F2900CB9AA4 /* Fulbo-Argenta.ttf */; };
+		DD1B7BAF26067F7E00CB9AA4 /* DINRoundPro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAA26067F7E00CB9AA4 /* DINRoundPro.ttf */; };
+		DD1B7BB026067F7E00CB9AA4 /* DINRoundPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAB26067F7E00CB9AA4 /* DINRoundPro-Bold.ttf */; };
+		DD1B7BB126067F7E00CB9AA4 /* DINRoundPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAC26067F7E00CB9AA4 /* DINRoundPro-Light.ttf */; };
+		DD1B7BB226067F7E00CB9AA4 /* DINRoundPro-Medi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */; };
+		DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */; };
+		DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB2260687C80056D85C /* StretchButton.swift */; };
 		ECFAA075D6F0394559EE7A52 /* Pods_Stretchapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +39,13 @@
 		DD1B7B962606553200CB9AA4 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKExtensions.swift; sourceTree = "<group>"; };
 		DD1B7B9E26065B3600CB9AA4 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		DD1B7BA726067F2900CB9AA4 /* Fulbo-Argenta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Fulbo-Argenta.ttf"; path = "../../../../../../design/Stretchapp/Fulbo-Argenta.ttf"; sourceTree = "<group>"; };
+		DD1B7BAA26067F7E00CB9AA4 /* DINRoundPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINRoundPro.ttf; sourceTree = "<group>"; };
+		DD1B7BAB26067F7E00CB9AA4 /* DINRoundPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Bold.ttf"; sourceTree = "<group>"; };
+		DD1B7BAC26067F7E00CB9AA4 /* DINRoundPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Light.ttf"; sourceTree = "<group>"; };
+		DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Medi.ttf"; sourceTree = "<group>"; };
+		DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.ttf"; sourceTree = "<group>"; };
+		DDEAAEB2260687C80056D85C /* StretchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchButton.swift; sourceTree = "<group>"; };
 		E26EBD0A7DD0102A60CF1D49 /* Pods-Stretchapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stretchapp.debug.xcconfig"; path = "Target Support Files/Pods-Stretchapp/Pods-Stretchapp.debug.xcconfig"; sourceTree = "<group>"; };
 		FB7820C6D4F9C89F9CBC11C6 /* Pods-Stretchapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stretchapp.release.xcconfig"; path = "Target Support Files/Pods-Stretchapp/Pods-Stretchapp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,13 +68,13 @@
 				E26EBD0A7DD0102A60CF1D49 /* Pods-Stretchapp.debug.xcconfig */,
 				FB7820C6D4F9C89F9CBC11C6 /* Pods-Stretchapp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		DD1B7B742606545F00CB9AA4 = {
 			isa = PBXGroup;
 			children = (
+				DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */,
 				DD1B7B7F2606545F00CB9AA4 /* Stretchapp */,
 				DD1B7B7E2606545F00CB9AA4 /* Products */,
 				38E07659BDAA03A105A82E27 /* Pods */,
@@ -82,8 +96,9 @@
 				DD1B7B802606545F00CB9AA4 /* AppDelegate.swift */,
 				DD1B7B962606553200CB9AA4 /* Style.swift */,
 				DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */,
-				DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */,
 				DD1B7B842606545F00CB9AA4 /* ViewController.swift */,
+				DDEAAEB2260687C80056D85C /* StretchButton.swift */,
+				DD1B7BA426067E7D00CB9AA4 /* Resources */,
 				DD1B7B9D26065AB600CB9AA4 /* TimePicker */,
 				DD1B7B862606545F00CB9AA4 /* Main.storyboard */,
 				DD1B7B892606546000CB9AA4 /* Assets.xcassets */,
@@ -99,6 +114,27 @@
 				DD1B7B9E26065B3600CB9AA4 /* TimePickerView.swift */,
 			);
 			path = TimePicker;
+			sourceTree = "<group>";
+		};
+		DD1B7BA426067E7D00CB9AA4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD1B7BA526067E8400CB9AA4 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DD1B7BA526067E8400CB9AA4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */,
+				DD1B7BAB26067F7E00CB9AA4 /* DINRoundPro-Bold.ttf */,
+				DD1B7BAC26067F7E00CB9AA4 /* DINRoundPro-Light.ttf */,
+				DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */,
+				DD1B7BAA26067F7E00CB9AA4 /* DINRoundPro.ttf */,
+				DD1B7BA726067F2900CB9AA4 /* Fulbo-Argenta.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		FE7CC40BA8D5B6596D614004 /* Frameworks */ = {
@@ -168,9 +204,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1B7BB226067F7E00CB9AA4 /* DINRoundPro-Medi.ttf in Resources */,
+				DD1B7BB126067F7E00CB9AA4 /* DINRoundPro-Light.ttf in Resources */,
+				DD1B7BA826067F2900CB9AA4 /* Fulbo-Argenta.ttf in Resources */,
+				DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */,
 				DD1B7B8D2606546000CB9AA4 /* LaunchScreen.storyboard in Resources */,
+				DD1B7BB026067F7E00CB9AA4 /* DINRoundPro-Bold.ttf in Resources */,
 				DD1B7B8A2606546000CB9AA4 /* Assets.xcassets in Resources */,
 				DD1B7B882606545F00CB9AA4 /* Main.storyboard in Resources */,
+				DD1B7BAF26067F7E00CB9AA4 /* DINRoundPro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +268,7 @@
 				DD1B7B852606545F00CB9AA4 /* ViewController.swift in Sources */,
 				DD1B7B9F26065B3600CB9AA4 /* TimePickerView.swift in Sources */,
 				DD1B7B812606545F00CB9AA4 /* AppDelegate.swift in Sources */,
+				DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */,
 				DD1B7B972606553200CB9AA4 /* Style.swift in Sources */,
 				DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */,
 				DD1B7B832606545F00CB9AA4 /* SceneDelegate.swift in Sources */,
