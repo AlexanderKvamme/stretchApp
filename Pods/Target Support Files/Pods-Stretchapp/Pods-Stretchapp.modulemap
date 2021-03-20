@@ -1,0 +1,6 @@
+framework module Pods_Stretchapp {
+  umbrella header "Pods-Stretchapp-umbrella.h"
+
+  export *
+  module * { export * }
+}

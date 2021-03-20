@@ -15,9 +15,12 @@
 		DD1B7B8D2606546000CB9AA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7B8B2606546000CB9AA4 /* LaunchScreen.storyboard */; };
 		DD1B7B972606553200CB9AA4 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B962606553200CB9AA4 /* Style.swift */; };
 		DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */; };
+		DD1B7B9F26065B3600CB9AA4 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B9E26065B3600CB9AA4 /* TimePickerView.swift */; };
+		ECFAA075D6F0394559EE7A52 /* Pods_Stretchapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stretchapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1B7B7D2606545F00CB9AA4 /* Stretchapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stretchapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1B7B802606545F00CB9AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +31,9 @@
 		DD1B7B8E2606546000CB9AA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD1B7B962606553200CB9AA4 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKExtensions.swift; sourceTree = "<group>"; };
+		DD1B7B9E26065B3600CB9AA4 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		E26EBD0A7DD0102A60CF1D49 /* Pods-Stretchapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stretchapp.debug.xcconfig"; path = "Target Support Files/Pods-Stretchapp/Pods-Stretchapp.debug.xcconfig"; sourceTree = "<group>"; };
+		FB7820C6D4F9C89F9CBC11C6 /* Pods-Stretchapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stretchapp.release.xcconfig"; path = "Target Support Files/Pods-Stretchapp/Pods-Stretchapp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +41,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFAA075D6F0394559EE7A52 /* Pods_Stretchapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38E07659BDAA03A105A82E27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E26EBD0A7DD0102A60CF1D49 /* Pods-Stretchapp.debug.xcconfig */,
+				FB7820C6D4F9C89F9CBC11C6 /* Pods-Stretchapp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DD1B7B742606545F00CB9AA4 = {
 			isa = PBXGroup;
 			children = (
 				DD1B7B7F2606545F00CB9AA4 /* Stretchapp */,
 				DD1B7B7E2606545F00CB9AA4 /* Products */,
+				38E07659BDAA03A105A82E27 /* Pods */,
+				FE7CC40BA8D5B6596D614004 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,12 +84,29 @@
 				DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */,
 				DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */,
 				DD1B7B842606545F00CB9AA4 /* ViewController.swift */,
+				DD1B7B9D26065AB600CB9AA4 /* TimePicker */,
 				DD1B7B862606545F00CB9AA4 /* Main.storyboard */,
 				DD1B7B892606546000CB9AA4 /* Assets.xcassets */,
 				DD1B7B8B2606546000CB9AA4 /* LaunchScreen.storyboard */,
 				DD1B7B8E2606546000CB9AA4 /* Info.plist */,
 			);
 			path = Stretchapp;
+			sourceTree = "<group>";
+		};
+		DD1B7B9D26065AB600CB9AA4 /* TimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				DD1B7B9E26065B3600CB9AA4 /* TimePickerView.swift */,
+			);
+			path = TimePicker;
+			sourceTree = "<group>";
+		};
+		FE7CC40BA8D5B6596D614004 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD1B7B912606546000CB9AA4 /* Build configuration list for PBXNativeTarget "Stretchapp" */;
 			buildPhases = (
+				57D7086F339657BFE7C6C915 /* [CP] Check Pods Manifest.lock */,
 				DD1B7B792606545F00CB9AA4 /* Sources */,
 				DD1B7B7A2606545F00CB9AA4 /* Frameworks */,
 				DD1B7B7B2606545F00CB9AA4 /* Resources */,
+				0D6A0C1CC15883C1A28E34DA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -138,12 +176,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D6A0C1CC15883C1A28E34DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stretchapp/Pods-Stretchapp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stretchapp/Pods-Stretchapp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stretchapp/Pods-Stretchapp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57D7086F339657BFE7C6C915 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stretchapp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DD1B7B792606545F00CB9AA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DD1B7B852606545F00CB9AA4 /* ViewController.swift in Sources */,
+				DD1B7B9F26065B3600CB9AA4 /* TimePickerView.swift in Sources */,
 				DD1B7B812606545F00CB9AA4 /* AppDelegate.swift in Sources */,
 				DD1B7B972606553200CB9AA4 /* Style.swift in Sources */,
 				DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */,
@@ -291,6 +372,7 @@
 		};
 		DD1B7B922606546000CB9AA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E26EBD0A7DD0102A60CF1D49 /* Pods-Stretchapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +392,7 @@
 		};
 		DD1B7B932606546000CB9AA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB7820C6D4F9C89F9CBC11C6 /* Pods-Stretchapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
