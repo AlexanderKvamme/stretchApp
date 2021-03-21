@@ -20,13 +20,18 @@ class StretchingViewController: UIViewController {
 
     // MARK: - Properties
 
+    private let labelAnimateOutEndTransform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+    private let labelAnimateInStartTransform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+
+    var strethces: [Stretch]
     let fractionView = SetFractionView(topValue: 2, bottomValue: 5)
     let xButton = UIButton.make(.x)
-
     let topWaveView = ExerciceWaveView(.light)
     let botWaveView = ExerciceWaveView(.dark)
-
-    let strethces: [Stretch]
+    var currentAnimationIteration = 0
+    var hasNextAnimation: Bool {
+        return currentAnimationIteration < strethces.count-1
+    }
 
     // MARK: - Initializers
 
@@ -49,47 +54,87 @@ class StretchingViewController: UIViewController {
 
     // MARK: - Life Cycle
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        startExerciseAnimationLoop()
-    }
-
-    // MARK: - Methods
-
-    private func startExerciseAnimationLoop() {
         fractionView.animate()
         botWaveView.waveAnimation.wave()
         topWaveView.waveAnimation.wave()
 
-        // TODO: The loop
-        self.botWaveView.snp.updateConstraints { (make) in
-            make.top.equalTo(view.snp.top)
-        }
+        playNextAnimation()
+    }
 
-        UIView.animate(withDuration: 15) {
-            self.view.layoutIfNeeded()
+    // MARK: - Methods
+
+    private func playNextAnimation() {
+        resetViews()
+        view.layoutIfNeeded()
+
+        self.updateStretches()
+
+        if hasNextAnimation {
+            UIView.animate(withDuration: 10) {
+                self.setNextLayout()
+                self.view.layoutIfNeeded()
+            } completion: { (_) in
+                self.currentAnimationIteration += 1
+                self.playNextAnimation()
+            }
+        } else {
+            playCompletionAnimation()
         }
     }
+
+    private func updateStretches() {
+        topWaveView.setStretch(strethces[currentAnimationIteration])
+
+        if currentAnimationIteration+1 < strethces.count {
+            botWaveView.setStretch(strethces[currentAnimationIteration+1])
+        }
+    }
+
+    private func playCompletionAnimation() {
+        view.backgroundColor = .green
+        topWaveView.backgroundColor = .green
+        botWaveView.backgroundColor = .green
+    }
+
+    private func resetViews() {
+        topWaveView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        botWaveView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
+
+        topWaveView.label.transform = .identity
+        botWaveView.label.transform = labelAnimateInStartTransform
+
+        let topStyle: ExerciceWaveView.WaveStyle = currentAnimationIteration%2 == 0 ? .light : .dark
+        let botStyle: ExerciceWaveView.WaveStyle = currentAnimationIteration%2 == 0 ? .dark : .light
+
+        topWaveView.setStyle(topStyle)
+        botWaveView.setStyle(botStyle)
+    }
+
+    private func setNextLayout() {
+        self.topWaveView.frame.origin.y -= screenHeight/2
+        self.botWaveView.frame = botEndFrame
+
+        self.topWaveView.label.transform = labelAnimateOutEndTransform
+        self.botWaveView.label.transform = .identity
+    }
+
+    private var topStartFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+    private var topEndFrame = CGRect(x: 0, y: 0, width: screenWidth, height: 0)
+    private var botEndFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+    private var botStartFrame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
 
     private func setInitialStretch(from stretches: [Stretch]) {
         let firstStretch = stretches[0]
         let secondStretch = stretches[1]
 
-        topWaveView.alpha = 0.5
         topWaveView.setStretch(firstStretch)
         botWaveView.setStretch(secondStretch)
     }
 
-    private func setup() {
-
-    }
+    private func setup() { }
 
     private func addSubviewsAndConstraints() {
         view.addSubview(xButton)
@@ -110,15 +155,15 @@ class StretchingViewController: UIViewController {
             make.height.equalTo(64)
         }
 
-        topWaveView.snp.makeConstraints { (make) in
-            make.top.left.right.equalToSuperview()
-            make.bottom.equalTo(botWaveView.snp.top)
-        }
-
-        botWaveView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.top).offset(screenHeight)
-            make.left.right.bottom.equalToSuperview()
-        }
+//        topWaveView.snp.makeConstraints { (make) in
+//            make.top.left.right.equalToSuperview()
+//            make.bottom.equalTo(botWaveView.snp.top)
+//        }
+//
+//        botWaveView.snp.makeConstraints { (make) in
+//            make.top.equalTo(view.snp.top).offset(screenHeight)
+//            make.left.right.bottom.equalToSuperview()
+//        }
     }
 }
 

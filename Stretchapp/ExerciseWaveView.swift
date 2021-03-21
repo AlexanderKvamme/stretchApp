@@ -56,10 +56,16 @@ final class ExerciceWaveView: UIView {
 
     // MARK: - Methods
 
-    private func setup(_ style: WaveStyle) {
+    func setStyle(_ style: WaveStyle) {
         label.textColor = style.foregroundColor
         backgroundColor = style.backgroundColor
-        waveAnimation.waveColor = style.backgroundColor
+        waveAnimation.waveColor = style.foregroundColor
+        print("bam wavesetting color to ", style.foregroundColor)
+//        waveAnimation.waveColor = .cyan
+    }
+
+    private func setup(_ style: WaveStyle) {
+        setStyle(style)
 
         clipsToBounds = false
         waveAnimation.waveTime = 0
@@ -69,7 +75,7 @@ final class ExerciceWaveView: UIView {
 
         label.text = "This is a temporary exercise"
         label.numberOfLines = 0
-        label.adjustsFontSizeToFitWidth = true
+//        label.adjustsFontSizeToFitWidth = true
     }
 
     private func addSubviewsAndConstraints() {
