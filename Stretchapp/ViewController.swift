@@ -22,12 +22,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
-        printFonts()
 
         setup()
         addSubviewsAndConstraints()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        let stretchViewController = StretchingViewController()
+        stretchViewController.modalPresentationStyle = .fullScreen
+        present(stretchViewController, animated: true, completion: nil)
     }
 
     // MARK: - Methods
