@@ -39,32 +39,30 @@ class StretchingViewController: UIViewController {
         super.viewDidAppear(animated)
 
         fractionView.animate()
+        botWaveView.waveAnimation.wave()
     }
 
     // MARK: - Methods
 
-    private func setup() {
-
-    }
+    private func setup() {}
 
     private func addSubviewsAndConstraints() {
         view.addSubview(xButton)
+        view.addSubview(fractionView)
+        view.addSubview(topWaveView)
+        view.addSubview(botWaveView)
+
         xButton.snp.makeConstraints { (make) in
             make.top.left.equalTo(view.safeAreaLayoutGuide).offset(40)
             make.size.equalTo(24)
         }
 
-        view.addSubview(fractionView)
         fractionView.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.right.equalTo(view.safeAreaLayoutGuide).inset(32)
             make.width.equalTo(54)
             make.height.equalTo(64)
         }
-
-        view.addSubview(topWaveView)
-
-        view.addSubview(botWaveView)
 
         botWaveView.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.centerY)

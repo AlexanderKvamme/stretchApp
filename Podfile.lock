@@ -1,16 +1,20 @@
 PODS:
   - SnapKit (5.0.1)
+  - WXWaveView (1.0.1)
 
 DEPENDENCIES:
   - SnapKit
+  - WXWaveView
 
 SPEC REPOS:
   trunk:
     - SnapKit
+    - WXWaveView
 
 SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  WXWaveView: f8424284812536a3842bc5dd9afb943e53e911a8
 
-PODFILE CHECKSUM: ef5b0975bb82d56aa45333ff229c379227c5cb51
+PODFILE CHECKSUM: d3034a1c329d98a0d6813444fd574cc9cc1113a8
 
 COCOAPODS: 1.10.1

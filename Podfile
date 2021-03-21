@@ -7,5 +7,6 @@ target 'Stretchapp' do
 
   # Pods for Stretchapp
   pod 'SnapKit'
+  pod 'WXWaveView'
 
 end
