@@ -10,6 +10,27 @@ import WXWaveView
 
 final class ExerciceWaveView: UIView {
 
+    enum WaveStyle {
+        case light
+        case dark
+
+        var foregroundColor: UIColor {
+            if self == .light {
+                return UIColor.primaryContrast
+            } else {
+                return UIColor.background
+            }
+        }
+
+        var backgroundColor: UIColor {
+            if self == .light {
+                return UIColor.background
+            } else {
+                return UIColor.primaryContrast
+            }
+        }
+    }
+
     // MARK: - Properties
 
     let label = UILabel.make(.exercise)
@@ -19,13 +40,13 @@ final class ExerciceWaveView: UIView {
 
     // MARK: - Initializers
 
-    init(_ backgroundColor: UIColor) {
+    init(_ style: WaveStyle) {
         super.init(frame: .zero)
 
         self.backgroundColor = backgroundColor
         waveAnimation.waveColor = backgroundColor
 
-        setup()
+        setup(style)
         addSubviewsAndConstraints()
     }
 
@@ -35,14 +56,17 @@ final class ExerciceWaveView: UIView {
 
     // MARK: - Methods
 
-    private func setup() {
+    private func setup(_ style: WaveStyle) {
+        label.textColor = style.foregroundColor
+        backgroundColor = style.backgroundColor
+        waveAnimation.waveColor = style.backgroundColor
+
+        clipsToBounds = false
         waveAnimation.waveTime = 0
         waveAnimation.angularSpeed = 2
         waveAnimation.waveSpeed = 1
         waveAnimation.wave()
 
-        label.textColor = .background
-        label.backgroundColor = .clear
         label.text = "This is a temporary exercise"
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
@@ -52,7 +76,7 @@ final class ExerciceWaveView: UIView {
         addSubview(waveAnimation)
         waveAnimation.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(snp.top)
+            make.bottom.equalTo(snp.top).offset(1)
             make.height.equalTo(waveHeight)
         }
 
@@ -60,5 +84,11 @@ final class ExerciceWaveView: UIView {
         label.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+
+    // MARK: API
+
+    func setStretch(_ stretch: Stretch) {
+        label.text = stretch.title
     }
 }

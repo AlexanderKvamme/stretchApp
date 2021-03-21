@@ -7,6 +7,14 @@
 
 import UIKit
 
+struct Stretch {
+    let title: String
+    let length: Int
+
+    static let dummy = Stretch(title: "This is a dummy stretch", length: 30)
+    static let completion = Stretch(title: "Congratulations", length: 30)
+}
+
 
 class StretchingViewController: UIViewController {
 
@@ -15,15 +23,21 @@ class StretchingViewController: UIViewController {
     let fractionView = SetFractionView(topValue: 2, bottomValue: 5)
     let xButton = UIButton.make(.x)
 
-    let topWaveView = ExerciceWaveView(UIColor.background)
-    let botWaveView = ExerciceWaveView(UIColor.primaryContrast)
+    let topWaveView = ExerciceWaveView(.light)
+    let botWaveView = ExerciceWaveView(.dark)
+
+    let strethces: [Stretch]
 
     // MARK: - Initializers
 
-    init() {
+    init(_ stretches: [Stretch]) {
+        self.strethces = stretches
+
         super.init(nibName: nil, bundle: nil)
 
         view.backgroundColor = .background
+
+        setInitialStretch(from: stretches)
 
         setup()
         addSubviewsAndConstraints()
@@ -35,20 +49,52 @@ class StretchingViewController: UIViewController {
 
     // MARK: - Life Cycle
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        fractionView.animate()
-        botWaveView.waveAnimation.wave()
+        startExerciseAnimationLoop()
     }
 
     // MARK: - Methods
 
-    private func setup() {}
+    private func startExerciseAnimationLoop() {
+        fractionView.animate()
+        botWaveView.waveAnimation.wave()
+        topWaveView.waveAnimation.wave()
+
+        // TODO: The loop
+        self.botWaveView.snp.updateConstraints { (make) in
+            make.top.equalTo(view.snp.top)
+        }
+
+        UIView.animate(withDuration: 15) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func setInitialStretch(from stretches: [Stretch]) {
+        let firstStretch = stretches[0]
+        let secondStretch = stretches[1]
+
+        topWaveView.alpha = 0.5
+        topWaveView.setStretch(firstStretch)
+        botWaveView.setStretch(secondStretch)
+    }
+
+    private func setup() {
+
+    }
 
     private func addSubviewsAndConstraints() {
         view.addSubview(xButton)
         view.addSubview(fractionView)
+
         view.addSubview(topWaveView)
         view.addSubview(botWaveView)
 
@@ -64,8 +110,13 @@ class StretchingViewController: UIViewController {
             make.height.equalTo(64)
         }
 
+        topWaveView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(botWaveView.snp.top)
+        }
+
         botWaveView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.snp.centerY)
+            make.top.equalTo(view.snp.top).offset(screenHeight)
             make.left.right.bottom.equalToSuperview()
         }
     }

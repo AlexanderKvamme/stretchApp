@@ -28,7 +28,13 @@ class ViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        let stretchViewController = StretchingViewController()
+
+        let stretches = [
+            Stretch(title: "First Stretch", length: 30),
+            Stretch(title: "Second Stretch", length: 30),
+            Stretch(title: "Third Stretch", length: 30)]
+
+        let stretchViewController = StretchingViewController(stretches)
         stretchViewController.modalPresentationStyle = .fullScreen
         present(stretchViewController, animated: true, completion: nil)
     }

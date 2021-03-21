@@ -81,3 +81,9 @@ extension UIImage {
 
     static let x = UIImage(named: CustomIcon.x.rawValue)
 }
+
+// UIDevice
+
+let screenWidth = UIScreen.main.bounds.width
+let screenHeight = UIScreen.main.bounds.height
+let screenFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
