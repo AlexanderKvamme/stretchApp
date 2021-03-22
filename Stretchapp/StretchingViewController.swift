@@ -60,6 +60,17 @@ struct Stretch {
 
     static let dummy = Stretch(title: "This is a dummy stretch", length: 30)
     static let completion = Stretch(title: "Congratulations", length: 30)
+
+    static let favourites = [
+        Stretch(title: "Hands folded behind back", length: 30),
+        Stretch(title: "Low squat", length: 30),
+        Stretch(title: "Spinal twist", length: 30),
+        Stretch(title: "Back bend", length: 30),
+        Stretch(title: "Forward fold", length: 30),
+        Stretch(title: "Pidgeon pose", length: 30),
+        Stretch(title: "Quad bends", length: 30),
+        Stretch.completion
+    ]
 }
 
 
@@ -67,10 +78,13 @@ class StretchingViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let labelAnimateOutEndTransform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-    private let labelAnimateInStartTransform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-
-    var strethces: [Stretch]
+    private let labelAnimateOutEndTransform = CGAffineTransform.identity
+        .scaledBy(x: 0.8, y: 0.8)
+        .translatedBy(x: 0, y: -100)
+    private let labelAnimateInStartTransform = CGAffineTransform.identity
+        .scaledBy(x: 0.1, y: 0.1)
+        .translatedBy(x: 0, y: 500)
+    var stretches: [Stretch]
     let fractionView = SetFractionView(topValue: 2, bottomValue: 5)
     let xButton = UIButton.make(.x)
     let topView = ExerciceWaveView(.light)
@@ -79,20 +93,18 @@ class StretchingViewController: UIViewController {
     let waveHeight: CGFloat = 80
     var currentAnimationIteration = 0
     var hasNextAnimation: Bool {
-        return currentAnimationIteration < strethces.count-1
+        return currentAnimationIteration < stretches.count-1
     }
 
     // MARK: - Initializers
 
     init(_ stretches: [Stretch]) {
-        self.strethces = stretches
+        self.stretches = stretches
 
         super.init(nibName: nil, bundle: nil)
 
         view.backgroundColor = .background
-
         setInitialStretch(from: stretches)
-
         addSubviewsAndConstraints()
     }
 
@@ -131,10 +143,10 @@ class StretchingViewController: UIViewController {
     }
 
     private func updateStretches() {
-        topView.setStretch(strethces[currentAnimationIteration])
+        topView.setStretch(stretches[currentAnimationIteration])
 
-        if currentAnimationIteration+1 < strethces.count {
-            botView.setStretch(strethces[currentAnimationIteration+1])
+        if currentAnimationIteration+1 < stretches.count {
+            botView.setStretch(stretches[currentAnimationIteration+1])
         }
     }
 
@@ -144,14 +156,6 @@ class StretchingViewController: UIViewController {
     }
 
     @objc private func resetScreen() {
-        let stretches = [
-            Stretch(title: "First Stretch", length: 30),
-            Stretch(title: "Second Stretch", length: 30),
-            Stretch(title: "Third Stretch", length: 30),
-            Stretch(title: "Fourth Stretch", length: 30),
-            Stretch.completion
-        ]
-
         let stretchViewController = StretchingViewController(stretches)
         stretchViewController.modalPresentationStyle = .fullScreen
         present(stretchViewController, animated: true, completion: nil)
@@ -166,19 +170,13 @@ class StretchingViewController: UIViewController {
         waveContainer = WaveContainer(waveColor: topStyle.foregroundColor)
         waveContainer.backgroundColor = topStyle.backgroundColor
 
-//        waveContainer = WaveContainer(waveColor: topStyle.backgroundColor)
-//        waveContainer.backgroundColor = .purple
-//        waveContainer.backgroundColor = topStyle.foregroundColor
-//        waveContainer.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         view.addSubview(waveContainer)
 
         topView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         botView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
         waveContainer.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
-
         topView.label.transform = .identity
         botView.label.transform = labelAnimateInStartTransform
-
         topView.setStyle(topStyle)
         botView.setStyle(botStyle)
     }
