@@ -185,6 +185,9 @@ class StretchingViewController: UIViewController {
         topView.setStyle(topStyle)
         botView.setStyle(botStyle)
         botView.label.alpha = 0
+
+        view.bringSubviewToFront(fractionView)
+        view.bringSubviewToFront(xButton)
     }
 
     private func setNextLayout() {
