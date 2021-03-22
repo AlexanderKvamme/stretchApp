@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import WXWaveView
+
 
 final class ExerciceWaveView: UIView {
 
-    enum WaveStyle {
+    enum ExerciseSlideStyle {
         case light
         case dark
 
@@ -35,16 +35,10 @@ final class ExerciceWaveView: UIView {
 
     let label = UILabel.make(.exercise)
 
-    let waveHeight = 16
-    let waveAnimation = WXWaveView()
-
     // MARK: - Initializers
 
-    init(_ style: WaveStyle) {
+    init(_ style: ExerciseSlideStyle) {
         super.init(frame: .zero)
-
-        self.backgroundColor = backgroundColor
-        waveAnimation.waveColor = backgroundColor
 
         setup(style)
         addSubviewsAndConstraints()
@@ -56,36 +50,19 @@ final class ExerciceWaveView: UIView {
 
     // MARK: - Methods
 
-    func setStyle(_ style: WaveStyle) {
+    func setStyle(_ style: ExerciseSlideStyle) {
         label.textColor = style.foregroundColor
         backgroundColor = style.backgroundColor
-        waveAnimation.waveColor = style.foregroundColor
-        print("bam wavesetting color to ", style.foregroundColor)
-//        waveAnimation.waveColor = .cyan
     }
 
-    private func setup(_ style: WaveStyle) {
+    private func setup(_ style: ExerciseSlideStyle) {
         setStyle(style)
-
-        clipsToBounds = false
-        waveAnimation.waveTime = 0
-        waveAnimation.angularSpeed = 2
-        waveAnimation.waveSpeed = 1
-        waveAnimation.wave()
 
         label.text = "This is a temporary exercise"
         label.numberOfLines = 0
-//        label.adjustsFontSizeToFitWidth = true
     }
 
     private func addSubviewsAndConstraints() {
-        addSubview(waveAnimation)
-        waveAnimation.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(snp.top).offset(1)
-            make.height.equalTo(waveHeight)
-        }
-
         addSubview(label)
         label.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()

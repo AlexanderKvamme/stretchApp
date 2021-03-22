@@ -6,6 +6,53 @@
 //
 
 import UIKit
+import WXWaveView
+
+
+class WaveContainer: UIView {
+    let waveView = WXWaveView()
+    let waveColor: UIColor
+    let hackView = UIView()
+
+    init(waveColor: UIColor) {
+        self.waveColor = waveColor
+        super.init(frame: .zero)
+
+        setup()
+        addSubviewsAndConstraints()
+        clipsToBounds = false
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setup() {
+        hackView.backgroundColor = waveColor
+
+        waveView.waveColor = waveColor
+        waveView.waveTime = 0
+        waveView.angularSpeed = 1
+        waveView.waveSpeed = 1
+        waveView.wave()
+    }
+
+    private func addSubviewsAndConstraints() {
+        addSubview(hackView)
+        addSubview(waveView)
+        
+        waveView.snp.makeConstraints { (make) in
+            make.top.equalTo(snp.centerY)
+            make.left.bottom.right.equalToSuperview()
+        }
+
+        hackView.snp.makeConstraints { (make) in
+            make.width.equalToSuperview()
+            make.height.equalTo(2)
+            make.centerY.equalTo(snp.bottom)
+        }
+    }
+}
 
 struct Stretch {
     let title: String
@@ -26,8 +73,10 @@ class StretchingViewController: UIViewController {
     var strethces: [Stretch]
     let fractionView = SetFractionView(topValue: 2, bottomValue: 5)
     let xButton = UIButton.make(.x)
-    let topWaveView = ExerciceWaveView(.light)
-    let botWaveView = ExerciceWaveView(.dark)
+    let topView = ExerciceWaveView(.light)
+    let botView = ExerciceWaveView(.dark)
+    var waveContainer = WaveContainer(waveColor: .purple)
+    let waveHeight: CGFloat = 80
     var currentAnimationIteration = 0
     var hasNextAnimation: Bool {
         return currentAnimationIteration < strethces.count-1
@@ -44,7 +93,6 @@ class StretchingViewController: UIViewController {
 
         setInitialStretch(from: stretches)
 
-        setup()
         addSubviewsAndConstraints()
     }
 
@@ -58,9 +106,6 @@ class StretchingViewController: UIViewController {
         super.viewDidAppear(animated)
 
         fractionView.animate()
-        botWaveView.waveAnimation.wave()
-        topWaveView.waveAnimation.wave()
-
         playNextAnimation()
     }
 
@@ -86,39 +131,65 @@ class StretchingViewController: UIViewController {
     }
 
     private func updateStretches() {
-        topWaveView.setStretch(strethces[currentAnimationIteration])
+        topView.setStretch(strethces[currentAnimationIteration])
 
         if currentAnimationIteration+1 < strethces.count {
-            botWaveView.setStretch(strethces[currentAnimationIteration+1])
+            botView.setStretch(strethces[currentAnimationIteration+1])
         }
     }
 
     private func playCompletionAnimation() {
-        view.backgroundColor = .green
-        topWaveView.backgroundColor = .green
-        botWaveView.backgroundColor = .green
+        let tapRec = UITapGestureRecognizer(target: self, action: #selector(resetScreen))
+        view.addGestureRecognizer(tapRec)
+    }
+
+    @objc private func resetScreen() {
+        let stretches = [
+            Stretch(title: "First Stretch", length: 30),
+            Stretch(title: "Second Stretch", length: 30),
+            Stretch(title: "Third Stretch", length: 30),
+            Stretch(title: "Fourth Stretch", length: 30),
+            Stretch.completion
+        ]
+
+        let stretchViewController = StretchingViewController(stretches)
+        stretchViewController.modalPresentationStyle = .fullScreen
+        present(stretchViewController, animated: true, completion: nil)
     }
 
     private func resetViews() {
-        topWaveView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        botWaveView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
+        waveContainer.removeFromSuperview()
 
-        topWaveView.label.transform = .identity
-        botWaveView.label.transform = labelAnimateInStartTransform
+        let topStyle: ExerciceWaveView.ExerciseSlideStyle = currentAnimationIteration%2 == 0 ? .light : .dark
+        let botStyle: ExerciceWaveView.ExerciseSlideStyle = currentAnimationIteration%2 == 0 ? .dark : .light
 
-        let topStyle: ExerciceWaveView.WaveStyle = currentAnimationIteration%2 == 0 ? .light : .dark
-        let botStyle: ExerciceWaveView.WaveStyle = currentAnimationIteration%2 == 0 ? .dark : .light
+        waveContainer = WaveContainer(waveColor: topStyle.foregroundColor)
+        waveContainer.backgroundColor = topStyle.backgroundColor
 
-        topWaveView.setStyle(topStyle)
-        botWaveView.setStyle(botStyle)
+//        waveContainer = WaveContainer(waveColor: topStyle.backgroundColor)
+//        waveContainer.backgroundColor = .purple
+//        waveContainer.backgroundColor = topStyle.foregroundColor
+//        waveContainer.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        view.addSubview(waveContainer)
+
+        topView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        botView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
+        waveContainer.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
+
+        topView.label.transform = .identity
+        botView.label.transform = labelAnimateInStartTransform
+
+        topView.setStyle(topStyle)
+        botView.setStyle(botStyle)
     }
 
     private func setNextLayout() {
-        self.topWaveView.frame.origin.y -= screenHeight/2
-        self.botWaveView.frame = botEndFrame
+        self.topView.frame.origin.y -= screenHeight/2
+        self.botView.frame = botEndFrame
+        self.waveContainer.frame = CGRect(x: 0, y: -waveHeight, width: screenWidth, height: waveHeight)
 
-        self.topWaveView.label.transform = labelAnimateOutEndTransform
-        self.botWaveView.label.transform = .identity
+        self.topView.label.transform = labelAnimateOutEndTransform
+        self.botView.label.transform = .identity
     }
 
     private var topStartFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
@@ -130,18 +201,16 @@ class StretchingViewController: UIViewController {
         let firstStretch = stretches[0]
         let secondStretch = stretches[1]
 
-        topWaveView.setStretch(firstStretch)
-        botWaveView.setStretch(secondStretch)
+        topView.setStretch(firstStretch)
+        botView.setStretch(secondStretch)
     }
-
-    private func setup() { }
 
     private func addSubviewsAndConstraints() {
         view.addSubview(xButton)
         view.addSubview(fractionView)
-
-        view.addSubview(topWaveView)
-        view.addSubview(botWaveView)
+        view.addSubview(topView)
+        view.addSubview(botView)
+        view.addSubview(waveContainer)
 
         xButton.snp.makeConstraints { (make) in
             make.top.left.equalTo(view.safeAreaLayoutGuide).offset(40)
@@ -154,16 +223,6 @@ class StretchingViewController: UIViewController {
             make.width.equalTo(54)
             make.height.equalTo(64)
         }
-
-//        topWaveView.snp.makeConstraints { (make) in
-//            make.top.left.right.equalToSuperview()
-//            make.bottom.equalTo(botWaveView.snp.top)
-//        }
-//
-//        botWaveView.snp.makeConstraints { (make) in
-//            make.top.equalTo(view.snp.top).offset(screenHeight)
-//            make.left.right.bottom.equalToSuperview()
-//        }
     }
 }
 
