@@ -135,6 +135,7 @@ class StretchingViewController: UIViewController {
             Audioplayer.play(.newStretch)
             UIView.animate(withDuration: TimeInterval(stretchLength)) {
                 self.setNextLayout()
+                self.botView.label.alpha = 1
                 self.view.layoutIfNeeded()
             } completion: { (_) in
                 self.currentAnimationIteration += 1
@@ -183,6 +184,7 @@ class StretchingViewController: UIViewController {
         botView.label.transform = labelAnimateInStartTransform
         topView.setStyle(topStyle)
         botView.setStyle(botStyle)
+        botView.label.alpha = 0
     }
 
     private func setNextLayout() {
