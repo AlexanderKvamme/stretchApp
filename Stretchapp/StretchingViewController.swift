@@ -68,7 +68,7 @@ struct Stretch {
         Stretch(title: "Spinal twist", length: 30),
         Stretch(title: "Back bend", length: 30),
         Stretch(title: "Forward fold", length: 30),
-        Stretch(title: "Pidgeon pose", length: 30),
+        Stretch(title: "Pigeon pose", length: 30),
         Stretch(title: "Quad bends", length: 30),
         Stretch.completion
     ]
