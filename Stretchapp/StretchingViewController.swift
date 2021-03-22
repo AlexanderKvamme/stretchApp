@@ -46,10 +46,11 @@ class WaveContainer: UIView {
             make.left.bottom.right.equalToSuperview()
         }
 
+        clipsToBounds = false
         hackView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
-            make.height.equalTo(2)
-            make.centerY.equalTo(snp.bottom)
+            make.height.equalTo(1)
+            make.top.equalTo(snp.bottom).offset(-1)
         }
     }
 }
@@ -130,7 +131,9 @@ class StretchingViewController: UIViewController {
         self.updateStretches()
 
         if hasNextAnimation {
-            UIView.animate(withDuration: 10) {
+            let stretchLength = stretches[currentAnimationIteration].length
+            Audioplayer.play(.newStretch)
+            UIView.animate(withDuration: TimeInterval(stretchLength)) {
                 self.setNextLayout()
                 self.view.layoutIfNeeded()
             } completion: { (_) in
@@ -151,6 +154,7 @@ class StretchingViewController: UIViewController {
     }
 
     private func playCompletionAnimation() {
+        Audioplayer.play(.congratulations)
         let tapRec = UITapGestureRecognizer(target: self, action: #selector(resetScreen))
         view.addGestureRecognizer(tapRec)
     }

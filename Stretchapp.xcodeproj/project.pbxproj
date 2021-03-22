@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD013FBA2609503500A396A3 /* Toy_Up&Down1.caf in Resources */ = {isa = PBXBuildFile; fileRef = DD013FB82609503500A396A3 /* Toy_Up&Down1.caf */; };
+		DD013FBB2609503500A396A3 /* SpaceBall_Rise1.caf in Resources */ = {isa = PBXBuildFile; fileRef = DD013FB92609503500A396A3 /* SpaceBall_Rise1.caf */; };
+		DD013FBE2609505100A396A3 /* Audioplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD013FBD2609505000A396A3 /* Audioplayer.swift */; };
 		DD1B7B812606545F00CB9AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B802606545F00CB9AA4 /* AppDelegate.swift */; };
 		DD1B7B832606545F00CB9AA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */; };
 		DD1B7B852606545F00CB9AA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B842606545F00CB9AA4 /* ViewController.swift */; };
@@ -32,6 +35,9 @@
 
 /* Begin PBXFileReference section */
 		67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stretchapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD013FB82609503500A396A3 /* Toy_Up&Down1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Toy_Up&Down1.caf"; sourceTree = "<group>"; };
+		DD013FB92609503500A396A3 /* SpaceBall_Rise1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceBall_Rise1.caf; sourceTree = "<group>"; };
+		DD013FBD2609505000A396A3 /* Audioplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audioplayer.swift; sourceTree = "<group>"; };
 		DD1B7B7D2606545F00CB9AA4 /* Stretchapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stretchapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1B7B802606545F00CB9AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +85,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DD013FB526094FDE00A396A3 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				DD013FB92609503500A396A3 /* SpaceBall_Rise1.caf */,
+				DD013FB82609503500A396A3 /* Toy_Up&Down1.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		DD1B7B742606545F00CB9AA4 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +125,7 @@
 				DDEAAEBE26073E370056D85C /* ExerciseWaveView.swift */,
 				DDEAAEB2260687C80056D85C /* StretchButton.swift */,
 				DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */,
+				DD013FBD2609505000A396A3 /* Audioplayer.swift */,
 				DD1B7BA426067E7D00CB9AA4 /* Resources */,
 				DD1B7B9D26065AB600CB9AA4 /* TimePicker */,
 				DD1B7B862606545F00CB9AA4 /* Main.storyboard */,
@@ -131,6 +147,7 @@
 		DD1B7BA426067E7D00CB9AA4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DD013FB526094FDE00A396A3 /* Sounds */,
 				DD1B7BA526067E8400CB9AA4 /* Fonts */,
 			);
 			path = Resources;
@@ -218,6 +235,7 @@
 			files = (
 				DD1B7BB226067F7E00CB9AA4 /* DINRoundPro-Medi.ttf in Resources */,
 				DD1B7BB126067F7E00CB9AA4 /* DINRoundPro-Light.ttf in Resources */,
+				DD013FBB2609503500A396A3 /* SpaceBall_Rise1.caf in Resources */,
 				DD1B7BA826067F2900CB9AA4 /* Fulbo-Argenta.ttf in Resources */,
 				DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */,
 				DD1B7B8D2606546000CB9AA4 /* LaunchScreen.storyboard in Resources */,
@@ -225,6 +243,7 @@
 				DD1B7B8A2606546000CB9AA4 /* Assets.xcassets in Resources */,
 				DD1B7B882606545F00CB9AA4 /* Main.storyboard in Resources */,
 				DD1B7BAF26067F7E00CB9AA4 /* DINRoundPro.ttf in Resources */,
+				DD013FBA2609503500A396A3 /* Toy_Up&Down1.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +307,7 @@
 				DD1B7B972606553200CB9AA4 /* Style.swift in Sources */,
 				DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */,
 				DD1B7B832606545F00CB9AA4 /* SceneDelegate.swift in Sources */,
+				DD013FBE2609505100A396A3 /* Audioplayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
