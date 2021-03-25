@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class ExerciceWaveView: UIView {
+final class ExerciceView: UIView {
 
     enum ExerciseSlideStyle {
         case light
