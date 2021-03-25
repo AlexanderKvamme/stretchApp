@@ -88,6 +88,7 @@ class StretchingViewController: UIViewController {
         if hasNextAnimation {
             let stretchLength = stretches[currentAnimationIteration].length
             Audioplayer.play(.newStretch)
+            self.fractionView.topLabel.text = String(currentAnimationIteration)
             UIView.animate(withDuration: TimeInterval(stretchLength)) {
                 self.setNextLayout()
                 self.botView.label.alpha = 1
