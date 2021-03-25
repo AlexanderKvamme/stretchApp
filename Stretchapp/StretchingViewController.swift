@@ -8,6 +8,40 @@
 import UIKit
 import WXWaveView
 
+class StretchNavBarContainer: UIView {
+    let xButton = UIButton.make(.x)
+    let fractionView = SetFractionView(topValue: 1, bottomValue: 0)
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        setup()
+        addSubviewsAndConstraints()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setup() {}
+
+    private func addSubviewsAndConstraints() {
+        addSubview(xButton)
+        addSubview(fractionView)
+
+        xButton.snp.makeConstraints { (make) in
+            make.top.left.equalTo(safeAreaLayoutGuide).offset(40)
+            make.size.equalTo(24)
+        }
+
+        fractionView.snp.makeConstraints { (make) in
+            make.top.equalTo(safeAreaLayoutGuide).inset(16)
+            make.right.equalTo(safeAreaLayoutGuide).inset(32)
+            make.width.equalTo(54)
+            make.height.equalTo(64)
+        }
+    }
+}
 
 struct Stretch {
     let title: String
@@ -28,7 +62,6 @@ struct Stretch {
     ]
 }
 
-
 class StretchingViewController: UIViewController {
 
     // MARK: - Properties
@@ -40,8 +73,7 @@ class StretchingViewController: UIViewController {
         .scaledBy(x: 0.1, y: 0.1)
         .translatedBy(x: 0, y: 500)
     var stretches: [Stretch]
-    let fractionView: SetFractionView
-    let xButton = UIButton.make(.x)
+    let navBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100))
     let topView = ExerciceView(.light)
     let botView = ExerciceView(.dark)
     var wave = WaveView(frame: .zero, color: .green)
@@ -55,7 +87,8 @@ class StretchingViewController: UIViewController {
 
     init(_ stretches: [Stretch]) {
         self.stretches = stretches
-        self.fractionView =  SetFractionView(topValue: 0, bottomValue: stretches.count)
+        self.navBarContainer.backgroundColor = .green
+        self.navBarContainer.fractionView.bottomLabel.text = String(stretches.count)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -73,7 +106,7 @@ class StretchingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        fractionView.animate()
+        navBarContainer.fractionView.animate()
         playNextAnimation()
     }
 
@@ -88,7 +121,7 @@ class StretchingViewController: UIViewController {
         if hasNextAnimation {
             let stretchLength = stretches[currentAnimationIteration].length
             Audioplayer.play(.newStretch)
-            self.fractionView.topLabel.text = String(currentAnimationIteration)
+            self.navBarContainer.fractionView.topLabel.text = String(currentAnimationIteration+1)
             UIView.animate(withDuration: TimeInterval(stretchLength)) {
                 self.setNextLayout()
                 self.botView.label.alpha = 1
@@ -143,8 +176,7 @@ class StretchingViewController: UIViewController {
         botView.label.alpha = 0
         topView.label.alpha = 1
 
-        view.bringSubviewToFront(fractionView)
-        view.bringSubviewToFront(xButton)
+        view.bringSubviewToFront(navBarContainer)
     }
 
     private func setNextLayout() {
@@ -154,6 +186,7 @@ class StretchingViewController: UIViewController {
 
         self.topView.label.transform = labelAnimateOutEndTransform
         self.botView.label.transform = .identity
+
     }
 
     private var topStartFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
@@ -170,23 +203,10 @@ class StretchingViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-        view.addSubview(xButton)
-        view.addSubview(fractionView)
+        view.addSubview(navBarContainer)
         view.addSubview(topView)
         view.addSubview(botView)
         view.addSubview(wave)
-
-        xButton.snp.makeConstraints { (make) in
-            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(40)
-            make.size.equalTo(24)
-        }
-
-        fractionView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.right.equalTo(view.safeAreaLayoutGuide).inset(32)
-            make.width.equalTo(54)
-            make.height.equalTo(64)
-        }
     }
 }
 

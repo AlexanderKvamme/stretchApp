@@ -27,8 +27,8 @@ class SetFractionView: UIView {
 
         super.init(frame: .zero)
 
-        topLabel.text = String(topValue)
-        bottomLabel.text = String(bottomValue)
+        topLabel.text = "1"
+        bottomLabel.text = ""
 
         setup()
         addSubviewsAndConstraints()
