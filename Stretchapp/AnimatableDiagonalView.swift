@@ -11,6 +11,17 @@ import UIKit
 class AnimatableDiagonalView: UIView {
 
     weak var shapeLayer: CAShapeLayer?
+    var color: CGColor
+
+    init(_ color: UIColor) {
+        self.color = color.cgColor
+
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     func test() {
         self.shapeLayer?.removeFromSuperlayer()
@@ -22,7 +33,7 @@ class AnimatableDiagonalView: UIView {
 
         // create shape layer for that path
         let shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.strokeColor = color
         shapeLayer.lineWidth = 4
         shapeLayer.path = path.cgPath
         shapeLayer.lineCap = .round

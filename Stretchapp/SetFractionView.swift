@@ -17,13 +17,14 @@ class SetFractionView: UIView {
 
     let topLabel = UILabel.make(.fraction)
     let bottomLabel = UILabel.make(.fraction)
-    let diagonalLine = AnimatableDiagonalView()
+    let diagonalLine: AnimatableDiagonalView
 
     // MARK: - Initializers
 
-    init(topValue: Int, bottomValue: Int) {
+    init(color: UIColor, topValue: Int, bottomValue: Int) {
         self.topValue = topValue
         self.bottomValue = bottomValue
+        self.diagonalLine = AnimatableDiagonalView(color)
 
         super.init(frame: .zero)
 

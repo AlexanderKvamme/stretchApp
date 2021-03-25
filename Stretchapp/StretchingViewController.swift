@@ -9,11 +9,18 @@ import UIKit
 import WXWaveView
 
 class StretchNavBarContainer: UIView {
-    let xButton = UIButton.make(.x)
-    let fractionView = SetFractionView(topValue: 1, bottomValue: 0)
 
-    override init(frame: CGRect) {
+    let xButton = UIButton.make(.x)
+    let fractionView: SetFractionView
+
+    init(frame: CGRect, color: UIColor) {
+        fractionView = SetFractionView(color: color, topValue: 1, bottomValue: 0)
+
         super.init(frame: frame)
+
+        xButton.tintColor = color
+        fractionView.topLabel.textColor = color
+        fractionView.bottomLabel.textColor = color
 
         setup()
         addSubviewsAndConstraints()
@@ -73,7 +80,8 @@ class StretchingViewController: UIViewController {
         .scaledBy(x: 0.1, y: 0.1)
         .translatedBy(x: 0, y: 500)
     var stretches: [Stretch]
-    let navBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100))
+    let darkNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
+    let lightNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
     let topView = ExerciceView(.light)
     let botView = ExerciceView(.dark)
     var wave = WaveView(frame: .zero, color: .green)
@@ -87,10 +95,10 @@ class StretchingViewController: UIViewController {
 
     init(_ stretches: [Stretch]) {
         self.stretches = stretches
-        self.navBarContainer.backgroundColor = .green
-        self.navBarContainer.fractionView.bottomLabel.text = String(stretches.count)
 
         super.init(nibName: nil, bundle: nil)
+
+        setFraction("", "")
 
         view.backgroundColor = .background
         setInitialStretch(from: stretches)
@@ -106,11 +114,20 @@ class StretchingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        navBarContainer.fractionView.animate()
+        setFraction(String(1), String(stretches.count))
+        darkNavBarContainer.fractionView.animate()
+        lightNavBarContainer.fractionView.animate()
         playNextAnimation()
     }
 
     // MARK: - Methods
+
+    private func setFraction(_ top: String, _ bottom: String) {
+        self.darkNavBarContainer.fractionView.topLabel.text = top
+        self.darkNavBarContainer.fractionView.bottomLabel.text = bottom
+        self.lightNavBarContainer.fractionView.topLabel.text = top
+        self.lightNavBarContainer.fractionView.bottomLabel.text = bottom
+    }
 
     private func playNextAnimation() {
         resetViews()
@@ -121,7 +138,8 @@ class StretchingViewController: UIViewController {
         if hasNextAnimation {
             let stretchLength = stretches[currentAnimationIteration].length
             Audioplayer.play(.newStretch)
-            self.navBarContainer.fractionView.topLabel.text = String(currentAnimationIteration+1)
+            self.darkNavBarContainer.fractionView.topLabel.text = String(currentAnimationIteration+1)
+            setFraction(String(currentAnimationIteration+1), String(stretches.count))
             UIView.animate(withDuration: TimeInterval(stretchLength)) {
                 self.setNextLayout()
                 self.botView.label.alpha = 1
@@ -176,7 +194,8 @@ class StretchingViewController: UIViewController {
         botView.label.alpha = 0
         topView.label.alpha = 1
 
-        view.bringSubviewToFront(navBarContainer)
+        view.bringSubviewToFront(lightNavBarContainer)
+        view.bringSubviewToFront(darkNavBarContainer)
     }
 
     private func setNextLayout() {
@@ -186,7 +205,6 @@ class StretchingViewController: UIViewController {
 
         self.topView.label.transform = labelAnimateOutEndTransform
         self.botView.label.transform = .identity
-
     }
 
     private var topStartFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
@@ -203,7 +221,8 @@ class StretchingViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-        view.addSubview(navBarContainer)
+        view.addSubview(lightNavBarContainer)
+        view.addSubview(darkNavBarContainer)
         view.addSubview(topView)
         view.addSubview(botView)
         view.addSubview(wave)
