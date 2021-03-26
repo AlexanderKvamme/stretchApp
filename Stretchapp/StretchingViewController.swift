@@ -113,6 +113,8 @@ class StretchingViewController: UIViewController {
         view.backgroundColor = .background
         setInitialStretch(from: stretches)
         addSubviewsAndConstraints()
+        navBarOver.xButton.alpha = 0
+        navBarUnder.xButton.alpha = 0
     }
 
     required init?(coder: NSCoder) {
@@ -128,9 +130,18 @@ class StretchingViewController: UIViewController {
         navBarOver.fractionView.animate()
         navBarUnder.fractionView.animate()
         playNextAnimation()
+
+        fadeInViews()
     }
 
     // MARK: - Methods
+
+    private func fadeInViews() {
+        UIView.animate(withDuration: 1) {
+            self.navBarOver.xButton.alpha = 1
+            self.navBarUnder.xButton.alpha = 1
+        }
+    }
 
     private func setFraction(_ top: String, _ bottom: String) {
         navBarOver.fractionView.topLabel.text = top
