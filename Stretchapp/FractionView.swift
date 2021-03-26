@@ -8,7 +8,7 @@
 import UIKit
 
 
-class SetFractionView: UIView {
+class FractionView: UIView {
 
     // MARK: - Properties
 

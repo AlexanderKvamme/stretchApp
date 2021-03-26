@@ -11,10 +11,10 @@ import WXWaveView
 class StretchNavBarContainer: UIView {
 
     let xButton = UIButton.make(.x)
-    let fractionView: SetFractionView
+    let fractionView: FractionView
 
     init(frame: CGRect, color: UIColor) {
-        fractionView = SetFractionView(color: color, topValue: 1, bottomValue: 0)
+        fractionView = FractionView(color: color, topValue: 1, bottomValue: 0)
 
         super.init(frame: frame)
 

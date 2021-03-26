@@ -29,7 +29,7 @@
 		DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB2260687C80056D85C /* StretchButton.swift */; };
 		DDEAAEB626068F560056D85C /* StretchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB526068F560056D85C /* StretchingViewController.swift */; };
 		DDEAAEB926073DD60056D85C /* AnimatableDiagonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */; };
-		DDEAAEBC26073DEE0056D85C /* SetFractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEBB26073DEE0056D85C /* SetFractionView.swift */; };
+		DDEAAEBC26073DEE0056D85C /* FractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEBB26073DEE0056D85C /* FractionView.swift */; };
 		DDEAAEBF26073E370056D85C /* ExerciseWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEBE26073E370056D85C /* ExerciseWaveView.swift */; };
 		ECFAA075D6F0394559EE7A52 /* Pods_Stretchapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */; };
 /* End PBXBuildFile section */
@@ -60,7 +60,7 @@
 		DDEAAEB2260687C80056D85C /* StretchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchButton.swift; sourceTree = "<group>"; };
 		DDEAAEB526068F560056D85C /* StretchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingViewController.swift; sourceTree = "<group>"; };
 		DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableDiagonalView.swift; sourceTree = "<group>"; };
-		DDEAAEBB26073DEE0056D85C /* SetFractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetFractionView.swift; sourceTree = "<group>"; };
+		DDEAAEBB26073DEE0056D85C /* FractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractionView.swift; sourceTree = "<group>"; };
 		DDEAAEBE26073E370056D85C /* ExerciseWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseWaveView.swift; sourceTree = "<group>"; };
 		E26EBD0A7DD0102A60CF1D49 /* Pods-Stretchapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stretchapp.debug.xcconfig"; path = "Target Support Files/Pods-Stretchapp/Pods-Stretchapp.debug.xcconfig"; sourceTree = "<group>"; };
 		FB7820C6D4F9C89F9CBC11C6 /* Pods-Stretchapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stretchapp.release.xcconfig"; path = "Target Support Files/Pods-Stretchapp/Pods-Stretchapp.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				DD7BEC2D260D35960096820D /* AKWaveView.swift */,
 				DD1B7B842606545F00CB9AA4 /* ViewController.swift */,
 				DDEAAEB526068F560056D85C /* StretchingViewController.swift */,
-				DDEAAEBB26073DEE0056D85C /* SetFractionView.swift */,
+				DDEAAEBB26073DEE0056D85C /* FractionView.swift */,
 				DDEAAEBE26073E370056D85C /* ExerciseWaveView.swift */,
 				DDEAAEB2260687C80056D85C /* StretchButton.swift */,
 				DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */,
@@ -303,7 +303,7 @@
 				DD7BEC2E260D35960096820D /* AKWaveView.swift in Sources */,
 				DD1B7B9F26065B3600CB9AA4 /* TimePickerView.swift in Sources */,
 				DD1B7B812606545F00CB9AA4 /* AppDelegate.swift in Sources */,
-				DDEAAEBC26073DEE0056D85C /* SetFractionView.swift in Sources */,
+				DDEAAEBC26073DEE0056D85C /* FractionView.swift in Sources */,
 				DDEAAEB626068F560056D85C /* StretchingViewController.swift in Sources */,
 				DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */,
 				DDEAAEB926073DD60056D85C /* AnimatableDiagonalView.swift in Sources */,
