@@ -51,7 +51,7 @@ class FractionView: UIView {
     }
 
     func animate() {
-        diagonalLine.test()
+        diagonalLine.drawLineAnimation()
     }
 
     private func addSubviewsAndConstraints() {

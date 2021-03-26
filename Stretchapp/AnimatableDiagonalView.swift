@@ -23,7 +23,7 @@ class AnimatableDiagonalView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func test() {
+    func drawLineAnimation() {
         self.shapeLayer?.removeFromSuperlayer()
 
         let path = UIBezierPath()
