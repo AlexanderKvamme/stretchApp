@@ -48,6 +48,15 @@ class StretchNavBarContainer: UIView {
             make.height.equalTo(64)
         }
     }
+
+    // API
+
+    func setColor(_ c: UIColor) {
+        xButton.tintColor = c
+        fractionView.diagonalLine.shapeLayer?.strokeColor = UIColor(hex: "7F7F7F").cgColor
+        fractionView.topLabel.textColor = c
+        fractionView.bottomLabel.textColor = c
+    }
 }
 
 struct Stretch {
@@ -80,11 +89,11 @@ class StretchingViewController: UIViewController {
         .scaledBy(x: 0.1, y: 0.1)
         .translatedBy(x: 0, y: 500)
     var stretches: [Stretch]
-    let darkNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
-    let lightNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
+    let navBarOver = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
+    let navBarUnder = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
     let topView = ExerciceView(.light)
     let botView = ExerciceView(.dark)
-    var wave = WaveView(frame: .zero, color: .green)
+    var wave = WaveView(frame: .zero)
     var waveMask = WaveView(frame: .zero, additionalHeight: screenHeight)
     let waveHeight: CGFloat = 80
     var currentAnimationIteration = 0
@@ -116,18 +125,18 @@ class StretchingViewController: UIViewController {
         super.viewDidAppear(animated)
 
         setFraction(String(1), String(stretches.count))
-        darkNavBarContainer.fractionView.animate()
-        lightNavBarContainer.fractionView.animate()
+        navBarOver.fractionView.animate()
+        navBarUnder.fractionView.animate()
         playNextAnimation()
     }
 
     // MARK: - Methods
 
     private func setFraction(_ top: String, _ bottom: String) {
-        darkNavBarContainer.fractionView.topLabel.text = top
-        darkNavBarContainer.fractionView.bottomLabel.text = bottom
-        lightNavBarContainer.fractionView.topLabel.text = top
-        lightNavBarContainer.fractionView.bottomLabel.text = bottom
+        navBarOver.fractionView.topLabel.text = top
+        navBarOver.fractionView.bottomLabel.text = bottom
+        navBarUnder.fractionView.topLabel.text = top
+        navBarUnder.fractionView.bottomLabel.text = bottom
     }
 
     private func playNextAnimation() {
@@ -139,7 +148,7 @@ class StretchingViewController: UIViewController {
         if hasNextAnimation {
             let stretchLength = stretches[currentAnimationIteration].length
             Audioplayer.play(.newStretch)
-            self.darkNavBarContainer.fractionView.topLabel.text = String(currentAnimationIteration+1)
+            navBarOver.fractionView.topLabel.text = String(currentAnimationIteration+1)
             setFraction(String(currentAnimationIteration+1), String(stretches.count))
             UIView.animate(withDuration: TimeInterval(stretchLength)) {
                 self.setNextLayout()
@@ -176,11 +185,6 @@ class StretchingViewController: UIViewController {
     }
 
     private func resetViews() {
-        wave.removeFromSuperview()
-        lightNavBarContainer.removeFromSuperview()
-        darkNavBarContainer.removeFromSuperview()
-        lightNavBarContainer.mask = nil
-        darkNavBarContainer.mask = nil
         let sheetIsLight = currentAnimationIteration%2 == 0
         let topStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .light : .dark
         let botStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .dark : .light
@@ -201,15 +205,13 @@ class StretchingViewController: UIViewController {
         botView.label.alpha = 0
         topView.label.alpha = 1
 
-        if sheetIsLight {
-            lightNavBarContainer.mask = waveMask
-            view.addSubview(darkNavBarContainer)
-            view.addSubview(lightNavBarContainer)
-        } else {
-            darkNavBarContainer.mask = waveMask
-            view.addSubview(lightNavBarContainer)
-            view.addSubview(darkNavBarContainer)
-        }
+        navBarOver.setColor(topStyle.backgroundColor)
+        navBarUnder.setColor(topStyle.foregroundColor)
+        view.bringSubviewToFront(navBarUnder)
+        view.bringSubviewToFront(navBarOver)
+
+        // Mask hides the top bar, and reveals the one undeneath
+        navBarOver.mask = waveMask
     }
 
     private func setNextLayout() {
@@ -236,11 +238,11 @@ class StretchingViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-        view.addSubview(darkNavBarContainer)
-        view.addSubview(lightNavBarContainer)
         view.addSubview(topView)
         view.addSubview(botView)
         view.addSubview(wave)
+        view.addSubview(navBarUnder)
+        view.addSubview(navBarOver)
     }
 }
 

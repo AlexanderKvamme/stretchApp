@@ -46,8 +46,6 @@ class FractionView: UIView {
         //        topLabel.backgroundColor = .green
         //        bottomLabel.backgroundColor = .orange
         //        diagonalLine.backgroundColor = .brown
-
-        diagonalLine.alpha = 0.3
     }
 
     func animate() {
