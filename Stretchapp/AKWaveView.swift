@@ -14,8 +14,10 @@ class WaveView: UIView {
     let fillLayer = CAShapeLayer()
     var displayLink: CADisplayLink!
     let color: UIColor
+    let additionalHeight: CGFloat
 
-    init(frame: CGRect, color: UIColor) {
+    init(frame: CGRect, color: UIColor = .green, additionalHeight: CGFloat = 0) {
+        self.additionalHeight = additionalHeight
         self.color = color
         super.init(frame: frame)
 
@@ -70,10 +72,9 @@ class WaveView: UIView {
             let y = getY(x: x)
             path.addLine(to: CGPoint(x: x, y: y))
         }
-        path.addLine(to: CGPoint(x: width, y: height+1))
-        path.addLine(to: CGPoint(x: 0, y: height+1))
+        path.addLine(to: CGPoint(x: width, y: height+1+additionalHeight))
+        path.addLine(to: CGPoint(x: 0, y: height+1+additionalHeight))
         clipsToBounds = false
-//        path.stroke()
         path.close()
 
         fillLayer.path = path.cgPath

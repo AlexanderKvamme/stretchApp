@@ -80,11 +80,12 @@ class StretchingViewController: UIViewController {
         .scaledBy(x: 0.1, y: 0.1)
         .translatedBy(x: 0, y: 500)
     var stretches: [Stretch]
-    let darkNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
-    let lightNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
+    let darkNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
+    let lightNavBarContainer = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
     let topView = ExerciceView(.light)
     let botView = ExerciceView(.dark)
     var wave = WaveView(frame: .zero, color: .green)
+    var waveMask = WaveView(frame: .zero, additionalHeight: screenHeight)
     let waveHeight: CGFloat = 80
     var currentAnimationIteration = 0
     var hasNextAnimation: Bool {
@@ -123,10 +124,10 @@ class StretchingViewController: UIViewController {
     // MARK: - Methods
 
     private func setFraction(_ top: String, _ bottom: String) {
-        self.darkNavBarContainer.fractionView.topLabel.text = top
-        self.darkNavBarContainer.fractionView.bottomLabel.text = bottom
-        self.lightNavBarContainer.fractionView.topLabel.text = top
-        self.lightNavBarContainer.fractionView.bottomLabel.text = bottom
+        darkNavBarContainer.fractionView.topLabel.text = top
+        darkNavBarContainer.fractionView.bottomLabel.text = bottom
+        lightNavBarContainer.fractionView.topLabel.text = top
+        lightNavBarContainer.fractionView.bottomLabel.text = bottom
     }
 
     private func playNextAnimation() {
@@ -144,6 +145,7 @@ class StretchingViewController: UIViewController {
                 self.setNextLayout()
                 self.botView.label.alpha = 1
                 self.view.layoutIfNeeded()
+                self.waveMask.layoutIfNeeded()
             } completion: { (_) in
                 self.currentAnimationIteration += 1
                 self.playNextAnimation()
@@ -175,18 +177,23 @@ class StretchingViewController: UIViewController {
 
     private func resetViews() {
         wave.removeFromSuperview()
-
-        let topStyle: ExerciceView.ExerciseSlideStyle = currentAnimationIteration%2 == 0 ? .light : .dark
-        let botStyle: ExerciceView.ExerciseSlideStyle = currentAnimationIteration%2 == 0 ? .dark : .light
+        lightNavBarContainer.removeFromSuperview()
+        darkNavBarContainer.removeFromSuperview()
+        lightNavBarContainer.mask = nil
+        darkNavBarContainer.mask = nil
+        let sheetIsLight = currentAnimationIteration%2 == 0
+        let topStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .light : .dark
+        let botStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .dark : .light
 
         wave = WaveView(frame: .zero, color: topStyle.foregroundColor)
         wave.backgroundColor = topStyle.backgroundColor
-
         view.addSubview(wave)
 
         topView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         botView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
         wave.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
+        waveMask.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
+
         topView.label.transform = .identity
         botView.label.transform = labelAnimateInStartTransform
         topView.setStyle(topStyle)
@@ -194,14 +201,22 @@ class StretchingViewController: UIViewController {
         botView.label.alpha = 0
         topView.label.alpha = 1
 
-        view.bringSubviewToFront(lightNavBarContainer)
-        view.bringSubviewToFront(darkNavBarContainer)
+        if sheetIsLight {
+            lightNavBarContainer.mask = waveMask
+            view.addSubview(darkNavBarContainer)
+            view.addSubview(lightNavBarContainer)
+        } else {
+            darkNavBarContainer.mask = waveMask
+            view.addSubview(lightNavBarContainer)
+            view.addSubview(darkNavBarContainer)
+        }
     }
 
     private func setNextLayout() {
         self.topView.frame.origin.y -= screenHeight/2
         self.botView.frame = botEndFrame
         self.wave.frame = CGRect(x: 0, y: -waveHeight, width: screenWidth, height: waveHeight)
+        self.waveMask.frame = CGRect(x: 0, y: -waveHeight, width: screenWidth, height: waveHeight)
 
         self.topView.label.transform = labelAnimateOutEndTransform
         self.botView.label.transform = .identity
@@ -221,8 +236,8 @@ class StretchingViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-        view.addSubview(lightNavBarContainer)
         view.addSubview(darkNavBarContainer)
+        view.addSubview(lightNavBarContainer)
         view.addSubview(topView)
         view.addSubview(botView)
         view.addSubview(wave)
@@ -269,7 +284,7 @@ extension UIButton {
 
         switch style {
         case .x:
-            btn.setImage(UIImage.x, for: .normal)
+            btn.setImage(UIImage.x!.withRenderingMode(.alwaysTemplate), for: .normal)
             btn.tintColor = .black
         }
         return btn
