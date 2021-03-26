@@ -189,7 +189,7 @@ class StretchingViewController: UIViewController {
         let topStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .light : .dark
         let botStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .dark : .light
 
-        wave = WaveView(frame: .zero, color: topStyle.foregroundColor)
+        wave.color = topStyle.foregroundColor
         wave.backgroundColor = topStyle.backgroundColor
         view.addSubview(wave)
 

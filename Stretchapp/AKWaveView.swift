@@ -13,8 +13,13 @@ import Foundation
 class WaveView: UIView {
     let fillLayer = CAShapeLayer()
     var displayLink: CADisplayLink!
-    let color: UIColor
+    var color: UIColor {
+        didSet {
+            fillLayer.fillColor = color.cgColor
+        }
+    }
     let additionalHeight: CGFloat
+
 
     init(frame: CGRect, color: UIColor = .green, additionalHeight: CGFloat = 0) {
         self.additionalHeight = additionalHeight
