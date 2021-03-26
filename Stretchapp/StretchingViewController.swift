@@ -108,7 +108,8 @@ class StretchingViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        setFraction("", "")
+        navBarOver.fractionView.setFraction("x", "x")
+        navBarUnder.fractionView.setFraction("x", "x")
 
         view.backgroundColor = .background
         setInitialStretch(from: stretches)
@@ -126,7 +127,8 @@ class StretchingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        setFraction(String(1), String(stretches.count))
+        navBarOver.fractionView.setFraction("x", "x")
+        navBarUnder.fractionView.setFraction("x", "x")
         navBarOver.fractionView.animate()
         navBarUnder.fractionView.animate()
         playNextAnimation()
@@ -143,13 +145,6 @@ class StretchingViewController: UIViewController {
         }
     }
 
-    private func setFraction(_ top: String, _ bottom: String) {
-        navBarOver.fractionView.topLabel.text = top
-        navBarOver.fractionView.bottomLabel.text = bottom
-        navBarUnder.fractionView.topLabel.text = top
-        navBarUnder.fractionView.bottomLabel.text = bottom
-    }
-
     private func playNextAnimation() {
         resetViews()
         view.layoutIfNeeded()
@@ -159,8 +154,8 @@ class StretchingViewController: UIViewController {
         if hasNextAnimation {
             let stretchLength = stretches[currentAnimationIteration].length
             Audioplayer.play(.newStretch)
-            navBarOver.fractionView.topLabel.text = String(currentAnimationIteration+1)
-            setFraction(String(currentAnimationIteration+1), String(stretches.count))
+            navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count))
+            navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count))
             UIView.animate(withDuration: TimeInterval(stretchLength)) {
                 self.setNextLayout()
                 self.botView.label.alpha = 1

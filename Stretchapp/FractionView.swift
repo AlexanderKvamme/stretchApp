@@ -69,4 +69,11 @@ class FractionView: UIView {
             make.right.bottom.equalToSuperview()
         }
     }
+
+    // API
+
+    func setFraction(_ top: String, _ bottom: String) {
+        topLabel.text = top
+        bottomLabel.text = bottom
+    }
 }
