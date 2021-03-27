@@ -1,8 +1,8 @@
 import UIKit
 
 extension UIColor {
-    static let background = UIColor(hex: "FDF8F3")
-    static let primaryContrast = UIColor(hex: "#2A2A2A")
+    static let background = UIColor(hex: "#F4F4F4")
+    static let primaryContrast = UIColor(hex: "#0C1D2D")
     static let card = UIColor(hex: "#EDE9E5")
 }
 
