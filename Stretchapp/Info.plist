@@ -22,6 +22,15 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>DINRoundPro-Black.ttf</string>
+		<string>DINRoundPro-Bold.ttf</string>
+		<string>DINRoundPro-Light.ttf</string>
+		<string>DINRoundPro-Medium.ttf</string>
+		<string>DINRoundPro.ttf</string>
+		<string>Fulbo-Argenta.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -54,17 +63,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>DINRoundPro-Black.ttf</string>
-		<string>DINRoundPro-Bold.ttf</string>
-		<string>DINRoundPro-Light.ttf</string>
-		<string>DINRoundPro-Medium.ttf</string>
-		<string>DINRoundPro.ttf</string>
-		<string>Fulbo-Argenta.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
