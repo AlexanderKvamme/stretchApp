@@ -87,7 +87,7 @@ class ViewController: UIViewController {
     @objc private func startStretching() {
         let stretchViewController = StretchingViewController(Stretch.favourites)
         stretchViewController.modalPresentationStyle = .fullScreen
-        present(stretchViewController, animated: true, completion: nil)
+        present(stretchViewController, animated: false, completion: nil)
     }
 }
 

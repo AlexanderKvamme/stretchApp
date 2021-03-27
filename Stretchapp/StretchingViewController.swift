@@ -150,7 +150,7 @@ class StretchingViewController: UIViewController {
     }
 
     @objc private func exit() {
-        dismiss(animated: true)
+        dismiss(animated: false)
     }
 
     private func fadeInViews() {
