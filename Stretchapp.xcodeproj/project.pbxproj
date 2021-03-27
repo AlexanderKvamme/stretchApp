@@ -26,6 +26,7 @@
 		DD1B7BB226067F7E00CB9AA4 /* DINRoundPro-Medi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */; };
 		DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */; };
 		DD7BEC2E260D35960096820D /* AKWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BEC2D260D35960096820D /* AKWaveView.swift */; };
+		DD864946260F9C8000428C37 /* NewWorkoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD864945260F9C8000428C37 /* NewWorkoutButton.swift */; };
 		DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB2260687C80056D85C /* StretchButton.swift */; };
 		DDEAAEB626068F560056D85C /* StretchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB526068F560056D85C /* StretchingViewController.swift */; };
 		DDEAAEB926073DD60056D85C /* AnimatableDiagonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */; };
@@ -57,6 +58,7 @@
 		DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Medi.ttf"; sourceTree = "<group>"; };
 		DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.ttf"; sourceTree = "<group>"; };
 		DD7BEC2D260D35960096820D /* AKWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKWaveView.swift; sourceTree = "<group>"; };
+		DD864945260F9C8000428C37 /* NewWorkoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutButton.swift; sourceTree = "<group>"; };
 		DDEAAEB2260687C80056D85C /* StretchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchButton.swift; sourceTree = "<group>"; };
 		DDEAAEB526068F560056D85C /* StretchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingViewController.swift; sourceTree = "<group>"; };
 		DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableDiagonalView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */,
 				DD7BEC2D260D35960096820D /* AKWaveView.swift */,
 				DD1B7B842606545F00CB9AA4 /* ViewController.swift */,
+				DD864945260F9C8000428C37 /* NewWorkoutButton.swift */,
 				DDEAAEB526068F560056D85C /* StretchingViewController.swift */,
 				DDEAAEBB26073DEE0056D85C /* FractionView.swift */,
 				DDEAAEBE26073E370056D85C /* ExerciseWaveView.swift */,
@@ -307,6 +310,7 @@
 				DDEAAEB626068F560056D85C /* StretchingViewController.swift in Sources */,
 				DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */,
 				DDEAAEB926073DD60056D85C /* AnimatableDiagonalView.swift in Sources */,
+				DD864946260F9C8000428C37 /* NewWorkoutButton.swift in Sources */,
 				DDEAAEBF26073E370056D85C /* ExerciseWaveView.swift in Sources */,
 				DD1B7B972606553200CB9AA4 /* Style.swift in Sources */,
 				DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */,

@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     private let xIcon = UIImageView(image: .x)
     private let timePicker = TimePickerView(60)
     private let stretchButton = StretchButton("Stretch")
+    private let newWorkoutButton = NewWorkoutButton()
 
     // MARK: - Initializers
 
@@ -81,6 +82,14 @@ class ViewController: UIViewController {
             make.height.equalTo(Style.buttonHeight)
             make.left.right.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(24)
+        }
+
+        view.addSubview(newWorkoutButton)
+        newWorkoutButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(40)
+            make.right.equalToSuperview().offset(-40)
+            make.width.equalTo(110)
+            make.height.equalTo(56)
         }
     }
 
