@@ -108,14 +108,17 @@ class StretchingViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        navBarOver.fractionView.setFraction("x", "x")
-        navBarUnder.fractionView.setFraction("x", "x")
+        navBarOver.fractionView.setFraction("1", String(stretches.count))
+        navBarUnder.fractionView.setFraction("1", String(stretches.count))
 
         view.backgroundColor = .background
         setInitialStretch(from: stretches)
         addSubviewsAndConstraints()
         navBarOver.xButton.alpha = 0
         navBarUnder.xButton.alpha = 0
+
+        setup()
+        addSubviewsAndConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -127,8 +130,8 @@ class StretchingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        navBarOver.fractionView.setFraction("x", "x")
-        navBarUnder.fractionView.setFraction("x", "x")
+        navBarOver.fractionView.setFraction("1", String(stretches.count))
+        navBarUnder.fractionView.setFraction("1", String(stretches.count))
         navBarOver.fractionView.animate()
         navBarUnder.fractionView.animate()
         playNextAnimation()
