@@ -19,6 +19,8 @@ class StretchNavBarContainer: UIView {
         super.init(frame: frame)
 
         xButton.tintColor = color
+        let imageInset: CGFloat = 12
+        xButton.imageEdgeInsets = UIEdgeInsets(top: imageInset, left: imageInset, bottom: imageInset, right: imageInset)
         fractionView.topLabel.textColor = color
         fractionView.bottomLabel.textColor = color
 
@@ -37,12 +39,13 @@ class StretchNavBarContainer: UIView {
         addSubview(fractionView)
 
         xButton.snp.makeConstraints { (make) in
-            make.top.left.equalTo(safeAreaLayoutGuide).offset(40)
-            make.size.equalTo(24)
+            make.centerY.equalTo(fractionView.snp.centerY)
+            make.left.equalTo(safeAreaLayoutGuide).offset(24)
+            make.size.equalTo(48)
         }
 
         fractionView.snp.makeConstraints { (make) in
-            make.top.equalTo(safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(safeAreaLayoutGuide).inset(8)
             make.right.equalTo(safeAreaLayoutGuide).inset(32)
             make.width.equalTo(54)
             make.height.equalTo(64)
@@ -141,8 +144,17 @@ class StretchingViewController: UIViewController {
 
     // MARK: - Methods
 
+    private func setup() {
+        navBarOver.xButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+        navBarUnder.xButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+    }
+
+    @objc private func exit() {
+        dismiss(animated: true)
+    }
+
     private func fadeInViews() {
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.7) {
             self.navBarOver.xButton.alpha = 1
             self.navBarUnder.xButton.alpha = 1
         }
