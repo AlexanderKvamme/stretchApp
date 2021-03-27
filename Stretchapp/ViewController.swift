@@ -46,6 +46,8 @@ class ViewController: UIViewController {
         horizontalStack.axis = .horizontal
         horizontalStack.distribution = .equalSpacing
 
+        stretchButton.addTarget(self, action: #selector(startStretching), for: .touchDown)
+
 //        horizontalStack.backgroundColor = .green
 //        setPicker.backgroundColor = .purple
 //        timePicker.backgroundColor = .orange
@@ -80,6 +82,12 @@ class ViewController: UIViewController {
             make.left.right.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(24)
         }
+    }
+
+    @objc private func startStretching() {
+        let stretchViewController = StretchingViewController(Stretch.favourites)
+        stretchViewController.modalPresentationStyle = .fullScreen
+        present(stretchViewController, animated: true, completion: nil)
     }
 }
 
