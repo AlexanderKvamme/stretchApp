@@ -32,6 +32,7 @@
 		DDADD2CA26113A0900AAC15B /* TextInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2C926113A0900AAC15B /* TextInputController.swift */; };
 		DDADD2CD26113CCD00AAC15B /* TimeInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2CC26113CCD00AAC15B /* TimeInputController.swift */; };
 		DDADD2D026113E2C00AAC15B /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2CF26113E2C00AAC15B /* TimePicker.swift */; };
+		DDCB7B762615323100AD1267 /* Superstepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCB7B752615323100AD1267 /* Superstepper.swift */; };
 		DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB2260687C80056D85C /* StretchButton.swift */; };
 		DDEAAEB626068F560056D85C /* StretchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB526068F560056D85C /* StretchingViewController.swift */; };
 		DDEAAEB926073DD60056D85C /* AnimatableDiagonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */; };
@@ -69,6 +70,7 @@
 		DDADD2C926113A0900AAC15B /* TextInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputController.swift; sourceTree = "<group>"; };
 		DDADD2CC26113CCD00AAC15B /* TimeInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInputController.swift; sourceTree = "<group>"; };
 		DDADD2CF26113E2C00AAC15B /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
+		DDCB7B752615323100AD1267 /* Superstepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Superstepper.swift; sourceTree = "<group>"; };
 		DDEAAEB2260687C80056D85C /* StretchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchButton.swift; sourceTree = "<group>"; };
 		DDEAAEB526068F560056D85C /* StretchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingViewController.swift; sourceTree = "<group>"; };
 		DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableDiagonalView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				DDEAAEB2260687C80056D85C /* StretchButton.swift */,
 				DDEAAEB826073DD50056D85C /* AnimatableDiagonalView.swift */,
 				DD013FBD2609505000A396A3 /* Audioplayer.swift */,
+				DDCB7B752615323100AD1267 /* Superstepper.swift */,
 				DD1B7BA426067E7D00CB9AA4 /* Resources */,
 				DD1B7B9D26065AB600CB9AA4 /* TimePicker */,
 				DD1B7B862606545F00CB9AA4 /* Main.storyboard */,
@@ -332,6 +335,7 @@
 				DD864946260F9C8000428C37 /* NewWorkoutButton.swift in Sources */,
 				DDEAAEBF26073E370056D85C /* ExerciseWaveView.swift in Sources */,
 				DD1B7B972606553200CB9AA4 /* Style.swift in Sources */,
+				DDCB7B762615323100AD1267 /* Superstepper.swift in Sources */,
 				DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */,
 				DD1B7B832606545F00CB9AA4 /* SceneDelegate.swift in Sources */,
 				DDADD2B72610F6D800AAC15B /* NewWorkoutController.swift in Sources */,

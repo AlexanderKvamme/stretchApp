@@ -7,6 +7,9 @@
 
 import UIKit
 
+let stepperFrame = CGRect(x: 0, y: 0, width: 222, height: 64)
+let testOptions = ["30 s", "45 s", "60 s", "90 s", "2 m", "3 m", "4 m", "5 m", "6 m", "7 m", "8 m", "9 m"]
+
 final class TextInputController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
@@ -14,6 +17,8 @@ final class TextInputController: UIViewController, UITextFieldDelegate {
     private let nameLabel = UILabel.make(.header)
     private let input = UITextField()
     private let backButton = UIButton.make(.back)
+    private let superStepper = SuperStepper(frame: stepperFrame, options: testOptions)
+    private let stepperShadow = ShadowView(frame: stepperFrame)
 
     // MARK: - Initializers
 
@@ -34,10 +39,11 @@ final class TextInputController: UIViewController, UITextFieldDelegate {
 
     private func setup() {
         backButton.tintColor = .background
-        nameLabel.text = "Whats it called?"
+        nameLabel.text = "Stretch name"
         nameLabel.textColor = .background
         nameLabel.textAlignment = .center
-        input.placeholder = "swag"
+        nameLabel.alpha = 0.8
+        input.placeholder = "Forward fold"
         input.textAlignment = .center
         input.font = UIFont.round(.black, 64)
         input.adjustsFontSizeToFitWidth = true
@@ -55,6 +61,8 @@ final class TextInputController: UIViewController, UITextFieldDelegate {
         view.addSubview(backButton)
         view.addSubview(nameLabel)
         view.addSubview(input)
+        view.addSubview(stepperShadow)
+        view.addSubview(superStepper)
 
         backButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
@@ -72,6 +80,18 @@ final class TextInputController: UIViewController, UITextFieldDelegate {
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(32)
         }
+
+        stepperShadow.snp.makeConstraints { (make) in
+            make.top.equalTo(superStepper.snp.top).offset(10)
+            make.centerX.equalTo(superStepper)
+            make.size.equalTo(superStepper.frame.size)
+        }
+
+        superStepper.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(superStepper.frame.size)
+            make.top.equalTo(input.snp.bottom).offset(24)
+        }
     }
 
     // MARK: - TextFieldDelegate
@@ -83,4 +103,3 @@ final class TextInputController: UIViewController, UITextFieldDelegate {
         return true
     }
 }
-
