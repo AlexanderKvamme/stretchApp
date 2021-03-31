@@ -79,9 +79,13 @@ extension UIImage {
 
     enum CustomIcon: String {
         case x = "icon-x"
+        case back = "icon-back"
+        case pillPlus = "icon-plus-pill"
     }
 
     static let x = UIImage(named: CustomIcon.x.rawValue)
+    static let back = UIImage(named: CustomIcon.back.rawValue)
+    static let pillPlus = UIImage(named: CustomIcon.pillPlus.rawValue)
 }
 
 // UIDevice

@@ -19,6 +19,7 @@ class Audioplayer: NSObject {
         case newStretch = "SpaceBall_Rise1.caf"
         case congratulations = "Toy_Up&Down1.caf"
     }
+
     static func play(_ sound: Sound) {
         let path = Bundle.main.path(forResource: sound.rawValue, ofType:nil)!
         let url = URL(fileURLWithPath: path)

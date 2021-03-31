@@ -299,16 +299,27 @@ extension UIButton {
 
     enum ButtonStyle {
         case x
+        case back
+        case plusPill
     }
 
     static func make(_ style: ButtonStyle) -> UIButton {
         let btn = UIButton()
+        let imageInset: CGFloat = 12
+        btn.imageEdgeInsets = UIEdgeInsets(top: imageInset, left: imageInset, bottom: imageInset, right: imageInset)
         btn.tintColor = .black
 
         switch style {
         case .x:
             btn.setImage(UIImage.x!.withRenderingMode(.alwaysTemplate), for: .normal)
-            btn.tintColor = .black
+            btn.tintColor = .primaryContrast
+        case .back:
+            btn.setImage(UIImage.back!.withRenderingMode(.alwaysTemplate), for: .normal)
+            btn.tintColor = .primaryContrast
+        case .plusPill:
+            btn.setImage(UIImage.x!.withRenderingMode(.alwaysTemplate).withTintColor(.red), for: .normal)
+            btn.tintColor = .orange
+            btn.layer.cornerRadius = 40
         }
         return btn
     }
