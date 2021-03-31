@@ -49,6 +49,9 @@ class ViewController: UIViewController {
 
         stretchButton.addTarget(self, action: #selector(startStretching), for: .touchDown)
 
+        let newWorkoutTap = UITapGestureRecognizer(target: self, action: #selector(createNewWorkout))
+        newWorkoutButton.addGestureRecognizer(newWorkoutTap)
+
 //        horizontalStack.backgroundColor = .green
 //        setPicker.backgroundColor = .purple
 //        timePicker.backgroundColor = .orange
@@ -91,6 +94,12 @@ class ViewController: UIViewController {
             make.width.equalTo(110)
             make.height.equalTo(56)
         }
+    }
+
+    @objc private func createNewWorkout() {
+        let newWorkoutController = NewWorkoutController()
+        newWorkoutController.modalPresentationStyle = .fullScreen
+        present(newWorkoutController, animated: false, completion: nil)
     }
 
     @objc private func startStretching() {

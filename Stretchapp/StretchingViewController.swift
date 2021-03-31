@@ -19,8 +19,6 @@ class StretchNavBarContainer: UIView {
         super.init(frame: frame)
 
         xButton.tintColor = color
-        let imageInset: CGFloat = 12
-        xButton.imageEdgeInsets = UIEdgeInsets(top: imageInset, left: imageInset, bottom: imageInset, right: imageInset)
         fractionView.topLabel.textColor = color
         fractionView.bottomLabel.textColor = color
 
@@ -273,6 +271,7 @@ extension UILabel {
         case fraction
         case standard
         case exercise
+        case header
     }
 
     static func make(_ style: LabelStyle, text: String = "") -> UILabel {
@@ -289,6 +288,8 @@ extension UILabel {
             lbl.font = UIFont.round(.bold, 12)
         case .exercise:
             lbl.font = UIFont.round(.bold, 40)
+        case .header:
+            lbl.font = UIFont.round(.bold, 24)
         }
 
         return lbl
