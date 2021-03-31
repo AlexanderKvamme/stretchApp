@@ -66,15 +66,30 @@ struct Stretch {
 
     static let dummy = Stretch(title: "This is a dummy stretch", length: 30)
     static let completion = Stretch(title: "Congratulations", length: 30)
-
+    static let defaultLength = 40
+    static let debugLength = 5
     static let favourites = [
-        Stretch(title: "Hands folded behind back", length: 30),
-        Stretch(title: "Low squat", length: 30),
-        Stretch(title: "Spinal twist", length: 30),
-        Stretch(title: "Back bend", length: 30),
-        Stretch(title: "Forward fold", length: 30),
-        Stretch(title: "Pigeon pose", length: 30),
-        Stretch(title: "Quad bends", length: 30),
+        Stretch(title: "Hands folded behind back", length: Self.defaultLength),
+        Stretch(title: "Low squat", length: Self.defaultLength),
+        Stretch(title: "Spinal twist (one side)", length: Self.defaultLength),
+        Stretch(title: "Spinal twist (other side)", length: Self.defaultLength),
+        Stretch(title: "Back bend", length: Self.defaultLength),
+        Stretch(title: "Forward fold", length: Self.defaultLength),
+        Stretch(title: "Pigeon pose (one side)", length: Self.defaultLength),
+        Stretch(title: "Pigeon pose (other side)", length: Self.defaultLength),
+        Stretch(title: "Quad bends", length: Self.defaultLength),
+        Stretch(title: "Happy baby", length: Self.defaultLength*2),
+        Stretch.completion
+    ]
+    static let forDebugging = [
+        Stretch(title: "Hands folded behind back", length: Self.debugLength),
+        Stretch(title: "Low squat", length: Self.debugLength),
+        Stretch(title: "Spinal twist (one side)", length: Self.debugLength),
+        Stretch(title: "Back bend", length: Self.debugLength),
+        Stretch(title: "Forward fold", length: Self.debugLength),
+        Stretch(title: "Pigeon pose (one side)", length: Self.debugLength),
+        Stretch(title: "Quad bends", length: Self.debugLength),
+        Stretch(title: "Happy baby", length: Self.debugLength*2),
         Stretch.completion
     ]
 }
