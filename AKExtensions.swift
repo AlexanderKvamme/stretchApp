@@ -126,11 +126,13 @@ extension UIImage {
         case x = "icon-x"
         case back = "icon-back"
         case pillPlus = "icon-plus-pill"
+        case animationPlaceholder = "logo-animation-placeholder"
     }
 
     static let x = UIImage(named: CustomIcon.x.rawValue)
     static let back = UIImage(named: CustomIcon.back.rawValue)
     static let pillPlus = UIImage(named: CustomIcon.pillPlus.rawValue)
+    static let animationPlaceholder = UIImage(named: CustomIcon.animationPlaceholder.rawValue)
 }
 
 // UIDevice
