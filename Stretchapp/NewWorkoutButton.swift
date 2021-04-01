@@ -13,7 +13,6 @@ final class NewWorkoutButton: UIView {
     // MARK: - Properties
 
     private let iconView = UIImageView(image: UIImage.x)
-    private let label = UILabel.make(.fraction)
 
     // MARK: - Initializers
 
@@ -33,27 +32,16 @@ final class NewWorkoutButton: UIView {
     private func setup() {
         backgroundColor = UIColor.primaryContrast.withAlphaComponent(0.02)
 
-        layer.cornerRadius = 10
-        label.text = "NEW"
-        label.font = UIFont.round(.black, 16)
-
         iconView.transform = iconView.transform.rotated(by: .pi/4)
         iconView.alpha = 0.2
     }
 
     private func addSubviewsAndConstraints() {
         addSubview(iconView)
-        addSubview(label)
 
         iconView.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-24)
+            make.center.equalToSuperview()
             make.size.equalTo(16)
-        }
-
-        label.snp.makeConstraints { (make) in
-            make.top.left.bottom.equalToSuperview()
-            make.right.equalTo(iconView.snp.left)
         }
     }
 }

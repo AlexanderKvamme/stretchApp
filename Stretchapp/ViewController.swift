@@ -12,12 +12,11 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
 
+    private let workoutButtonSize: CGFloat = 56
     private let horizontalStack = UIStackView()
-    private let setPicker = TimePickerView(10)
-    private let xIcon = UIImageView(image: .x)
-    private let timePicker = TimePickerView(60)
     private let stretchButton = StretchButton("Stretch")
     private let newWorkoutButton = NewWorkoutButton()
+    private let logoAnimationPlaceholder = UIImageView(image: .animationPlaceholder)
 
     // MARK: - Initializers
 
@@ -39,18 +38,14 @@ class ViewController: UIViewController {
     private func setup() {
         view.backgroundColor = UIColor.background
 
-        horizontalStack.addArrangedSubview(setPicker)
-        horizontalStack.addArrangedSubview(xIcon)
-        horizontalStack.addArrangedSubview(timePicker)
-
-        horizontalStack.alignment = .center
-        horizontalStack.axis = .horizontal
-        horizontalStack.distribution = .equalSpacing
-
         stretchButton.addTarget(self, action: #selector(startStretching), for: .touchDown)
+
 
         let newWorkoutTap = UITapGestureRecognizer(target: self, action: #selector(createNewWorkout))
         newWorkoutButton.addGestureRecognizer(newWorkoutTap)
+        newWorkoutButton.layer.cornerRadius = workoutButtonSize/2
+
+        logoAnimationPlaceholder.contentMode = .scaleAspectFit
 
 //        horizontalStack.backgroundColor = .green
 //        setPicker.backgroundColor = .purple
@@ -60,25 +55,6 @@ class ViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-        view.addSubview(horizontalStack)
-
-        horizontalStack.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview().inset(40)
-            make.center.equalToSuperview()
-            make.height.equalTo(setPicker.snp.height)
-        }
-
-        setPicker.snp.makeConstraints { (make) in
-            make.size.equalTo(TimePickerView.preferredSize)
-        }
-
-        xIcon.snp.makeConstraints { (make) in
-            make.size.equalTo(24)
-        }
-
-        timePicker.snp.makeConstraints { (make) in
-            make.size.equalTo(TimePickerView.preferredSize)
-        }
 
         view.addSubview(stretchButton)
         stretchButton.snp.makeConstraints { (make) in
@@ -91,8 +67,15 @@ class ViewController: UIViewController {
         newWorkoutButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             make.right.equalToSuperview().offset(-32)
-            make.width.equalTo(120)
-            make.height.equalTo(56)
+            make.size.equalTo(workoutButtonSize)
+        }
+
+
+        view.addSubview(logoAnimationPlaceholder)
+        logoAnimationPlaceholder.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview().inset(90)
+            make.top.equalTo(newWorkoutButton.snp.bottom).offset(32)
+            make.height.equalTo(logoAnimationPlaceholder.snp.width)
         }
     }
 
