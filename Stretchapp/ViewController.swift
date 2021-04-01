@@ -89,9 +89,9 @@ class ViewController: UIViewController {
 
         view.addSubview(newWorkoutButton)
         newWorkoutButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(40)
-            make.right.equalToSuperview().offset(-40)
-            make.width.equalTo(110)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.right.equalToSuperview().offset(-32)
+            make.width.equalTo(120)
             make.height.equalTo(56)
         }
     }

@@ -47,7 +47,7 @@ final class NewWorkoutButton: UIView {
 
         iconView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-15)
+            make.right.equalToSuperview().offset(-24)
             make.size.equalTo(16)
         }
 
