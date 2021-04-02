@@ -27,6 +27,7 @@
 		DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */; };
 		DD7BEC2E260D35960096820D /* AKWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7BEC2D260D35960096820D /* AKWaveView.swift */; };
 		DD864946260F9C8000428C37 /* NewWorkoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD864945260F9C8000428C37 /* NewWorkoutButton.swift */; };
+		DD88767C261718E30036910B /* WorkoutPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD88767B261718E30036910B /* WorkoutPicker.swift */; };
 		DDADD2B42610F63900AAC15B /* WobbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2B32610F63900AAC15B /* WobbleView.swift */; };
 		DDADD2B72610F6D800AAC15B /* NewWorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2B62610F6D800AAC15B /* NewWorkoutController.swift */; };
 		DDADD2CA26113A0900AAC15B /* TextInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2C926113A0900AAC15B /* TextInputController.swift */; };
@@ -65,6 +66,7 @@
 		DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.ttf"; sourceTree = "<group>"; };
 		DD7BEC2D260D35960096820D /* AKWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKWaveView.swift; sourceTree = "<group>"; };
 		DD864945260F9C8000428C37 /* NewWorkoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutButton.swift; sourceTree = "<group>"; };
+		DD88767B261718E30036910B /* WorkoutPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPicker.swift; sourceTree = "<group>"; };
 		DDADD2B32610F63900AAC15B /* WobbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WobbleView.swift; sourceTree = "<group>"; };
 		DDADD2B62610F6D800AAC15B /* NewWorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutController.swift; sourceTree = "<group>"; };
 		DDADD2C926113A0900AAC15B /* TextInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */,
 				DD7BEC2D260D35960096820D /* AKWaveView.swift */,
 				DD1B7B842606545F00CB9AA4 /* ViewController.swift */,
+				DD88767B261718E30036910B /* WorkoutPicker.swift */,
 				DD864945260F9C8000428C37 /* NewWorkoutButton.swift */,
 				DDADD2B62610F6D800AAC15B /* NewWorkoutController.swift */,
 				DDADD2C926113A0900AAC15B /* TextInputController.swift */,
@@ -323,6 +326,7 @@
 				DD1B7B852606545F00CB9AA4 /* ViewController.swift in Sources */,
 				DD7BEC2E260D35960096820D /* AKWaveView.swift in Sources */,
 				DDADD2D026113E2C00AAC15B /* TimePicker.swift in Sources */,
+				DD88767C261718E30036910B /* WorkoutPicker.swift in Sources */,
 				DD1B7B9F26065B3600CB9AA4 /* TimePickerView.swift in Sources */,
 				DD1B7B812606545F00CB9AA4 /* AppDelegate.swift in Sources */,
 				DDEAAEBC26073DEE0056D85C /* FractionView.swift in Sources */,

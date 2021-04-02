@@ -10,13 +10,16 @@ import SnapKit
 
 class ViewController: UIViewController {
 
-    // MARK: - Properties
+    // MARK: - Settings
 
     private let workoutButtonSize: CGFloat = 56
-    private let horizontalStack = UIStackView()
+
+    // MARK: - Properties
+
     private let stretchButton = StretchButton("Stretch")
-    private let newWorkoutButton = NewWorkoutButton()
     private let logoAnimationPlaceholder = UIImageView(image: .animationPlaceholder)
+    private let workoutPicker = WorkoutPicker()
+    private let newWorkoutButton = NewWorkoutButton()
 
     // MARK: - Initializers
 
@@ -39,7 +42,6 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.background
 
         stretchButton.addTarget(self, action: #selector(startStretching), for: .touchDown)
-
 
         let newWorkoutTap = UITapGestureRecognizer(target: self, action: #selector(createNewWorkout))
         newWorkoutButton.addGestureRecognizer(newWorkoutTap)
@@ -70,12 +72,19 @@ class ViewController: UIViewController {
             make.size.equalTo(workoutButtonSize)
         }
 
-
         view.addSubview(logoAnimationPlaceholder)
         logoAnimationPlaceholder.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview().inset(90)
             make.top.equalTo(newWorkoutButton.snp.bottom).offset(32)
             make.height.equalTo(logoAnimationPlaceholder.snp.width)
+        }
+
+        addChild(workoutPicker)
+        view.addSubview(workoutPicker.view)
+        workoutPicker.view.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(logoAnimationPlaceholder.snp.bottom)
+            make.bottom.equalTo(stretchButton.snp.top).offset(-32)
         }
     }
 
