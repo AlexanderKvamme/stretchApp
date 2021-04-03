@@ -45,7 +45,7 @@ class StretchNavBarContainer: UIView {
         fractionView.snp.makeConstraints { (make) in
             make.top.equalTo(safeAreaLayoutGuide).inset(8)
             make.right.equalTo(safeAreaLayoutGuide).inset(32)
-            make.width.equalTo(54)
+            make.width.equalTo(64)
             make.height.equalTo(64)
         }
     }
@@ -67,7 +67,7 @@ struct Stretch {
     static let dummy = Stretch(title: "This is a dummy stretch", length: 30)
     static let completion = Stretch(title: "Congratulations", length: 30)
     static let defaultLength = 40
-    static let debugLength = 5
+    static let debugLength = 1
     static let favourites = [
         Stretch(title: "Hands folded behind back", length: Self.defaultLength),
         Stretch(title: "Low squat", length: Self.defaultLength),
@@ -89,6 +89,8 @@ struct Stretch {
         Stretch(title: "Forward fold", length: Self.debugLength),
         Stretch(title: "Pigeon pose (one side)", length: Self.debugLength),
         Stretch(title: "Quad bends", length: Self.debugLength),
+        Stretch(title: "Happy baby", length: Self.debugLength*2),
+        Stretch(title: "Happy baby", length: Self.debugLength*2),
         Stretch(title: "Happy baby", length: Self.debugLength*2),
         Stretch.completion
     ]

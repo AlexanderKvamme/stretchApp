@@ -57,8 +57,13 @@ class FractionView: UIView {
         addSubview(bottomLabel)
         addSubview(diagonalLine)
 
+        let hOffset = 4
+        let vOffset = 8
+        
         topLabel.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview()
+            make.top.equalToSuperview().offset(-vOffset)
+            make.left.equalToSuperview().offset(-hOffset)
+            make.right.equalTo(snp.centerX)//.offset(-hOffset)
         }
 
         diagonalLine.snp.makeConstraints { (make) in
@@ -66,8 +71,15 @@ class FractionView: UIView {
         }
 
         bottomLabel.snp.makeConstraints { (make) in
-            make.right.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(vOffset)
+            make.right.equalToSuperview().offset(hOffset)
+            make.left.equalTo(snp.centerX)//.offset(hOffset)
         }
+
+        bottomLabel.adjustsFontSizeToFitWidth = true
+        bottomLabel.textAlignment = .left
+        topLabel.textAlignment = .right
+        topLabel.adjustsFontSizeToFitWidth = true
     }
 
     // API
