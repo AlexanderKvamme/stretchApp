@@ -49,7 +49,8 @@ final class NewWorkoutController: UIViewController {
     }
 
     @objc private func getTextInput() {
-        let vc = TextInputController()
+        let vc = StretchInputController()
+        vc.delegate = self
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: false, completion: nil)
     }

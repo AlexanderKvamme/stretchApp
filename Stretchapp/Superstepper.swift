@@ -132,6 +132,19 @@ final class SuperStepper: UIButton, UIScrollViewDelegate, UIGestureRecognizerDel
             dataView.respondToScrollView(idx: i, container: scrollView)
         }
     }
+
+    // API
+
+    func getCurrentValue() -> String? {
+        guard let dataView = dataViews.first else {
+            assertionFailure()
+            return nil
+        }
+
+        let offset = hScroll.contentOffset.x
+        let idx = Int(offset/dataView.frame.width + 1)
+        return data[idx]
+    }
 }
 
 

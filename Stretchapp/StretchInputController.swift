@@ -10,7 +10,13 @@ import UIKit
 let stepperFrame = CGRect(x: 0, y: 0, width: 222, height: 64)
 let testOptions = ["30 s", "45 s", "60 s", "90 s", "2 m", "3 m", "4 m", "5 m", "6 m", "7 m", "8 m", "9 m"]
 
-final class TextInputController: UIViewController, UITextFieldDelegate {
+
+protocol StretchInputDelegate {
+    func receive(stretch: Stretch)
+}
+
+
+final class StretchInputController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
 
@@ -19,6 +25,8 @@ final class TextInputController: UIViewController, UITextFieldDelegate {
     private let backButton = UIButton.make(.back)
     private let superStepper = SuperStepper(frame: stepperFrame, options: testOptions)
     private let stepperShadow = ShadowView(frame: stepperFrame)
+
+    var delegate: StretchInputDelegate?
 
     // MARK: - Initializers
 
@@ -97,9 +105,23 @@ final class TextInputController: UIViewController, UITextFieldDelegate {
     // MARK: - TextFieldDelegate
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let vc = TimeInputController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: false, completion: nil)
+        guard let str = superStepper.getCurrentValue()  else {
+            assertionFailure("could not get number from picker")
+            return false
+        }
+
+        let splits = str.split(separator: " ")
+        
+        guard let val = Int(String(splits[0])) else {
+            assertionFailure("Cannot return without a value")
+            return false
+        }
+
+        let type = String(splits[1]) == DurationType.minutes.rawValue ? DurationType.minutes : DurationType.seconds
+        let duration = Duration(amount: val, type: type)
+        let newStretch = Stretch(title: input.text ?? "Unnamed stretch", length: duration)
+        delegate?.receive(stretch: newStretch)
+        dismiss(animated: true)
         return true
     }
 }

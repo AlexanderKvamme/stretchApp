@@ -16,8 +16,12 @@ struct Duration: Hashable{
 struct Workout: Hashable {
     let name: String
     let duration: Duration
+    let stretches: [Stretch]
 
-    static let dummies = [Workout(name: "Forward folding", duration: Duration(amount: 45, type: .seconds)), Workout(name: "Gabos stuff", duration: Duration(amount: 45, type: .minutes)), Workout(name: "Programmer stretches", duration: Duration(amount: 10, type: .minutes))]
+    static let dummies = [
+        Workout(name: "Forward folding", duration: Duration(amount: 45, type: .seconds), stretches: Stretch.forDebugging),
+        Workout(name: "Gabos Schnip", duration: Duration(amount: 45, type: .minutes), stretches: Stretch.favourites),
+        Workout(name: "Programmer stretches", duration: Duration(amount: 10, type: .minutes), stretches: Stretch.forDebugging)]
 }
 
 
@@ -92,6 +96,14 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
                 return cell
             }
         )
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let workout = dataSource.itemIdentifier(for: indexPath) {
+            let vc = StretchingViewController(workout.stretches)
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        }
     }
 
     func createBasicListLayout() -> UICollectionViewLayout {

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import WXWaveView
 
 class StretchNavBarContainer: UIView {
 
@@ -60,16 +59,16 @@ class StretchNavBarContainer: UIView {
     }
 }
 
-struct Stretch {
+struct Stretch: Hashable {
     let title: String
-    let length: Int
+    let length: Duration
 
-    static let dummy = Stretch(title: "This is a dummy stretch", length: 30)
-    static let completion = Stretch(title: "Congratulations", length: 30)
-    static let defaultLength = 40
-    static let debugLength = 1
+    static let dummy = Stretch(title: "This is a dummy stretch", length: Duration(amount: 30, type: .seconds))
+    static let completion = Stretch(title: "Congratulations", length: Duration(amount: 30, type: .seconds))
+    static let defaultLength = Duration(amount: 90, type: .seconds)
+    static let debugLength = Duration(amount: 1, type: .seconds)
     static let favourites = [
-        Stretch(title: "Hands folded behind back", length: Self.defaultLength),
+        Stretch(title: "Hands folded behind back", length: defaultLength),
         Stretch(title: "Low squat", length: Self.defaultLength),
         Stretch(title: "Spinal twist (one side)", length: Self.defaultLength),
         Stretch(title: "Spinal twist (other side)", length: Self.defaultLength),
@@ -78,7 +77,7 @@ struct Stretch {
         Stretch(title: "Pigeon pose (one side)", length: Self.defaultLength),
         Stretch(title: "Pigeon pose (other side)", length: Self.defaultLength),
         Stretch(title: "Quad bends", length: Self.defaultLength),
-        Stretch(title: "Happy baby", length: Self.defaultLength*2),
+        Stretch(title: "Happy baby", length: Duration(amount: Self.defaultLength.amount, type: .seconds)),
         Stretch.completion
     ]
     static let forDebugging = [
@@ -88,10 +87,9 @@ struct Stretch {
         Stretch(title: "Back bend", length: Self.debugLength),
         Stretch(title: "Forward fold", length: Self.debugLength),
         Stretch(title: "Pigeon pose (one side)", length: Self.debugLength),
-        Stretch(title: "Quad bends", length: Self.debugLength),
-        Stretch(title: "Happy baby", length: Self.debugLength*2),
-        Stretch(title: "Happy baby", length: Self.debugLength*2),
-        Stretch(title: "Happy baby", length: Self.debugLength*2),
+        Stretch(title: "Backflips", length: Self.debugLength),
+        Stretch(title: "Swaggers", length: Self.debugLength),
+        Stretch(title: "Jump masters", length: Self.debugLength),
         Stretch.completion
     ]
 }
@@ -186,7 +184,10 @@ class StretchingViewController: UIViewController {
             Audioplayer.play(.newStretch)
             navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count))
             navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count))
-            UIView.animate(withDuration: TimeInterval(stretchLength)) {
+
+            let isMinuteStretch = stretchLength.type == .minutes
+            let animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
+            UIView.animate(withDuration: TimeInterval(animationDuration)) {
                 self.setNextLayout()
                 self.botView.label.alpha = 1
                 self.view.layoutIfNeeded()
