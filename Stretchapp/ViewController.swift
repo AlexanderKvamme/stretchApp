@@ -16,7 +16,6 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let stretchButton = StretchButton("Stretch")
     private let logoAnimationPlaceholder = UIImageView(image: .animationPlaceholder)
     private let workoutPicker = WorkoutPicker()
     private let newWorkoutButton = NewWorkoutButton()
@@ -41,8 +40,6 @@ class ViewController: UIViewController {
     private func setup() {
         view.backgroundColor = UIColor.background
 
-        stretchButton.addTarget(self, action: #selector(startStretching), for: .touchDown)
-
         let newWorkoutTap = UITapGestureRecognizer(target: self, action: #selector(createNewWorkout))
         newWorkoutButton.addGestureRecognizer(newWorkoutTap)
         newWorkoutButton.layer.cornerRadius = workoutButtonSize/2
@@ -57,14 +54,6 @@ class ViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-
-        view.addSubview(stretchButton)
-        stretchButton.snp.makeConstraints { (make) in
-            make.height.equalTo(Style.buttonHeight)
-            make.left.right.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(24)
-        }
-
         view.addSubview(newWorkoutButton)
         newWorkoutButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
@@ -83,8 +72,8 @@ class ViewController: UIViewController {
         view.addSubview(workoutPicker.view)
         workoutPicker.view.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.top.equalTo(logoAnimationPlaceholder.snp.bottom)
-            make.bottom.equalTo(stretchButton.snp.top).offset(-32)
+            make.height.equalTo(240)
+            make.bottom.equalToSuperview().offset(-32)
         }
     }
 
