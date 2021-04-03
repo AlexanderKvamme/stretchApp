@@ -55,6 +55,7 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
         input.textAlignment = .center
         input.font = UIFont.round(.black, 64)
         input.adjustsFontSizeToFitWidth = true
+        input.textColor = .background
         input.delegate = self
 
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)

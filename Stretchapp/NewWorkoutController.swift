@@ -7,7 +7,16 @@
 
 import UIKit
 
-final class NewWorkoutController: UIViewController {
+extension StretchInputDelegate {
+
+    func receive(stretch: Stretch) {
+        print("would received: ", stretch)
+
+    }
+}
+
+
+final class NewWorkoutController: UIViewController, StretchInputDelegate {
 
     // MARK: - Properties
 
@@ -19,10 +28,11 @@ final class NewWorkoutController: UIViewController {
 
     // MARK: - Initializers
 
-    init() {
+    init(title: String) {
         super.init(nibName: nil, bundle: nil)
 
         view.backgroundColor = .background
+        nameLabel.text = title
 
         setup()
         addSubviewsAndConstraints()
@@ -36,7 +46,6 @@ final class NewWorkoutController: UIViewController {
 
     private func setup() {
         backButton.tintColor = .background
-        nameLabel.text = "Gabo's Favourites"
         nameLabel.textColor = .background
         nameLabel.textAlignment = .left
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)

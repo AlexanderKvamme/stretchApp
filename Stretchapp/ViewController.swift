@@ -78,15 +78,24 @@ class ViewController: UIViewController {
     }
 
     @objc private func createNewWorkout() {
-        let newWorkoutController = NewWorkoutController()
-        newWorkoutController.modalPresentationStyle = .fullScreen
-        present(newWorkoutController, animated: false, completion: nil)
+        let textInputScreen = TextInputScreen()
+        textInputScreen.delegate = self
+        textInputScreen.modalPresentationStyle = .fullScreen
+        present(textInputScreen, animated: true)
     }
 
     @objc private func startStretching() {
         let stretchViewController = StretchingViewController(Stretch.favourites)
         stretchViewController.modalPresentationStyle = .fullScreen
         present(stretchViewController, animated: false, completion: nil)
+    }
+}
+
+extension ViewController: TextInputReceiver {
+    func receiveTextInput(_ str: String) {
+        let newWorkoutController = NewWorkoutController(title: str)
+        newWorkoutController.modalPresentationStyle = .fullScreen
+        present(newWorkoutController, animated: false, completion: nil)
     }
 }
 
