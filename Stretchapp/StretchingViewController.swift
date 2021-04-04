@@ -60,6 +60,7 @@ class StretchNavBarContainer: UIView {
 }
 
 struct Stretch: Hashable {
+    private let uuid = UUID()
     let title: String
     let length: Duration
 

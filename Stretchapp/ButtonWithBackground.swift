@@ -16,7 +16,9 @@ final class ButtonWithBackground: UIButton {
 
     // MARK: - Initializers
 
-    init() {
+    init(_ title: String) {
+        label.text = title.uppercased()
+
         super.init(frame: .zero)
 
         setup()
@@ -31,13 +33,19 @@ final class ButtonWithBackground: UIButton {
 
     func setup() {
         backgroundColor = .green
-        layer.cornerRadius = 22
+        layer.cornerRadius = 8
+        layer.cornerCurve = .continuous
+
+        label.textColor = .background
+        label.font = UIFont.round(.bold, 16)
+        backgroundColor = .primaryContrast
     }
 
     func addSubviewsAndConstraints() {
         addSubview(label)
         label.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.left.right.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview().inset(10)
         }
     }
 }

@@ -12,6 +12,7 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
 
     // MARK: - Properties
 
+    private let saveButton = ButtonWithBackground("Save")
     private let backButton = UIButton.make(.back)
     private let wobbler = WobbleView()
     private let nameLabel = UILabel.make(.header)
@@ -60,7 +61,14 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         collectionView.showsVerticalScrollIndicator = false
         collectionView.clipsToBounds = false
 
+        backButton.tintColor = .primaryContrast
+
         addButton.addTarget(self, action: #selector(getTextInput), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(clickedSave), for: .touchUpInside)
+    }
+
+    @objc private func clickedSave() {
+        print("Implement me: clicked save")
     }
 
     func receive(stretch: Stretch) {
@@ -92,11 +100,7 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let workout = dataSource.itemIdentifier(for: indexPath) {
-//            let vc = StretchingViewController(workout.stretches)
-//            vc.modalPresentationStyle = .fullScreen
-//            present(vc, animated: true)
-        }
+        print("Implement me: Go to edit")
     }
 
     func createBasicListLayout() -> UICollectionViewLayout {
@@ -130,6 +134,12 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         view.addSubview(addButtonBackground)
         view.addSubview(addButton)
         view.addSubview(collectionView)
+        view.addSubview(saveButton)
+
+        saveButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(backButton)
+            make.right.equalToSuperview().inset(24)
+        }
 
         backButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
