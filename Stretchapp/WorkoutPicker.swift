@@ -182,7 +182,7 @@ class WorkoutCellContentView: UIView, UIContentView {
     // MARK: - Initializers
 
     init(configuration: WorkoutCellContentConfiguration) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        super.init(frame: .zero)
 
         setup()
         addSubviewsAndConstraints()
@@ -223,7 +223,7 @@ class WorkoutCellContentView: UIView, UIContentView {
             make.left.equalTo(background).offset(16)
             make.right.equalTo(rightLabel.snp.left).inset(8)
             make.top.bottom.equalTo(background)
-            make.height.equalTo(80)
+            make.height.equalTo(80).priority(.high)
         }
 
         rightLabel.snp.makeConstraints { (make) in
