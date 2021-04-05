@@ -68,7 +68,21 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
     }
 
     @objc private func clickedSave() {
-        print("Implement me: clicked save")
+        var mins = 0
+        var secs = 0
+
+        data.forEach({
+            if $0.length.type == .minutes {
+                mins += $0.length.amount
+            } else {
+                secs += $0.length.amount
+            }
+        })
+
+        let totalMins = mins + secs%60
+        let workout = Workout(name: nameLabel.text ?? "NO NAME", duration: Duration(amount: totalMins, type: .minutes), stretches: data)
+        DAO.saveWorkout(workout)
+        dismiss(animated: true)
     }
 
     func receive(stretch: Stretch) {

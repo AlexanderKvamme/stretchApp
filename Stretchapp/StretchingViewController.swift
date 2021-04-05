@@ -59,7 +59,7 @@ class StretchNavBarContainer: UIView {
     }
 }
 
-struct Stretch: Hashable {
+struct Stretch: Hashable, Codable {
     private let uuid = UUID()
     let title: String
     let length: Duration
@@ -93,6 +93,12 @@ struct Stretch: Hashable {
         Stretch(title: "Jump masters", length: Self.debugLength),
         Stretch.completion
     ]
+
+    enum CodingKeys: String, CodingKey {
+        case uuid
+        case title
+        case length
+    }
 }
 
 class StretchingViewController: UIViewController {

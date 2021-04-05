@@ -27,12 +27,24 @@ class ViewController: UIViewController {
 
         setup()
         addSubviewsAndConstraints()
+
+//        workoutPicker.updateSnapshot(Workout.dummies)
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        let stretchViewController = StretchingViewController(Stretch.favourites)
-        stretchViewController.modalPresentationStyle = .fullScreen
-        present(stretchViewController, animated: true, completion: nil)
+        workoutPicker.updateSnapshot(DAO.getWorkouts())
+
+//        let stretchViewController = StretchingViewController(Stretch.forDebugging)
+//        stretchViewController.modalPresentationStyle = .fullScreen
+//        present(stretchViewController, animated: true, completion: nil)
+
+        // BAM: Show NewWorkoutController
+
+//        let vc = NewWorkoutController(title: "Flex Boys")
+//        vc.modalPresentationStyle = .fullScreen
+//        present(vc, animated: false)
+
+//        DAO.saveWorkout(testWorkout)
     }
 
     // MARK: - Methods
