@@ -52,8 +52,7 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
 
     // MARK: - Properties
 
-    typealias ProductList = [Workout]
-    typealias CellRegistration = UICollectionView.CellRegistration<WorkoutCell, Workout>
+    typealias WorkoutList = [Workout]
 
     private lazy var collectionView = makeCollectionView()
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Workout>! = makeDataSource()
@@ -65,7 +64,8 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         setup()
         addSubviewsAndConstraints()
 
-        updateSnapshot(Workout.dummies)
+        let workouts = DAO.getWorkouts()
+        updateSnapshot(workouts)
     }
 
     required init?(coder: NSCoder) {
@@ -76,8 +76,7 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
 
     private func setup() {
         view.backgroundColor = .clear
-
-        collectionView.register(WorkoutCell.self, forCellWithReuseIdentifier: WorkoutCell.reuseIdentifier)
+        view.clipsToBounds = true
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
@@ -92,24 +91,79 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         }
     }
 
-    func updateSnapshot(_ list: ProductList) {
+    func makeCollectionView() -> UICollectionView {
+//        let layout = makeListLayout()
+        let layoutConfig = makeSwipeableLayoutConfig()
+        let layout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        return collectionView
+    }
+
+    func updateSnapshot(_ list: WorkoutList) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Workout>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(list, toSection: .all)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 
-    func makeCollectionView() -> UICollectionView {
-        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: createBasicListLayout())
-        return cv
+    func makeSwipeableLayoutConfig() -> UICollectionLayoutListConfiguration {
+        var layoutConfig = UICollectionLayoutListConfiguration(appearance: .grouped)
+        layoutConfig.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
+            // 1
+             guard let item = dataSource.itemIdentifier(for: indexPath) else {
+                 return nil
+             }
+
+             // 2
+             // Create action 1
+             let action1 = UIContextualAction(style: .normal, title: "Action 1") { (action, view, completion) in
+
+                 // 3
+                 // Handle swipe action by showing alert message
+                 handleSwipe(for: action, item: item)
+
+                 // 4
+                 // Trigger the action completion handler
+                 completion(true)
+             }
+             // 5
+             action1.backgroundColor = .systemGreen
+            return UISwipeActionsConfiguration(actions: [action1])
+        }
+
+        return layoutConfig
+    }
+
+
+    func handleSwipe(for action: UIContextualAction, item: Workout) {
+
+        let alert = UIAlertController(title: action.title,
+                                      message: item.name,
+                                      preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title:"OK", style: .default, handler: { (_) in })
+        alert.addAction(okAction)
+
+        present(alert, animated: true, completion:nil)
+    }
+
+    typealias WorkoutCellRegistration = UICollectionView.CellRegistration<WorkoutCell, Workout>
+    func makeCellRegistration() -> WorkoutCellRegistration {
+        return UICollectionView.CellRegistration<WorkoutCell, Workout> { (cell, indexPath, item) in
+            // Define how data should be shown using content configuration
+            var content = cell.defaultContentConfiguration() // FIXME: I need to make this my self
+            content.text = item.name
+            cell.contentConfiguration = content
+        }
     }
 
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Workout> {
         UICollectionViewDiffableDataSource(
             collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, product in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WorkoutCell.reuseIdentifier, for: indexPath) as! WorkoutCell
-                cell.update(with: product)
+            cellProvider: { collectionView, indexPath, workout in
+                let cellRegistration = self.makeCellRegistration()
+                let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: workout)
+                cell.update(with: workout)
                 return cell
             }
         )
@@ -122,22 +176,9 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
             present(vc, animated: true)
         }
     }
-
-    func createBasicListLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(WorkoutCell.width), heightDimension: .absolute(WorkoutCell.height))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(WorkoutCell.width), heightDimension: .absolute(WorkoutCell.height))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.interItemSpacing = .some(NSCollectionLayoutSpacing.fixed(20))
-        let section = NSCollectionLayoutSection(group: group)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }
 }
 
-
-
-final class WorkoutCell: UICollectionViewCell {
+final class WorkoutCell: UICollectionViewListCell {
 
     // MARK: - Properties
 
