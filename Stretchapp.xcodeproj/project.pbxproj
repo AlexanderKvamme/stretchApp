@@ -25,6 +25,9 @@
 		DD1B7BB126067F7E00CB9AA4 /* DINRoundPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAC26067F7E00CB9AA4 /* DINRoundPro-Light.ttf */; };
 		DD1B7BB226067F7E00CB9AA4 /* DINRoundPro-Medi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */; };
 		DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */; };
+		DD5E9472261B3DB70049DA57 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9471261B3DB70049DA57 /* Duration.swift */; };
+		DD5E9475261B3DD20049DA57 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9474261B3DD20049DA57 /* Workout.swift */; };
+		DD5E9478261B533B0049DA57 /* WorkoutCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9477261B533B0049DA57 /* WorkoutCellView.swift */; };
 		DD77FEC52618EBAB0071D81D /* TextInputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77FEC42618EBAB0071D81D /* TextInputScreen.swift */; };
 		DD77FECA261A0DC20071D81D /* ButtonWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77FEC9261A0DC20071D81D /* ButtonWithBackground.swift */; };
 		DD77FECD261A1B380071D81D /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77FECC261A1B380071D81D /* DAO.swift */; };
@@ -66,6 +69,9 @@
 		DD1B7BAC26067F7E00CB9AA4 /* DINRoundPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Light.ttf"; sourceTree = "<group>"; };
 		DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Medi.ttf"; sourceTree = "<group>"; };
 		DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.ttf"; sourceTree = "<group>"; };
+		DD5E9471261B3DB70049DA57 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		DD5E9474261B3DD20049DA57 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		DD5E9477261B533B0049DA57 /* WorkoutCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCellView.swift; sourceTree = "<group>"; };
 		DD77FEC42618EBAB0071D81D /* TextInputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputScreen.swift; sourceTree = "<group>"; };
 		DD77FEC9261A0DC20071D81D /* ButtonWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithBackground.swift; sourceTree = "<group>"; };
 		DD77FECC261A1B380071D81D /* DAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
@@ -145,6 +151,9 @@
 				DD7BEC2D260D35960096820D /* AKWaveView.swift */,
 				DD1B7B842606545F00CB9AA4 /* ViewController.swift */,
 				DD88767B261718E30036910B /* WorkoutPicker.swift */,
+				DD5E9474261B3DD20049DA57 /* Workout.swift */,
+				DD5E9477261B533B0049DA57 /* WorkoutCellView.swift */,
+				DD5E9471261B3DB70049DA57 /* Duration.swift */,
 				DD864945260F9C8000428C37 /* NewWorkoutButton.swift */,
 				DDADD2B62610F6D800AAC15B /* NewWorkoutController.swift */,
 				DD77FECC261A1B380071D81D /* DAO.swift */,
@@ -341,9 +350,11 @@
 				DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */,
 				DD77FECA261A0DC20071D81D /* ButtonWithBackground.swift in Sources */,
 				DDADD2B42610F63900AAC15B /* WobbleView.swift in Sources */,
+				DD5E9478261B533B0049DA57 /* WorkoutCellView.swift in Sources */,
 				DDADD2CA26113A0900AAC15B /* StretchInputController.swift in Sources */,
 				DDEAAEB926073DD60056D85C /* AnimatableDiagonalView.swift in Sources */,
 				DD864946260F9C8000428C37 /* NewWorkoutButton.swift in Sources */,
+				DD5E9472261B3DB70049DA57 /* Duration.swift in Sources */,
 				DDEAAEBF26073E370056D85C /* ExerciseWaveView.swift in Sources */,
 				DD1B7B972606553200CB9AA4 /* Style.swift in Sources */,
 				DDCB7B762615323100AD1267 /* Superstepper.swift in Sources */,
@@ -351,6 +362,7 @@
 				DD1B7B832606545F00CB9AA4 /* SceneDelegate.swift in Sources */,
 				DDADD2B72610F6D800AAC15B /* NewWorkoutController.swift in Sources */,
 				DD77FEC52618EBAB0071D81D /* TextInputScreen.swift in Sources */,
+				DD5E9475261B3DD20049DA57 /* Workout.swift in Sources */,
 				DD013FBE2609505100A396A3 /* Audioplayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

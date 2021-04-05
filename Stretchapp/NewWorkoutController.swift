@@ -71,6 +71,10 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         var mins = 0
         var secs = 0
 
+        guard data.count > 0 else { return }
+
+        data.append(Stretch.completion)
+
         data.forEach({
             if $0.length.type == .minutes {
                 mins += $0.length.amount
@@ -118,9 +122,12 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
     }
 
     func createBasicListLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(WorkoutCell.width), heightDimension: .absolute(WorkoutCell.height))
+        let height: CGFloat = 80
+        let width: CGFloat = screenWidth
+
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .absolute(height))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(WorkoutCell.width), heightDimension: .absolute(WorkoutCell.height))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .absolute(height))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .some(NSCollectionLayoutSpacing.fixed(20))
         let section = NSCollectionLayoutSection(group: group)

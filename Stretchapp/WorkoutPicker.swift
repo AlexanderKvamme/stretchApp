@@ -1,49 +1,7 @@
 import UIKit
 
 
-enum DurationType: String, Codable {
-    case minutes = "m"
-    case seconds = "s"
-
-    enum CodingKeys: String, CodingKey {
-       case minutes
-       case seconds
-    }
-}
-
-
-struct Duration: Hashable, Codable {
-    let amount: Int
-    let type: DurationType
-
-    enum CodingKeys: String, CodingKey {
-       case amount
-       case type
-    }
-}
-
-
-struct Workout: Hashable, Codable {
-    let name: String
-    let duration: Duration
-    let stretches: [Stretch]
-
-    static let dummy = Workout(name: "Test workout", duration: Duration(amount: 45, type: .seconds), stretches: Stretch.forDebugging)
-    static let dummies = [
-        Workout(name: "Forward folding", duration: Duration(amount: 45, type: .seconds), stretches: Stretch.forDebugging),
-        Workout(name: "Gabos Schnip", duration: Duration(amount: 45, type: .minutes), stretches: Stretch.favourites),
-        Workout(name: "Programmer stretches", duration: Duration(amount: 10, type: .minutes), stretches: Stretch.forDebugging)]
-
-    enum CodingKeys: String, CodingKey {
-       case name
-       case duration
-       case stretches
-    }
-}
-
-
 enum Section: Int, CaseIterable {
-    case featured
     case all
 }
 
@@ -92,10 +50,10 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
     }
 
     func makeCollectionView() -> UICollectionView {
-//        let layout = makeListLayout()
         let layoutConfig = makeSwipeableLayoutConfig()
         let layout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .purple
         return collectionView
     }
 
@@ -107,54 +65,45 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
     }
 
     func makeSwipeableLayoutConfig() -> UICollectionLayoutListConfiguration {
-        var layoutConfig = UICollectionLayoutListConfiguration(appearance: .grouped)
+        var layoutConfig = UICollectionLayoutListConfiguration(appearance: .plain)
+        layoutConfig.showsSeparators = false
+        layoutConfig.backgroundColor = .clear
         layoutConfig.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
-            // 1
-             guard let item = dataSource.itemIdentifier(for: indexPath) else {
-                 return nil
-             }
+            guard let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
 
-             // 2
-             // Create action 1
-             let action1 = UIContextualAction(style: .normal, title: "Action 1") { (action, view, completion) in
+            let action1 = UIContextualAction(style: .normal, title: "Do something cool") { (action, view, completion) in
+                handleSwipe(for: action, item: item)
+                completion(true)
+            }
 
-                 // 3
-                 // Handle swipe action by showing alert message
-                 handleSwipe(for: action, item: item)
-
-                 // 4
-                 // Trigger the action completion handler
-                 completion(true)
-             }
-             // 5
-             action1.backgroundColor = .systemGreen
+            action1.backgroundColor = .systemGreen
             return UISwipeActionsConfiguration(actions: [action1])
         }
 
         return layoutConfig
     }
 
-
     func handleSwipe(for action: UIContextualAction, item: Workout) {
-
-        let alert = UIAlertController(title: action.title,
-                                      message: item.name,
-                                      preferredStyle: .alert)
-
+        let alert = UIAlertController(title: action.title, message: item.name, preferredStyle: .alert)
         let okAction = UIAlertAction(title:"OK", style: .default, handler: { (_) in })
         alert.addAction(okAction)
-
         present(alert, animated: true, completion:nil)
     }
 
-    typealias WorkoutCellRegistration = UICollectionView.CellRegistration<WorkoutCell, Workout>
+    typealias WorkoutCellRegistration = UICollectionView.CellRegistration<WorkoutListCell, Workout>
     func makeCellRegistration() -> WorkoutCellRegistration {
-        return UICollectionView.CellRegistration<WorkoutCell, Workout> { (cell, indexPath, item) in
-            // Define how data should be shown using content configuration
-            var content = cell.defaultContentConfiguration() // FIXME: I need to make this my self
-            content.text = item.name
-            cell.contentConfiguration = content
+        return UICollectionView.CellRegistration<WorkoutListCell, Workout> { (cell, indexPath, workout) in
+            // Takes data and uses content configuration to display it
+            cell.workout = workout
+            cell.backgroundConfiguration = self.makeBackgroundConfiguration()
         }
+    }
+
+    func makeBackgroundConfiguration() -> UIBackgroundConfiguration {
+        var test = UIBackgroundConfiguration.listPlainCell()
+        test.backgroundColor = .clear
+
+        return test
     }
 
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Workout> {
@@ -163,7 +112,6 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
             cellProvider: { collectionView, indexPath, workout in
                 let cellRegistration = self.makeCellRegistration()
                 let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: workout)
-                cell.update(with: workout)
                 return cell
             }
         )
@@ -178,52 +126,40 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
     }
 }
 
-final class WorkoutCell: UICollectionViewListCell {
+
+
+
+
+
+
+
+
+struct WorkoutCellContentConfiguration: UIContentConfiguration, Hashable {
 
     // MARK: - Properties
 
-    static let reuseIdentifier = "Workout-cell"
-    static let height: CGFloat = 80
-    static let width: CGFloat = screenWidth
-
-    let cellView = WorkoutCellView()
+    var name: String?
+    var durationString: String?
 
     // MARK: - Initializers
 
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-
-        setup()
-        addSubviewsAndConstraints()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     // MARK: - Methods
 
-    func setup() {
-        backgroundColor = .clear
+    func updated(for state: UIConfigurationState) -> Self {
+        let updatedConfiguration = self
+        return updatedConfiguration
     }
 
-    private func addSubviewsAndConstraints() {
-        contentView.addSubview(cellView)
-        cellView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-    }
-
-    // MARK: API
-
-    func update(with data: Workout) {
-        cellView.leftLabel.text = data.name
-        cellView.rightLabel.text = "\(data.duration.amount) \(data.duration.type.rawValue)"
+    func makeContentView() -> UIView & UIContentView {
+        let cv = WorkoutCellContentView(configuration: self)
+        cv.backgroundColor = .clear
+        return cv
     }
 }
 
 
-final class WorkoutCellView: UIView {
+
+class WorkoutCellContentView: UIView, UIContentView {
 
     // MARK: - Properties
 
@@ -231,13 +167,27 @@ final class WorkoutCellView: UIView {
     let rightLabel = UILabel.make(.header)
     let background = UIView()
 
+    private var currentConfiguration: WorkoutCellContentConfiguration!
+    var configuration: UIContentConfiguration {
+        get { currentConfiguration }
+        set {
+            guard let newConfiguration = newValue as? WorkoutCellContentConfiguration else {
+                assertionFailure()
+                return
+            }
+            apply(configuration: newConfiguration)
+        }
+    }
+
     // MARK: - Initializers
 
-    init() {
-        super.init(frame: .zero)
+    init(configuration: WorkoutCellContentConfiguration) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 
         setup()
         addSubviewsAndConstraints()
+
+        apply(configuration: configuration)
     }
 
     required init?(coder: NSCoder) {
@@ -273,13 +223,95 @@ final class WorkoutCellView: UIView {
             make.left.equalTo(background).offset(16)
             make.right.equalTo(rightLabel.snp.left).inset(8)
             make.top.bottom.equalTo(background)
+            make.height.equalTo(80)
         }
 
         rightLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview()
+            make.top.bottom.equalTo(leftLabel)
             make.right.equalTo(background).inset(16)
             make.width.equalTo(100)
+            make.height.equalTo(leftLabel)
         }
     }
+
+    // MARK: - Methods
+
+    private func apply(configuration: WorkoutCellContentConfiguration) {
+        // Only apply configuration if new configuration and current configuration are not the same
+        guard currentConfiguration != configuration else {
+            return
+        }
+
+        // Replace current configuration with new configuration
+        currentConfiguration = configuration
+
+        leftLabel.text = configuration.name
+        rightLabel.text = configuration.durationString
+    }
 }
+
+
+final class WorkoutListCell: UICollectionViewListCell {
+
+    // MARK: - Properties
+
+    var workout: Workout?
+
+    // MARK: - Initializers
+
+    override func updateConfiguration(using state: UICellConfigurationState) {
+        guard let workout = workout else { return }
+
+        var newConfiguration = WorkoutCellContentConfiguration().updated(for: state)
+        newConfiguration.durationString = "\(workout.duration.amount) m"
+        newConfiguration.name = workout.name
+        contentConfiguration = newConfiguration
+    }
+}
+
+
+//final class WorkoutCell: UICollectionViewListCell {
+//
+//    // MARK: - Properties
+//
+//    static let height: CGFloat = 80
+//    static let width: CGFloat = screenWidth
+//
+//    let cellView = WorkoutCellView()
+//
+//    // MARK: - Initializers
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: .zero)
+//
+//        setup()
+//        addSubviewsAndConstraints()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    // MARK: - Methods
+//
+//    func setup() {
+//        backgroundColor = .clear
+//    }
+//
+//    private func addSubviewsAndConstraints() {
+//        contentView.addSubview(cellView)
+//        cellView.snp.makeConstraints { (make) in
+//            make.edges.equalToSuperview()
+//        }
+//    }
+//
+//    // MARK: API
+//
+//    func update(with data: Workout) {
+//        cellView.leftLabel.text = data.name
+//        cellView.rightLabel.text = "\(data.duration.amount) \(data.duration.type.rawValue)"
+//    }
+//}
+
+
 

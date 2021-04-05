@@ -59,13 +59,10 @@ class DAO: NSObject {
     // MARK: - Methods
 
     static func getWorkouts() -> [Workout] {
-        print("would get all workouts")
-
         let ud = UserDefaults()
 
         do {
             let workouts = try ud.getObject(forKey: allWorkoutsKey, castTo: [Workout].self)
-            print("successfully got workouts from user defaults: ", workouts)
             return workouts
         } catch {
             print(error)
@@ -75,8 +72,6 @@ class DAO: NSObject {
     }
 
     static func saveWorkout(_ workout: Workout) {
-        print("would save workout")
-
         var existingWorkouts = getWorkouts()
         existingWorkouts.append(workout)
 
