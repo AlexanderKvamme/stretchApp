@@ -69,15 +69,19 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         layoutConfig.showsSeparators = false
         layoutConfig.backgroundColor = .clear
         layoutConfig.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
-            guard let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
+//            guard let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
 
-            let action1 = UIContextualAction(style: .normal, title: "Do something cool") { (action, view, completion) in
-                handleSwipe(for: action, item: item)
+            let deleteAction = UIContextualAction(style: .normal, title: nil) { (action, view, completion) in
                 completion(true)
             }
 
-            action1.backgroundColor = .systemGreen
-            return UISwipeActionsConfiguration(actions: [action1])
+            deleteAction.image = UIGraphicsImageRenderer(size: CGSize(width: 30, height: 30)).image { _ in
+                UIImage.x?.draw(in: CGRect(x: 0, y: 0, width: 30, height: 30))
+            }
+
+            deleteAction.backgroundColor = UIColor.init(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.0)
+
+            return UISwipeActionsConfiguration(actions: [deleteAction])
         }
 
         return layoutConfig
