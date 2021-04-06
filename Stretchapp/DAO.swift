@@ -59,10 +59,8 @@ class DAO: NSObject {
     // MARK: - Methods
 
     static func getWorkouts() -> [Workout] {
-        let ud = UserDefaults()
-
         do {
-            let workouts = try ud.getObject(forKey: allWorkoutsKey, castTo: [Workout].self)
+            let workouts = try UserDefaults.standard.getObject(forKey: allWorkoutsKey, castTo: [Workout].self)
             return workouts
         } catch {
             print(error)
@@ -73,12 +71,30 @@ class DAO: NSObject {
 
     static func saveWorkout(_ workout: Workout) {
         var existingWorkouts = getWorkouts()
+        if existingWorkouts.contains(workout) { return }
+
         existingWorkouts.append(workout)
 
         do {
-            try  UserDefaults.standard.setMyObject(existingWorkouts, forKey: allWorkoutsKey)
+            try UserDefaults.standard.setMyObject(existingWorkouts, forKey: allWorkoutsKey)
         } catch {
             print(error)
+        }
+    }
+
+    private static func setWorkouts(_ workouts: [Workout]) {
+        do {
+            try UserDefaults.standard.setMyObject(workouts, forKey: allWorkoutsKey)
+        } catch {
+            print(error)
+        }
+    }
+
+    static func deleteWorkout(_ workout: Workout) {
+        var existingWorkouts = getWorkouts()
+        if let idx = existingWorkouts.firstIndex(of: workout) {
+            existingWorkouts.remove(at: idx)
+            setWorkouts(existingWorkouts)
         }
     }
 }

@@ -69,9 +69,11 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         layoutConfig.showsSeparators = false
         layoutConfig.backgroundColor = .clear
         layoutConfig.trailingSwipeActionsConfigurationProvider = { [unowned self] (indexPath) in
-//            guard let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
+            guard let workout = dataSource.itemIdentifier(for: indexPath) else { return nil }
 
             let deleteAction = UIContextualAction(style: .normal, title: nil) { (action, view, completion) in
+                DAO.deleteWorkout(workout)
+                updateSnapshot(DAO.getWorkouts())
                 completion(true)
             }
 

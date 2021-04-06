@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DurationType: String, Codable {
+enum DurationType: String, Hashable, Codable {
     case minutes = "m"
     case seconds = "s"
 

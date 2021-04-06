@@ -60,9 +60,20 @@ class StretchNavBarContainer: UIView {
 }
 
 struct Stretch: Hashable, Codable {
-    private let uuid = UUID()
+
+    // MARK: - Properties
+
+    let uuid: UUID
     let title: String
     let length: Duration
+
+    // MARK: - Initializers
+
+    init(title: String, length: Duration, uuid: UUID = UUID()) {
+        self.title = title
+        self.length = length
+        self.uuid = uuid
+    }
 
     static let dummy = Stretch(title: "This is a dummy stretch", length: Duration(amount: 30, type: .seconds))
     static let completion = Stretch(title: "Congratulations", length: Duration(amount: 30, type: .seconds))

@@ -28,9 +28,11 @@ class ViewController: UIViewController {
         setup()
         addSubviewsAndConstraints()
 
-        DAO.saveWorkout(Workout.gabos)
-
-//        workoutPicker.updateSnapshot(Workout.dummies)
+        if DAO.getWorkouts().filter({ (workout) -> Bool in
+            workout.name == Workout.gabos.name
+        }).count == 0 {
+            DAO.saveWorkout(Workout.gabos)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
