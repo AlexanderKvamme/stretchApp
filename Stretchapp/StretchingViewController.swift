@@ -79,6 +79,7 @@ struct Stretch: Hashable, Codable {
         Stretch(title: "Pigeon pose (other side)", length: Self.defaultLength),
         Stretch(title: "Quad bends", length: Self.defaultLength),
         Stretch(title: "Happy baby", length: Duration(amount: Self.defaultLength.amount, type: .seconds)),
+        Stretch(title: "Back rollers", length: Duration(amount: Self.defaultLength.amount, type: .seconds)),
         Stretch.completion
     ]
     static let forDebugging = [

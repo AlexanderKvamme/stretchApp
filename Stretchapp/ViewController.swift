@@ -28,6 +28,8 @@ class ViewController: UIViewController {
         setup()
         addSubviewsAndConstraints()
 
+        DAO.saveWorkout(Workout.gabos)
+
 //        workoutPicker.updateSnapshot(Workout.dummies)
     }
 
