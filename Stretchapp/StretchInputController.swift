@@ -90,8 +90,7 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
             make.left.right.equalToSuperview().inset(32)
         }
 
-        stepperShadow.snp.makeConstraints { (make) in
-            make.top.equalTo(superStepper.snp.top).offset(10)
+        stepperShadow.snp.makeConstraints { (make) in make.top.equalTo(superStepper.snp.top).offset(10)
             make.centerX.equalTo(superStepper)
             make.size.equalTo(superStepper.frame.size)
         }

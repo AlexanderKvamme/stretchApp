@@ -9,16 +9,16 @@ import UIKit
 import Lottie
 import SnapKit
 
+fileprivate let workoutButtonSize: CGFloat = 56
+fileprivate let workoutPickerHeight: CGFloat = 300
+
 class ViewController: UIViewController {
-
-    // MARK: - Settings
-
-    private let workoutButtonSize: CGFloat = 56
 
     // MARK: - Properties
 
     private let animationView = AnimationView.init(name: "data")
     private let workoutPicker = WorkoutPicker()
+    private let workoutPickerShadow = ShadowView(frame: CGRect(x: 0, y: 0, width: screenWidth-48, height: workoutPickerHeight))
     private let newWorkoutButton = NewWorkoutButton()
 
     // MARK: - Initializers
@@ -55,13 +55,11 @@ class ViewController: UIViewController {
 
         let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
         animationView.addGestureRecognizer(tr)
-
     }
 
     // MARK: - Methods
 
     @objc func playAnimation() {
-//        animationView.stop()
         animationView.play()
     }
 
@@ -71,14 +69,7 @@ class ViewController: UIViewController {
         let newWorkoutTap = UITapGestureRecognizer(target: self, action: #selector(createNewWorkout))
         newWorkoutButton.addGestureRecognizer(newWorkoutTap)
         newWorkoutButton.layer.cornerRadius = workoutButtonSize/2
-
-//        animateionView.contentMode = .scaleAspectFit
-
-//        horizontalStack.backgroundColor = .green
-//        setPicker.backgroundColor = .purple
-//        timePicker.backgroundColor = .orange
-//        xIcon.backgroundColor = .cyan
-//        view.backgroundColor = .green
+        workoutPickerShadow.opacity = 0.07
     }
 
     private func addSubviewsAndConstraints() {
@@ -97,11 +88,19 @@ class ViewController: UIViewController {
         }
 
         addChild(workoutPicker)
+        view.addSubview(workoutPickerShadow)
         view.addSubview(workoutPicker.view)
         workoutPicker.view.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.height.equalTo(240)
+            make.left.right.equalToSuperview().inset(2)
+            make.height.equalTo(workoutPickerHeight)
             make.bottom.equalToSuperview()
+        }
+
+        workoutPickerShadow.snp.makeConstraints { (make) in
+            make.top.equalTo(workoutPicker.view.snp.top).offset(40)
+            make.centerX.equalTo(workoutPicker.view)
+            make.height.equalTo(workoutPickerHeight/1.5)
+            make.width.equalTo(screenWidth-100)
         }
     }
 

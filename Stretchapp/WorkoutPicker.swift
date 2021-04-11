@@ -40,6 +40,7 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.clipsToBounds = false
+        collectionView.isScrollEnabled = false
     }
 
     private func addSubviewsAndConstraints() {
