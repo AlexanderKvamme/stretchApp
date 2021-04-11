@@ -38,6 +38,8 @@
 		DDADD2B72610F6D800AAC15B /* NewWorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2B62610F6D800AAC15B /* NewWorkoutController.swift */; };
 		DDADD2CA26113A0900AAC15B /* StretchInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2C926113A0900AAC15B /* StretchInputController.swift */; };
 		DDADD2D026113E2C00AAC15B /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADD2CF26113E2C00AAC15B /* TimePicker.swift */; };
+		DDCA2625262301FC00E96EB9 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = DDCA2624262301FC00E96EB9 /* data.json */; };
+		DDCA2628262322D700E96EB9 /* x-icon-data.json in Resources */ = {isa = PBXBuildFile; fileRef = DDCA2627262322D700E96EB9 /* x-icon-data.json */; };
 		DDCB7B762615323100AD1267 /* Superstepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCB7B752615323100AD1267 /* Superstepper.swift */; };
 		DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB2260687C80056D85C /* StretchButton.swift */; };
 		DDEAAEB626068F560056D85C /* StretchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEAAEB526068F560056D85C /* StretchingViewController.swift */; };
@@ -82,6 +84,8 @@
 		DDADD2B62610F6D800AAC15B /* NewWorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutController.swift; sourceTree = "<group>"; };
 		DDADD2C926113A0900AAC15B /* StretchInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchInputController.swift; sourceTree = "<group>"; };
 		DDADD2CF26113E2C00AAC15B /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
+		DDCA2624262301FC00E96EB9 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = ../../../../../../Desktop/data.json; sourceTree = "<group>"; };
+		DDCA2627262322D700E96EB9 /* x-icon-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "x-icon-data.json"; sourceTree = "<group>"; };
 		DDCB7B752615323100AD1267 /* Superstepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Superstepper.swift; sourceTree = "<group>"; };
 		DDEAAEB2260687C80056D85C /* StretchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchButton.swift; sourceTree = "<group>"; };
 		DDEAAEB526068F560056D85C /* StretchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				DD1B7B892606546000CB9AA4 /* Assets.xcassets */,
 				DD1B7B8B2606546000CB9AA4 /* LaunchScreen.storyboard */,
 				DD1B7B8E2606546000CB9AA4 /* Info.plist */,
+				DDCA2624262301FC00E96EB9 /* data.json */,
+				DDCA2627262322D700E96EB9 /* x-icon-data.json */,
 			);
 			path = Stretchapp;
 			sourceTree = "<group>";
@@ -282,10 +288,12 @@
 				DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */,
 				DD1B7B8D2606546000CB9AA4 /* LaunchScreen.storyboard in Resources */,
 				DD1B7BB026067F7E00CB9AA4 /* DINRoundPro-Bold.ttf in Resources */,
+				DDCA2625262301FC00E96EB9 /* data.json in Resources */,
 				DD1B7B8A2606546000CB9AA4 /* Assets.xcassets in Resources */,
 				DD1B7B882606545F00CB9AA4 /* Main.storyboard in Resources */,
 				DD1B7BAF26067F7E00CB9AA4 /* DINRoundPro.ttf in Resources */,
 				DD013FBA2609503500A396A3 /* Toy_Up&Down1.caf in Resources */,
+				DDCA2628262322D700E96EB9 /* x-icon-data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

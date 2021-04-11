@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 import SnapKit
 
 class ViewController: UIViewController {
@@ -16,7 +17,7 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let logoAnimationPlaceholder = UIImageView(image: .animationPlaceholder)
+    private let animationView = AnimationView.init(name: "data")
     private let workoutPicker = WorkoutPicker()
     private let newWorkoutButton = NewWorkoutButton()
 
@@ -49,9 +50,18 @@ class ViewController: UIViewController {
 //        present(vc, animated: false)
 
 //        DAO.saveWorkout(testWorkout)
+
+        let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
+        animationView.addGestureRecognizer(tr)
+        animationView.play()
     }
 
     // MARK: - Methods
+
+    @objc func playAnimation() {
+//        animationView.stop()
+        animationView.play()
+    }
 
     private func setup() {
         view.backgroundColor = UIColor.background
@@ -60,7 +70,7 @@ class ViewController: UIViewController {
         newWorkoutButton.addGestureRecognizer(newWorkoutTap)
         newWorkoutButton.layer.cornerRadius = workoutButtonSize/2
 
-        logoAnimationPlaceholder.contentMode = .scaleAspectFit
+//        animateionView.contentMode = .scaleAspectFit
 
 //        horizontalStack.backgroundColor = .green
 //        setPicker.backgroundColor = .purple
@@ -77,11 +87,11 @@ class ViewController: UIViewController {
             make.size.equalTo(workoutButtonSize)
         }
 
-        view.addSubview(logoAnimationPlaceholder)
-        logoAnimationPlaceholder.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview().inset(90)
-            make.top.equalTo(newWorkoutButton.snp.bottom).offset(32)
-            make.height.equalTo(logoAnimationPlaceholder.snp.width)
+        view.addSubview(animationView)
+        animationView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview().inset(24)
+            make.top.equalTo(newWorkoutButton.snp.bottom).offset(16)
+            make.height.equalTo(200)
         }
 
         addChild(workoutPicker)
@@ -89,7 +99,7 @@ class ViewController: UIViewController {
         workoutPicker.view.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.height.equalTo(240)
-            make.bottom.equalToSuperview().offset(-32)
+            make.bottom.equalToSuperview()
         }
     }
 
