@@ -6,10 +6,48 @@
 //
 
 import UIKit
+import Lottie
+
+class AnimatableButton: UIView {
+
+    // MARK: - Properties
+
+    let animationView: AnimationView!
+
+    // MARK: - Initializers
+
+    init(_ animation: String) {
+        animationView = AnimationView.init(name: animation)
+
+        super.init(frame: .zero)
+
+        setup()
+        addSubviewsAndConstraints()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Methods
+
+    private func setup() {
+
+    }
+
+    private func addSubviewsAndConstraints() {
+        addSubview(animationView)
+        animationView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+}
+
 
 class StretchNavBarContainer: UIView {
 
     let xButton = UIButton.make(.x)
+    let xButtonAnimation = AnimatableButton("x-icon-data")
     let fractionView: FractionView
 
     init(frame: CGRect, color: UIColor) {
@@ -32,12 +70,21 @@ class StretchNavBarContainer: UIView {
     private func setup() {}
 
     private func addSubviewsAndConstraints() {
+        addSubview(xButtonAnimation)
         addSubview(xButton)
         addSubview(fractionView)
 
-        xButton.snp.makeConstraints { (make) in
+        let buttonLeftAdjustmentForAnimation = 13
+
+        xButtonAnimation.snp.makeConstraints { (make) in
             make.centerY.equalTo(fractionView.snp.centerY)
             make.left.equalTo(safeAreaLayoutGuide).offset(24)
+            make.size.equalTo(26)
+        }
+
+        xButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(fractionView.snp.centerY)
+            make.left.equalTo(safeAreaLayoutGuide).offset(buttonLeftAdjustmentForAnimation)
             make.size.equalTo(48)
         }
 
@@ -50,6 +97,12 @@ class StretchNavBarContainer: UIView {
     }
 
     // API
+    func animateInXButton() {
+        xButtonAnimation.animationView.play()
+        UIView.animate(withDuration: 0.1, delay: 0.5, options: UIView.AnimationOptions()) {
+            self.xButton.alpha = 1
+        }
+    }
 
     func setColor(_ c: UIColor) {
         xButton.tintColor = c
@@ -167,11 +220,8 @@ class StretchingViewController: UIViewController {
 
         navBarOver.fractionView.setFraction("1", String(stretches.count))
         navBarUnder.fractionView.setFraction("1", String(stretches.count))
-        navBarOver.fractionView.animate()
-        navBarUnder.fractionView.animate()
-        playNextAnimation()
-
         fadeInViews()
+        playNextAnimation()
     }
 
     // MARK: - Methods
@@ -186,10 +236,13 @@ class StretchingViewController: UIViewController {
     }
 
     private func fadeInViews() {
-        UIView.animate(withDuration: 0.7) {
-            self.navBarOver.xButton.alpha = 1
-            self.navBarUnder.xButton.alpha = 1
-        }
+        navBarOver.animateInXButton()
+        navBarUnder.animateInXButton()
+        navBarOver.fractionView.animate()
+        navBarUnder.fractionView.animate()
+
+        navBarOver.animateInXButton()
+        navBarUnder.animateInXButton()
     }
 
     private func playNextAnimation() {

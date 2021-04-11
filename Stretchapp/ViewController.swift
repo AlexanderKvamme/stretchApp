@@ -56,7 +56,6 @@ class ViewController: UIViewController {
         let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
         animationView.addGestureRecognizer(tr)
 
-        animationView.play()
     }
 
     // MARK: - Methods
