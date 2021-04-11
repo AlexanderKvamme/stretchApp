@@ -51,8 +51,11 @@ class ViewController: UIViewController {
 
 //        DAO.saveWorkout(testWorkout)
 
+        newWorkoutButton.animateIn()
+
         let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
         animationView.addGestureRecognizer(tr)
+
         animationView.play()
     }
 

@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Lottie
 
 
 final class NewWorkoutButton: UIView {
 
     // MARK: - Properties
 
-    private let iconView = UIImageView(image: UIImage.x)
+    private let animationView = AnimationView.init(name: "x-icon-data")
 
     // MARK: - Initializers
 
@@ -32,16 +33,19 @@ final class NewWorkoutButton: UIView {
     private func setup() {
         backgroundColor = UIColor.primaryContrast.withAlphaComponent(0.02)
 
-        iconView.transform = iconView.transform.rotated(by: .pi/4)
-        iconView.alpha = 0.2
+        animationView.transform = animationView.transform.rotated(by: .pi/4)
     }
 
     private func addSubviewsAndConstraints() {
-        addSubview(iconView)
+        addSubview(animationView)
 
-        iconView.snp.makeConstraints { (make) in
+        animationView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.size.equalTo(16)
         }
+    }
+
+    func animateIn() {
+        animationView.play()
     }
 }
