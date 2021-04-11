@@ -170,6 +170,7 @@ class WorkoutCellContentView: UIView, UIContentView {
     // MARK: - Properties
 
     let leftLabel = UILabel.make(.header)
+    let bottomLabel = UILabel.make(.standard)
     let rightLabel = UILabel.make(.header)
     let background = UIView()
 
@@ -209,16 +210,23 @@ class WorkoutCellContentView: UIView, UIContentView {
         leftLabel.text = "Hands folded behind the back"
         leftLabel.textAlignment = .left
         leftLabel.numberOfLines = 2
-        leftLabel.font = UIFont.fulbo(18)
+        leftLabel.font = UIFont.round(.black, 22)
+        leftLabel.adjustsFontSizeToFitWidth = true
+
+        bottomLabel.text = "14 stretches"
+        bottomLabel.textAlignment = .left
+        bottomLabel.numberOfLines = 2
+        bottomLabel.font = UIFont.round(.bold, 14)
+        bottomLabel.alpha = 0.2
 
         rightLabel.text = "90 s"
-        rightLabel.font = UIFont.fulbo(24)
+        rightLabel.font = UIFont.round(.black, 18)
         rightLabel.textAlignment = .right
         rightLabel.textColor = UIColor(hex: "#FFC73C")
     }
 
     func addSubviewsAndConstraints() {
-        [background, leftLabel, rightLabel].forEach({ addSubview($0) })
+        [background, leftLabel, bottomLabel, rightLabel].forEach({ addSubview($0) })
 
         background.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview().inset(20)
@@ -228,15 +236,23 @@ class WorkoutCellContentView: UIView, UIContentView {
         leftLabel.snp.makeConstraints { (make) in
             make.left.equalTo(background).offset(16)
             make.right.equalTo(rightLabel.snp.left).inset(8)
-            make.top.bottom.equalTo(background)
-            make.height.equalTo(80).priority(.high)
+            make.top.equalTo(background).offset(16)
+            make.bottom.equalTo(snp.centerY)
+            make.height.equalTo(40-16).priority(.high)
+        }
+
+        bottomLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(background).offset(16)
+            make.right.equalTo(rightLabel.snp.left).inset(16)
+            make.top.equalTo(snp.centerY)
+            make.bottom.equalTo(background).offset(-16)
+            make.height.equalTo(40-16).priority(.high)
         }
 
         rightLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalTo(leftLabel)
+            make.bottom.equalTo(bottomLabel)
             make.right.equalTo(background).inset(16)
             make.width.equalTo(100)
-            make.height.equalTo(leftLabel)
         }
     }
 
@@ -251,7 +267,7 @@ class WorkoutCellContentView: UIView, UIContentView {
         // Replace current configuration with new configuration
         currentConfiguration = configuration
 
-        leftLabel.text = configuration.name
+        leftLabel.text = configuration.name?.uppercased()
         rightLabel.text = configuration.durationString
     }
 }
