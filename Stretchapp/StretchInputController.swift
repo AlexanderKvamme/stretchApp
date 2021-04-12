@@ -20,8 +20,8 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
 
-    private let nameLabel = UILabel.make(.header)
-    private let input = UITextField()
+    private let nameLabel = UILabel.make(.inputHeader)
+    private let input = TextFieldWithCustomCaret(placeholder: "Something")
     private let backButton = UIButton.make(.back)
     private let superStepper = SuperStepper(frame: stepperFrame, options: testOptions)
     private let stepperShadow = ShadowView(frame: stepperFrame)
@@ -33,7 +33,7 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
     init() {
         super.init(nibName: nil, bundle: nil)
 
-        view.backgroundColor = .primaryContrast
+        view.backgroundColor = .background
 
         setup()
         addSubviewsAndConstraints()
@@ -46,16 +46,12 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
     // MARK: - Methods
 
     private func setup() {
-        backButton.tintColor = .background
-        nameLabel.text = "Stretch name"
-        nameLabel.textColor = .background
-        nameLabel.textAlignment = .center
-        nameLabel.alpha = 0.8
-        input.placeholder = "Forward fold"
+        backButton.tintColor = .primaryContrast
+        nameLabel.text = "Name your stretch"
         input.textAlignment = .center
         input.font = UIFont.round(.black, 64)
         input.adjustsFontSizeToFitWidth = true
-        input.textColor = .background
+        input.textColor = .primaryContrast
         input.delegate = self
 
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
@@ -86,7 +82,7 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
         }
 
         input.snp.makeConstraints { (make) in
-            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.top.equalTo(nameLabel.snp.bottom).offset(-8)
             make.left.right.equalToSuperview().inset(32)
         }
 

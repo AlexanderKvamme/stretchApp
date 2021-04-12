@@ -17,7 +17,7 @@ public class ShadowView: UIView {
 
     var offset: CGSize = CGSize(width: 0, height: 0)
     var radius: CGFloat = 30
-    var opacity: Float = 0.3
+    var opacity: Float = 0.2
     var color: UIColor = UIColor.black
     var cornerRadius: Float = 0.0
     var isCircle: Bool = false

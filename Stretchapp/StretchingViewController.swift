@@ -362,6 +362,7 @@ extension UILabel {
         case standard
         case exercise
         case header
+        case inputHeader
     }
 
     static func make(_ style: LabelStyle, text: String = "") -> UILabel {
@@ -369,7 +370,7 @@ extension UILabel {
         lbl.text = text
         lbl.font = UIFont.round(.bold, 12)
         lbl.textAlignment = .center
-        lbl.textColor = .black
+        lbl.textColor = .primaryContrast
 
         switch style {
         case .fraction:
@@ -380,6 +381,9 @@ extension UILabel {
             lbl.font = UIFont.round(.bold, 40)
         case .header:
             lbl.font = UIFont.round(.bold, 24)
+        case .inputHeader:
+            lbl.font = UIFont.round(.bold, 20)
+            lbl.textAlignment = .center
         }
 
         return lbl

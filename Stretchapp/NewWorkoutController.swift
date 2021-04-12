@@ -56,6 +56,7 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         backButton.tintColor = .background
         nameLabel.textColor = .background
         nameLabel.textAlignment = .left
+        nameLabel.textColor = .primaryContrast
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
         collectionView.register(StretchCell.self, forCellWithReuseIdentifier: StretchCell.reuseIdentifier)
         collectionView.dataSource = dataSource
@@ -163,6 +164,8 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         saveButton.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().offset(-48)
             make.centerX.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalTo(200)
         }
 
         backButton.snp.makeConstraints { (make) in
@@ -181,13 +184,13 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         collectionView.snp.makeConstraints { (make) in
             make.top.equalTo(nameLabel.snp.bottom).offset(80)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(addButton.snp.top)
+            make.bottom.equalTo(saveButton.snp.top)
         }
 
         addButton.snp.makeConstraints { (make) in
             make.top.equalTo(backButton)
-            make.size.equalTo(48)
-            make.right.equalToSuperview().offset(-24)
+            make.size.equalTo(56)
+            make.right.equalToSuperview().offset(-32)
         }
     }
 }
