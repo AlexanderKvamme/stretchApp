@@ -36,6 +36,11 @@ final class NewWorkoutButton: UIView {
         animationView.transform = animationView.transform.rotated(by: .pi/4)
     }
 
+    override func layoutSubviews() {
+        layer.cornerRadius = frame.size.width/4
+        layer.cornerCurve = .continuous
+    }
+
     private func addSubviewsAndConstraints() {
         addSubview(animationView)
 

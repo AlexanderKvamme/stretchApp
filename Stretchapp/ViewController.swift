@@ -68,7 +68,6 @@ class ViewController: UIViewController {
 
         let newWorkoutTap = UITapGestureRecognizer(target: self, action: #selector(createNewWorkout))
         newWorkoutButton.addGestureRecognizer(newWorkoutTap)
-        newWorkoutButton.layer.cornerRadius = workoutButtonSize/2
         workoutPickerShadow.opacity = 0.07
     }
 
