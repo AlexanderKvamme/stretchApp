@@ -16,7 +16,7 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
     private let backButton = UIButton.make(.back)
     private let wobbler = WobbleView()
     private let nameLabel = UILabel.make(.header)
-    private let addButton = UIButton.make(.plusPill)
+    private let addButton = NewWorkoutButton()
     private let addButtonBackground = UIView()
 
     typealias ProductList = [Workout]
@@ -42,6 +42,14 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        addButton.animateIn()
+    }
+
     // MARK: - Methods
 
     private func setup() {
@@ -49,11 +57,6 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         nameLabel.textColor = .background
         nameLabel.textAlignment = .left
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
-        addButton.tintColor = .background
-        addButton.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/4)
-        addButtonBackground.layer.cornerRadius = 64/2
-        addButtonBackground.backgroundColor = .primaryContrast
-
         collectionView.register(StretchCell.self, forCellWithReuseIdentifier: StretchCell.reuseIdentifier)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
@@ -63,7 +66,8 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
 
         backButton.tintColor = .primaryContrast
 
-        addButton.addTarget(self, action: #selector(getTextInput), for: .touchUpInside)
+        let tr = UITapGestureRecognizer(target: self, action: #selector(getTextInput))
+        addButton.addGestureRecognizer(tr)
         saveButton.addTarget(self, action: #selector(clickedSave), for: .touchUpInside)
     }
 
@@ -152,14 +156,13 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         view.addSubview(wobbler)
         view.addSubview(backButton)
         view.addSubview(nameLabel)
-        view.addSubview(addButtonBackground)
         view.addSubview(addButton)
         view.addSubview(collectionView)
         view.addSubview(saveButton)
 
         saveButton.snp.makeConstraints { (make) in
-            make.centerY.equalTo(backButton)
-            make.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().offset(-48)
+            make.centerX.equalToSuperview()
         }
 
         backButton.snp.makeConstraints { (make) in
@@ -182,13 +185,9 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         }
 
         addButton.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-48)
-        }
-
-        addButtonBackground.snp.makeConstraints { (make) in
-            make.center.equalTo(addButton)
-            make.size.equalTo(64)
+            make.top.equalTo(backButton)
+            make.size.equalTo(48)
+            make.right.equalToSuperview().offset(-24)
         }
     }
 }

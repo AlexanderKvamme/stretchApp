@@ -91,7 +91,7 @@ final class TextInputScreen: UIViewController, UITextFieldDelegate {
         }
 
         input.snp.makeConstraints { (make) in
-            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.top.equalTo(nameLabel.snp.bottom).offset(-8)
             make.left.right.equalToSuperview().inset(32)
         }
     }
