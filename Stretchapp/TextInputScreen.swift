@@ -16,7 +16,7 @@ final class TextInputScreen: UIViewController, UITextFieldDelegate {
     // MARK: - Properties
 
     private let nameLabel = UILabel.make(.header)
-    private let input = UITextField()
+    private let input = TextFieldWithCustomCaret()
     private let backButton = UIButton.make(.back)
 
     var delegate: TextInputReceiver?
@@ -26,7 +26,7 @@ final class TextInputScreen: UIViewController, UITextFieldDelegate {
     init() {
         super.init(nibName: nil, bundle: nil)
 
-        view.backgroundColor = .primaryContrast
+        view.backgroundColor = .background
 
         setup()
         addSubviewsAndConstraints()
@@ -39,20 +39,34 @@ final class TextInputScreen: UIViewController, UITextFieldDelegate {
     // MARK: - Methods
 
     private func setup() {
-        backButton.tintColor = .background
-        nameLabel.text = "Stretch name"
-        nameLabel.textColor = .background
+        backButton.tintColor = .primaryContrast
+
+        nameLabel.text = "Enter workout name"
+        nameLabel.font = UIFont.round(.bold, 20)
+        nameLabel.textColor = .primaryContrast
         nameLabel.textAlignment = .center
-        nameLabel.alpha = 0.8
-        input.placeholder = "Forward fold"
+
+        input.attributedPlaceholder = makePlaceholder()
+        input.placeholder = "Workout name"
+
         input.textAlignment = .center
-        input.textColor = .background
+        input.textColor = .primaryContrast
         input.font = UIFont.round(.black, 64)
         input.adjustsFontSizeToFitWidth = true
         input.delegate = self
 
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
         input.becomeFirstResponder()
+    }
+
+    private func makePlaceholder() -> NSAttributedString {
+        let font = UIFont.round(.bold, 20)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor(hex: "#DDDEDE"),
+            .font: font
+        ]
+        let secondString = NSAttributedString(string: "Place", attributes: attributes)
+        return secondString
     }
 
     @objc private func exit() {
