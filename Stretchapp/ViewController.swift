@@ -36,31 +36,35 @@ class ViewController: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        animationView.transform = CGAffineTransform.identity
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         workoutPicker.updateSnapshot(DAO.getWorkouts())
 
-//        let stretchViewController = StretchingViewController(Stretch.forDebugging)
-//        stretchViewController.modalPresentationStyle = .fullScreen
-//        present(stretchViewController, animated: true, completion: nil)
-
-        // BAM: Show NewWorkoutController
-
-//        let vc = NewWorkoutController(title: "Flex Boys")
-//        vc.modalPresentationStyle = .fullScreen
-//        present(vc, animated: false)
-
-//        DAO.saveWorkout(testWorkout)
+        addTapGestures()
 
         newWorkoutButton.animateIn()
-
-        let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
-        animationView.addGestureRecognizer(tr)
+        animateInLogo()
     }
 
     // MARK: - Methods
 
     @objc func playAnimation() {
         animationView.play()
+    }
+
+    private func addTapGestures() {
+        let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
+        animationView.addGestureRecognizer(tr)
+    }
+
+    private func animateInLogo() {
+        UIView.animate(withDuration: 0.6) {
+            let scale: CGFloat = 0.99
+            self.animationView.transform = self.animationView.transform.scaledBy(x: scale, y: scale).translatedBy(x: 0, y: -5)
+        }
     }
 
     private func setup() {
