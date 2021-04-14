@@ -38,10 +38,10 @@ final class WorkoutCellView: UIView {
         leftLabel.text = "Hands folded behind the back"
         leftLabel.textAlignment = .left
         leftLabel.numberOfLines = 2
-        leftLabel.font = UIFont.fulbo(18)
+        leftLabel.font = UIFont.round(.bold, 20)
 
         rightLabel.text = "90 s"
-        rightLabel.font = UIFont.fulbo(24)
+        rightLabel.font = UIFont.round(.black, 24)
         rightLabel.textAlignment = .right
         rightLabel.textColor = UIColor(hex: "#FFC73C")
     }
