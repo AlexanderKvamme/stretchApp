@@ -21,6 +21,10 @@ class Audioplayer: NSObject {
     }
 
     static func play(_ sound: Sound) {
+        if (AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint) {
+            return
+        }
+
         let path = Bundle.main.path(forResource: sound.rawValue, ofType:nil)!
         let url = URL(fileURLWithPath: path)
 
