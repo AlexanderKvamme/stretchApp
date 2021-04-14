@@ -57,6 +57,9 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         nameLabel.textColor = .background
         nameLabel.textAlignment = .left
         nameLabel.textColor = .primaryContrast
+        nameLabel.textAlignment = .center
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.numberOfLines = 2
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
         collectionView.register(StretchCell.self, forCellWithReuseIdentifier: StretchCell.reuseIdentifier)
         collectionView.dataSource = dataSource
@@ -175,9 +178,9 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
         }
 
         nameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(backButton.snp.right).offset(24)
-            make.right.equalToSuperview()
-            make.height.equalTo(48)
+            make.left.equalTo(backButton.snp.right).offset(16)
+            make.right.equalTo(addButton.snp.left).offset(-16)
+            make.height.equalTo(64)
             make.centerY.equalTo(backButton)
         }
 
