@@ -33,7 +33,7 @@ final class ExerciceView: UIView {
 
     // MARK: - Properties
 
-    let label = UILabel.make(.exercise)
+    let label = UITextView.make(.exercise)
 
     // MARK: - Initializers
 
@@ -59,7 +59,6 @@ final class ExerciceView: UIView {
         setStyle(style)
 
         label.text = "This is a temporary exercise"
-        label.numberOfLines = 0
     }
 
     private func addSubviewsAndConstraints() {

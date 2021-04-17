@@ -355,6 +355,28 @@ class StretchingViewController: UIViewController {
     }
 }
 
+extension UITextView {
+
+    enum TextViewStyle {
+        case exercise
+    }
+
+    static func make(_ style: TextViewStyle, text: String = "") -> UITextView {
+        let textView = VerticallyCenteredTextView()
+        textView.text = text
+        textView.font = UIFont.round(.bold, 12)
+        textView.textAlignment = .center
+        textView.textColor = .primaryContrast
+
+        switch style {
+        case .exercise:
+            textView.font = UIFont.round(.bold, 40)
+        }
+
+        return textView
+    }
+}
+
 extension UILabel {
 
     enum LabelStyle {
