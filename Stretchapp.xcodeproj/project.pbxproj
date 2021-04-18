@@ -28,6 +28,7 @@
 		DD5CF64A262B5E8D00997282 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF649262B5E8D00997282 /* VerticallyCenteredTextView.swift */; };
 		DD5CF64D262B5F9400997282 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF64C262B5F9400997282 /* TestViewController.swift */; };
 		DD5CF651262C1B8300997282 /* TextAnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF650262C1B8200997282 /* TextAnimationExtensions.swift */; };
+		DD5CF65A262C2AE300997282 /* CustomTextComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF659262C2AE300997282 /* CustomTextComponents.swift */; };
 		DD5E9472261B3DB70049DA57 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9471261B3DB70049DA57 /* Duration.swift */; };
 		DD5E9475261B3DD20049DA57 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9474261B3DD20049DA57 /* Workout.swift */; };
 		DD5E9478261B533B0049DA57 /* WorkoutCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9477261B533B0049DA57 /* WorkoutCellView.swift */; };
@@ -78,6 +79,7 @@
 		DD5CF649262B5E8D00997282 /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
 		DD5CF64C262B5F9400997282 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		DD5CF650262C1B8200997282 /* TextAnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextAnimationExtensions.swift; path = ../../AKTV/TextAnimationExtensions.swift; sourceTree = "<group>"; };
+		DD5CF659262C2AE300997282 /* CustomTextComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextComponents.swift; sourceTree = "<group>"; };
 		DD5E9471261B3DB70049DA57 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		DD5E9474261B3DD20049DA57 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		DD5E9477261B533B0049DA57 /* WorkoutCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCellView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				DDCAB0F92624DBD900F950D9 /* TextFieldWithCustomCaret.swift */,
 				DDADD2CF26113E2C00AAC15B /* TimePicker.swift */,
 				DDEAAEB526068F560056D85C /* StretchingViewController.swift */,
+				DD5CF659262C2AE300997282 /* CustomTextComponents.swift */,
 				DDEAAEBB26073DEE0056D85C /* FractionView.swift */,
 				DDEAAEBE26073E370056D85C /* ExerciseWaveView.swift */,
 				DDEAAEB2260687C80056D85C /* StretchButton.swift */,
@@ -373,6 +376,7 @@
 				DD77FECA261A0DC20071D81D /* ButtonWithBackground.swift in Sources */,
 				DDADD2B42610F63900AAC15B /* WobbleView.swift in Sources */,
 				DD5E9478261B533B0049DA57 /* WorkoutCellView.swift in Sources */,
+				DD5CF65A262C2AE300997282 /* CustomTextComponents.swift in Sources */,
 				DDADD2CA26113A0900AAC15B /* StretchInputController.swift in Sources */,
 				DDEAAEB926073DD60056D85C /* AnimatableDiagonalView.swift in Sources */,
 				DD5CF64A262B5E8D00997282 /* VerticallyCenteredTextView.swift in Sources */,
