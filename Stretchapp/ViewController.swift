@@ -113,12 +113,6 @@ class ViewController: UIViewController {
         textInputScreen.modalPresentationStyle = .fullScreen
         present(textInputScreen, animated: true)
     }
-
-    @objc private func startStretching() {
-        let stretchViewController = StretchingViewController(Stretch.favourites)
-        stretchViewController.modalPresentationStyle = .fullScreen
-        present(stretchViewController, animated: false, completion: nil)
-    }
 }
 
 extension ViewController: TextInputReceiver {

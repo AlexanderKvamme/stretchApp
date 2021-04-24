@@ -38,12 +38,13 @@ class StretchingViewController: UIViewController {
 
         view.backgroundColor = .background
         setInitialStretch(from: stretches)
-        addSubviewsAndConstraints()
         navBarOver.xButton.alpha = 0
         navBarUnder.xButton.alpha = 0
 
         setup()
         addSubviewsAndConstraints()
+        topView.backgroundColor = .background
+        botView.backgroundColor = .background
     }
 
     required init?(coder: NSCoder) {

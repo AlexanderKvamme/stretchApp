@@ -128,7 +128,7 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         if let workout = dataSource.itemIdentifier(for: indexPath) {
             let vc = StretchingViewController(workout.stretches)
             vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
+            present(vc, animated: false)
         }
     }
 }
