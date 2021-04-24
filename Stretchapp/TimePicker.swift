@@ -8,23 +8,22 @@
 import UIKit
 
 
-final class TimePicker: UIViewController {
-
-    // MARK: - Properties
-
-    // MARK: - Initializers
-
-    init() {
-        super.init(nibName: nil, bundle: nil)
-
-        view.backgroundColor = .orange
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: - Methods
-
-
-}
+//final class TimePicker: UIViewController {
+//
+//    // MARK: - Properties
+//
+//    // MARK: - Initializers
+//
+//    init() {
+//        super.init(nibName: nil, bundle: nil)
+//
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    // MARK: - Methods
+//
+//
+//}

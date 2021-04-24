@@ -64,6 +64,7 @@ class StretchingViewController: UIViewController {
         navBarOver.fractionView.setFraction("1", String(stretches.count))
         navBarUnder.fractionView.setFraction("1", String(stretches.count))
         fadeInViews()
+//        topView.animateIn()
         playNextAnimation()
     }
 
@@ -90,24 +91,41 @@ class StretchingViewController: UIViewController {
 
     private func playNextAnimation() {
         resetViews()
+        topView.prepareAnimation()
+        botView.prepareAnimation()
         view.layoutIfNeeded()
 
         self.updateStretches()
 
+//        botView.animateIn()
+
         if hasNextAnimation {
             let stretchLength = stretches[currentAnimationIteration].length
-            Audioplayer.play(.newStretch)
+//            Audioplayer.play(.newStretch)
             navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count))
             navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count))
 
             let isMinuteStretch = stretchLength.type == .minutes
             let animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
+
+            topView.animateIn()
+//            topView.prepareAnimation()
+//            botView.alpha = 0.5
+//            topView.backgroundColor = .green
+//            botView.backgroundColor = .purple
+//            view.backgroundColor = .cyan
+
+//            self.setNextLayout()
+//                self.botView.textView.alpha = 1
+            self.view.layoutIfNeeded()
+            self.waveMask.layoutIfNeeded()
+
             UIView.animate(withDuration: TimeInterval(animationDuration)) {
                 self.setNextLayout()
-                self.botView.label.alpha = 1
                 self.view.layoutIfNeeded()
                 self.waveMask.layoutIfNeeded()
             } completion: { (_) in
+                print("bam animation outer done")
                 self.currentAnimationIteration += 1
                 self.playNextAnimation()
             }
@@ -138,24 +156,25 @@ class StretchingViewController: UIViewController {
 
     private func resetViews() {
         let sheetIsLight = currentAnimationIteration%2 == 0
-        let topStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .light : .dark
-        let botStyle: ExerciceView.ExerciseSlideStyle = sheetIsLight ? .dark : .light
+        let topStyle: ExerciseSlideStyle = sheetIsLight ? .light : .dark
+        let botStyle: ExerciseSlideStyle = sheetIsLight ? .dark : .light
 
         wave.color = topStyle.foregroundColor
         wave.backgroundColor = topStyle.backgroundColor
         view.addSubview(wave)
 
         topView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        botView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
+        botView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: screenHeight)
         wave.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
         waveMask.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
 
-        topView.label.transform = .identity
-        botView.label.transform = labelAnimateInStartTransform
+        topView.textView.transform = .identity
+        botView.textView.transform = .identity
+//        botView.textView.transform = labelAnimateInStartTransform
         topView.setStyle(topStyle)
         botView.setStyle(botStyle)
-        botView.label.alpha = 0
-        topView.label.alpha = 1
+//        botView.textView.alpha = 0
+//        topView.textView.alpha = 1
 
         navBarOver.setColor(topStyle.backgroundColor)
         navBarUnder.setColor(topStyle.foregroundColor)
@@ -164,7 +183,15 @@ class StretchingViewController: UIViewController {
 
         // Mask hides the top bar, and reveals the one undeneath
         navBarOver.mask = waveMask
+
+        topView.layoutIfNeeded()
+        botView.layoutIfNeeded()
     }
+
+    private var topStartFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+    private var botStartFrame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
+    private var topEndFrame = CGRect(x: 0, y: 0, width: screenWidth, height: 0)
+    private var botEndFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
 
     private func setNextLayout() {
         self.topView.frame.origin.y -= screenHeight/2
@@ -172,20 +199,18 @@ class StretchingViewController: UIViewController {
         self.wave.frame = CGRect(x: 0, y: -waveHeight, width: screenWidth, height: waveHeight)
         self.waveMask.frame = CGRect(x: 0, y: -waveHeight, width: screenWidth, height: waveHeight)
 
-        self.topView.label.transform = labelAnimateOutEndTransform
-        self.botView.label.transform = .identity
+//        self.topView.textView.transform = labelAnimateOutEndTransform
+        self.topView.textView.transform = .identity
+        self.botView.textView.transform = .identity
     }
-
-    private var topStartFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-    private var topEndFrame = CGRect(x: 0, y: 0, width: screenWidth, height: 0)
-    private var botEndFrame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-    private var botStartFrame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 0)
 
     private func setInitialStretch(from stretches: [Stretch]) {
         let firstStretch = stretches[0]
         let secondStretch = stretches[1]
 
         topView.setStretch(firstStretch)
+        print("top: ", firstStretch.title)
+        print("bot: ", secondStretch.title)
         botView.setStretch(secondStretch)
     }
 
@@ -198,3 +223,41 @@ class StretchingViewController: UIViewController {
     }
 }
 
+//        override func viewDidAppear(_ animated: Bool) {
+//            topView.frame = view.frame
+//            view.addSubview(topView)
+//
+//            topView.setStretch(Stretch.dummy)
+//            topView.layoutIfNeeded()
+//
+//            topView.alpha = 0
+//            view.backgroundColor = .primaryContrast
+//            testAnimateIn(topView.label)
+//        }
+//
+//        func testAnimateIn(_ textView: UITextView) {
+//            let rects = textView.getFramesForWords()
+//            rects.enumerated().forEach { (i, selectionRect) in
+//                // Make and add snap
+//                let iv = textView.wrappedSnap(at: selectionRect)!
+//                let offsetY = abs(textView.contentOffset.y)
+//                iv.frame = selectionRect
+//                iv.frame.origin.y += CGFloat(offsetY)
+//                iv.transform = CGAffineTransform(translationX: 0, y: 40)
+//                iv.alpha = 0
+//                view.addSubview(iv)
+//
+//                // Animate
+//                UIView.animate(withDuration: 0.4, delay: Double(i)*0.075, options: .curveEaseInOut, animations: {
+//                    iv.transform = CGAffineTransform(translationX: 0, y: 0)
+//                    iv.alpha = 1
+//                }, completion: { _ in
+//    //                iv.removeFromSuperview()
+//
+//                    UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
+//                        iv.transform = CGAffineTransform(translationX: 0, y: -10)
+//                        iv.alpha = 0
+//                    })
+//                })
+//            }
+//        }

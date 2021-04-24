@@ -26,7 +26,7 @@ struct Stretch: Hashable, Codable {
     static let dummy = Stretch(title: "This is a dummy stretch", length: Duration(amount: 30, type: .seconds))
     static let completion = Stretch(title: "Congratulations", length: Duration(amount: 30, type: .seconds))
     static let defaultLength = Duration(amount: 90, type: .seconds)
-    static let debugLength = Duration(amount: 1, type: .seconds)
+    static let debugLength = Duration(amount: 10, type: .seconds)
     static let favourites = [
         Stretch(title: "Hands folded behind back", length: defaultLength),
         Stretch(title: "Low squat", length: Self.defaultLength),
@@ -42,9 +42,9 @@ struct Stretch: Hashable, Codable {
         Stretch.completion
     ]
     static let forDebugging = [
-        Stretch(title: "Hands folded behind back", length: Self.debugLength),
-        Stretch(title: "Low squat", length: Self.debugLength),
-        Stretch(title: "Spinal twist (one side)", length: Self.debugLength),
+        Stretch(title: "1. Hands folded behind back", length: Self.debugLength),
+        Stretch(title: "2. Low squat", length: Self.debugLength),
+        Stretch(title: "3. Spinal twist (one side)", length: Self.debugLength),
         Stretch(title: "Back bend", length: Self.debugLength),
         Stretch(title: "Forward fold", length: Self.debugLength),
         Stretch(title: "Pigeon pose (one side)", length: Self.debugLength),

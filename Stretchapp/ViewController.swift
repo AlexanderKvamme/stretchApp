@@ -47,6 +47,10 @@ class ViewController: UIViewController {
 
         newWorkoutButton.animateIn()
         animateInLogo()
+
+        let vc = StretchingViewController(Stretch.forDebugging)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: false)
     }
 
     // MARK: - Methods
