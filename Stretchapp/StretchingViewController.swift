@@ -13,12 +13,6 @@ class StretchingViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let labelAnimateOutEndTransform = CGAffineTransform.identity
-        .scaledBy(x: 0.8, y: 0.8)
-        .translatedBy(x: 0, y: -100)
-    private let labelAnimateInStartTransform = CGAffineTransform.identity
-        .scaledBy(x: 0.1, y: 0.1)
-        .translatedBy(x: 0, y: 500)
     var stretches: [Stretch]
     let navBarOver = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
     let navBarUnder = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
@@ -64,7 +58,6 @@ class StretchingViewController: UIViewController {
         navBarOver.fractionView.setFraction("1", String(stretches.count))
         navBarUnder.fractionView.setFraction("1", String(stretches.count))
         fadeInViews()
-//        topView.animateIn()
         playNextAnimation()
     }
 
@@ -90,6 +83,7 @@ class StretchingViewController: UIViewController {
     }
 
     private func playNextAnimation() {
+        let isFirstAnimation = currentAnimationIteration == 0
         resetViews()
 
         topView.prepareAnimation()
@@ -108,13 +102,13 @@ class StretchingViewController: UIViewController {
             let isMinuteStretch = stretchLength.type == .minutes
             let animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
 
-            topView.textView.alpha = 1
-            topView.setAnimationEndState()
-//            topView.prepareAnimation()
-//            botView.alpha = 0.5
-//            topView.backgroundColor = .green
-//            botView.backgroundColor = .purple
-//            view.backgroundColor = .cyan
+            if isFirstAnimation {
+                topView.textView.alpha = 0
+                topView.animateIn()
+            } else {
+                topView.textView.alpha = 1
+                topView.setAnimationEndState()
+            }
 
             self.view.layoutIfNeeded()
             self.waveMask.layoutIfNeeded()
@@ -172,8 +166,6 @@ class StretchingViewController: UIViewController {
         wave.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
         waveMask.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: waveHeight)
 
-        topView.textView.transform = .identity
-        botView.textView.transform = .identity
         topView.setStyle(topStyle)
         botView.setStyle(botStyle)
 
