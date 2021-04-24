@@ -42,9 +42,9 @@ struct Stretch: Hashable, Codable {
         Stretch.completion
     ]
     static let forDebugging = [
-        Stretch(title: "1. Hands folded behind back", length: Self.debugLength),
-        Stretch(title: "2. Low squat", length: Self.debugLength),
-        Stretch(title: "3. Spinal twist (one side)", length: Self.debugLength),
+        Stretch(title: "Hands folded behind back", length: Self.debugLength),
+        Stretch(title: "Low squat", length: Self.debugLength),
+        Stretch(title: "Spinal twist (one side)", length: Self.debugLength),
         Stretch(title: "Back bend", length: Self.debugLength),
         Stretch(title: "Forward fold", length: Self.debugLength),
         Stretch(title: "Pigeon pose (one side)", length: Self.debugLength),
