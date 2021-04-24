@@ -2,7 +2,7 @@ import UIKit
 
 extension UIColor {
     static let background = UIColor(hex: "#F4F4F4")
-    static let primaryContrast = UIColor(hex: "#0C1D2D")
+    static let primaryContrast = UIColor.black
     static let card = UIColor(hex: "#EDE9E5")
 }
 

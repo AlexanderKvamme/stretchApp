@@ -84,7 +84,7 @@ final class ExerciceView: UIView {
 
     func prepareAnimation() {
         textView.alpha = 1
-        let snapshotRects = textView.getFramesForWords()
+        let snapshotRects = textView.getFramesForCharacters()
         snapshots = snapshotRects.map({ textView.wrappedSnap(at: $0)! })
         snapshots.forEach({ $0.tintColor = style.foregroundColor })
     }
@@ -97,8 +97,8 @@ final class ExerciceView: UIView {
     }
 
     func animateIn() {
-        let animationDuration = 4.0
-        let interItemDelayFactor  = 0.1
+        let animationDuration = 1.0
+        let interItemDelayFactor  = 0.01
 
         textView.alpha = 0
 
