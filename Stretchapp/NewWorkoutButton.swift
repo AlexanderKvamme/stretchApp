@@ -14,6 +14,7 @@ final class NewWorkoutButton: UIView {
     // MARK: - Properties
 
     private let animationView = AnimationView.init(name: "x-icon-data")
+    var pulsateOnAppear = false
 
     // MARK: - Initializers
 
@@ -50,7 +51,30 @@ final class NewWorkoutButton: UIView {
         }
     }
 
-    func animateIn() {
-        animationView.play()
+    func animate() {
+        if animationView.currentProgress == 0 {
+            animationView.play()
+        } else {
+            pulse()
+        }
+    }
+
+    private func pulse() {
+        guard pulsateOnAppear else { return }
+
+        let existingBg = backgroundColor
+        let duration = 0.15
+        let scaleUp: CGFloat = 1.4
+
+        UIView.animate(withDuration: duration) {
+            self.animationView.transform = self.animationView.transform.scaledBy(x: scaleUp, y: scaleUp)
+            self.backgroundColor = UIColor.primaryContrast.withAlphaComponent(0.05)
+        } completion: { (done) in
+            UIView.animate(withDuration: duration) {
+                let trans = CGAffineTransform.identity.rotated(by: .pi/4)
+                self.animationView.transform = trans
+                self.backgroundColor = existingBg
+            }
+        }
     }
 }

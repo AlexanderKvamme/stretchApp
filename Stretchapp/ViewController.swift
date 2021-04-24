@@ -45,7 +45,7 @@ class ViewController: UIViewController {
 
         addTapGestures()
 
-        newWorkoutButton.animateIn()
+        newWorkoutButton.animate()
         animateInLogo()
     }
 

@@ -47,12 +47,13 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        addButton.animateIn()
+        addButton.animate()
     }
 
     // MARK: - Methods
 
     private func setup() {
+        addButton.pulsateOnAppear = true
         backButton.tintColor = .background
         nameLabel.textColor = .background
         nameLabel.textAlignment = .left
