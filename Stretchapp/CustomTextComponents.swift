@@ -66,6 +66,20 @@ extension UILabel {
     }
 }
 
+extension UISwitch {
+
+    enum SwitchStyle {
+        case temp
+    }
+
+    static func make(_ style: SwitchStyle) -> UISwitch {
+        let s = UISwitch(frame: CGRect(x: 0, y: 0, width: 80, height: 48))
+        s.thumbTintColor = .background
+        s.onTintColor = .black
+        return s
+    }
+}
+
 extension UIButton {
 
     enum ButtonStyle {

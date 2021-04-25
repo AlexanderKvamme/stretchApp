@@ -14,10 +14,12 @@ struct Stretch: Hashable, Codable {
     let uuid: UUID
     let title: String
     let length: Duration
+    let isTwoSided: Bool
 
     // MARK: - Initializers
 
-    init(title: String, length: Duration, uuid: UUID = UUID()) {
+    init(title: String, length: Duration, uuid: UUID = UUID(), isTwoSided: Bool = false) {
+        self.isTwoSided = isTwoSided
         self.title = title
         self.length = length
         self.uuid = uuid
@@ -28,14 +30,12 @@ struct Stretch: Hashable, Codable {
     static let defaultLength = Duration(amount: 90, type: .seconds)
     static let debugLength = Duration(amount: 10, type: .seconds)
     static let favourites = [
+        Stretch(title: "Pigeon pose", length: Self.defaultLength, isTwoSided: true),
         Stretch(title: "Hands folded behind back", length: defaultLength),
         Stretch(title: "Low squat", length: Self.defaultLength),
-        Stretch(title: "Spinal twist (one side)", length: Self.defaultLength),
-        Stretch(title: "Spinal twist (other side)", length: Self.defaultLength),
+        Stretch(title: "Spinal twist", length: Self.defaultLength, isTwoSided: true),
         Stretch(title: "Back bend", length: Self.defaultLength),
         Stretch(title: "Forward fold", length: Self.defaultLength),
-        Stretch(title: "Pigeon pose (one side)", length: Self.defaultLength),
-        Stretch(title: "Pigeon pose (other side)", length: Self.defaultLength),
         Stretch(title: "Quad bends", length: Self.defaultLength),
         Stretch(title: "Happy baby", length: Duration(amount: Self.defaultLength.amount, type: .seconds)),
         Stretch(title: "Back rollers", length: Duration(amount: Self.defaultLength.amount, type: .seconds)),
@@ -44,10 +44,10 @@ struct Stretch: Hashable, Codable {
     static let forDebugging = [
         Stretch(title: "Hands folded behind back", length: Self.debugLength),
         Stretch(title: "Low squat", length: Self.debugLength),
-        Stretch(title: "Spinal twist (one side)", length: Self.debugLength),
+        Stretch(title: "Spinal twist", length: Self.debugLength, isTwoSided: true),
         Stretch(title: "Back bend", length: Self.debugLength),
         Stretch(title: "Forward fold", length: Self.debugLength),
-        Stretch(title: "Pigeon pose (one side)", length: Self.debugLength),
+        Stretch(title: "Pigeon pose", length: Self.debugLength, isTwoSided: true),
         Stretch(title: "Backflips", length: Self.debugLength),
         Stretch(title: "Swaggers", length: Self.debugLength),
         Stretch(title: "Jump masters", length: Self.debugLength),
@@ -58,5 +58,6 @@ struct Stretch: Hashable, Codable {
         case uuid
         case title
         case length
+        case isTwoSided
     }
 }

@@ -22,6 +22,7 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
 
     private let nameLabel = UILabel.make(.inputHeader)
     private let input = TextFieldWithCustomCaret(placeholder: "Something")
+    private let twoSideToggle = UISwitch.make(.temp)
     private let backButton = UIButton.make(.back)
     private let superStepper = SuperStepper(frame: stepperFrame, options: testOptions)
     private let stepperShadow = ShadowView(frame: stepperFrame)
@@ -54,12 +55,18 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
         input.textColor = .primaryContrast
         input.delegate = self
 
+        twoSideToggle.addTarget(self, action: #selector(handleToggle), for: .valueChanged)
         backButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
+
         input.becomeFirstResponder()
     }
 
     @objc private func exit() {
         dismiss(animated: false)
+    }
+
+    @objc private func handleToggle() {
+        nameLabel.text = twoSideToggle.isOn ? "Name your two sided stretch" : "Name your stretch"
     }
 
     private func addSubviewsAndConstraints() {
@@ -68,6 +75,12 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
         view.addSubview(input)
         view.addSubview(stepperShadow)
         view.addSubview(superStepper)
+        view.addSubview(twoSideToggle)
+
+        twoSideToggle.snp.makeConstraints { (make) in
+            make.centerY.equalTo(backButton)
+            make.right.equalToSuperview().offset(-32)
+        }
 
         backButton.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
@@ -115,7 +128,7 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
 
         let type = String(splits[1]) == DurationType.minutes.rawValue ? DurationType.minutes : DurationType.seconds
         let duration = Duration(amount: val, type: type)
-        let newStretch = Stretch(title: input.text ?? "Unnamed stretch", length: duration)
+        let newStretch = Stretch(title: input.text ?? "Unnamed stretch", length: duration, isTwoSided: twoSideToggle.isOn)
         delegate?.receive(stretch: newStretch)
         dismiss(animated: true)
         return true

@@ -95,13 +95,15 @@ class StretchingViewController: UIViewController {
         self.updateStretches()
 
         if hasNextAnimation {
-            let stretchLength = stretches[currentAnimationIteration].length
+            let nextStretch = stretches[currentAnimationIteration]
+            let stretchLength = nextStretch.length
             Audioplayer.play(.newStretch)
             navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count))
             navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count))
 
             let isMinuteStretch = stretchLength.type == .minutes
-            let animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
+            var animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
+            animationDuration = animationDuration * (nextStretch.isTwoSided ? 2 : 1)
 
             if isFirstAnimation {
                 topView.textView.alpha = 0
@@ -118,6 +120,10 @@ class StretchingViewController: UIViewController {
                 // your code here
                 self.topView.animateOut()
                 self.botView.animateIn()
+
+                if nextStretch.isTwoSided {
+                    Audioplayer.play(.newStretch)
+                }
             }
 
             UIView.animate(withDuration: TimeInterval(animationDuration)) {
