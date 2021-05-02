@@ -147,6 +147,7 @@ struct WorkoutCellContentConfiguration: UIContentConfiguration, Hashable {
 
     var name: String?
     var durationString: String?
+    var stretchCount: String?
 
     // MARK: - Initializers
 
@@ -270,6 +271,7 @@ class WorkoutCellContentView: UIView, UIContentView {
 
         leftLabel.text = configuration.name?.uppercased()
         rightLabel.text = configuration.durationString
+        bottomLabel.text = configuration.stretchCount
     }
 }
 
@@ -288,6 +290,7 @@ final class WorkoutListCell: UICollectionViewListCell {
         var newConfiguration = WorkoutCellContentConfiguration().updated(for: state)
         newConfiguration.durationString = "\(workout.duration.amount) m"
         newConfiguration.name = workout.name
+        newConfiguration.stretchCount = "\(workout.stretches.count-1) stretches"
         contentConfiguration = newConfiguration
     }
 }
