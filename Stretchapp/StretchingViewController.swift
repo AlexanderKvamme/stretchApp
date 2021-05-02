@@ -33,9 +33,6 @@ class StretchingViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        navBarOver.fractionView.setFraction("1", String(stretches.count))
-        navBarUnder.fractionView.setFraction("1", String(stretches.count))
-
         view.backgroundColor = .background
         setInitialStretch(from: stretches)
         navBarOver.xButton.alpha = 0
@@ -56,8 +53,6 @@ class StretchingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        navBarOver.fractionView.setFraction("1", String(stretches.count))
-        navBarUnder.fractionView.setFraction("1", String(stretches.count))
         fadeInViews()
         playNextAnimation()
     }
@@ -98,8 +93,8 @@ class StretchingViewController: UIViewController {
             let nextStretch = stretches[currentAnimationIteration]
             let stretchLength = nextStretch.length
             Audioplayer.play(.newStretch)
-            navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count))
-            navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count))
+            navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count-1))
+            navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count-1))
 
             let isMinuteStretch = stretchLength.type == .minutes
             var animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
