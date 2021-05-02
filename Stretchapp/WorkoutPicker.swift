@@ -237,7 +237,7 @@ class WorkoutCellContentView: UIView, UIContentView {
 
         leftLabel.snp.makeConstraints { (make) in
             make.left.equalTo(background).offset(16)
-            make.right.equalTo(rightLabel.snp.left).inset(8)
+            make.right.equalTo(background).offset(-16)
             make.top.equalTo(background).offset(16)
             make.bottom.equalTo(snp.centerY)
             make.height.equalTo(40-16).priority(.high)
