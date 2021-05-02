@@ -9,19 +9,23 @@ import Foundation
 
 struct Workout: Hashable, Codable {
     let name: String
-    let duration: Duration
+    var duration: Duration {
+        let workoutInSeconds = stretches.reduce(0) { return $0 + $1.durationInSeconds }
+        let celebrationLength = stretches.last?.duration.inSeconds() ?? 0
+        let minutes = (workoutInSeconds-celebrationLength)/60
+        return Duration(amount: minutes, type: .minutes)
+    }
     let stretches: [Stretch]
 
-    static let dummy = Workout(name: "Test workout", duration: Duration(amount: 45, type: .seconds), stretches: Stretch.forDebugging)
-    static let gabos = Workout(name: "Office worker stretches", duration: Duration(amount: 60, type: .seconds), stretches: Stretch.favourites)
+    static let dummy = Workout(name: "Test workout", stretches: Stretch.forDebugging)
+    static let gabos = Workout(name: "Office worker stretches", stretches: Stretch.favourites)
     static let dummies = [
-        Workout(name: "Forward folding", duration: Duration(amount: 45, type: .seconds), stretches: Stretch.forDebugging),
-        Workout(name: "Gabos Schnip", duration: Duration(amount: 99, type: .minutes), stretches: Stretch.favourites),
-        Workout(name: "Programmer stretches", duration: Duration(amount: 10, type: .minutes), stretches: Stretch.forDebugging)]
+        Workout(name: "Forward folding", stretches: Stretch.forDebugging),
+        Workout(name: "Gabos Schnip", stretches: Stretch.favourites),
+        Workout(name: "Programmer stretches", stretches: Stretch.forDebugging)]
 
     enum CodingKeys: String, CodingKey {
        case name
-       case duration
        case stretches
     }
 }

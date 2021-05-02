@@ -77,23 +77,11 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
     }
 
     @objc private func clickedSave() {
-        var mins = 0
-        var secs = 0
-
         guard data.count > 0 else { return }
 
         data.append(Stretch.completion)
 
-        data.forEach({
-            if $0.length.type == .minutes {
-                mins += $0.length.amount
-            } else {
-                secs += $0.length.amount
-            }
-        })
-
-        let totalMins = mins + secs%60
-        let workout = Workout(name: nameLabel.text ?? "NO NAME", duration: Duration(amount: totalMins, type: .minutes), stretches: data)
+        let workout = Workout(name: nameLabel.text ?? "NO NAME", stretches: data)
         DAO.saveWorkout(workout)
         dismiss(animated: true)
     }
@@ -240,6 +228,6 @@ final class StretchCell: UICollectionViewCell {
 
     func update(with data: Stretch) {
         cellView.leftLabel.text = data.title
-        cellView.rightLabel.text = "\(data.length.amount) \(data.length.type.rawValue)"
+        cellView.rightLabel.text = "\(data.duration.amount) \(data.duration.type.rawValue)"
     }
 }

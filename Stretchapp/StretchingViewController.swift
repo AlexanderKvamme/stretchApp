@@ -91,7 +91,7 @@ class StretchingViewController: UIViewController {
 
         if hasNextAnimation {
             let nextStretch = stretches[currentAnimationIteration]
-            let stretchLength = nextStretch.length
+            let stretchLength = nextStretch.duration
             Audioplayer.play(.newStretch)
             navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count-1))
             navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count-1))

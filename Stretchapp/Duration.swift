@@ -26,4 +26,8 @@ struct Duration: Hashable, Codable {
        case amount
        case type
     }
+
+    func inSeconds() -> Int {
+        return type == DurationType.seconds ? amount : amount*60
+    }
 }

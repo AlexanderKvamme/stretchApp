@@ -13,7 +13,11 @@ struct Stretch: Hashable, Codable {
 
     let uuid: UUID
     let title: String
-    let length: Duration
+    let duration: Duration
+    var durationInSeconds: Int {
+        let oneSideDuration = duration.inSeconds()
+        return isTwoSided ? oneSideDuration*2 : oneSideDuration
+    }
     let isTwoSided: Bool
 
     // MARK: - Initializers
@@ -21,7 +25,7 @@ struct Stretch: Hashable, Codable {
     init(title: String, length: Duration, uuid: UUID = UUID(), isTwoSided: Bool = false) {
         self.isTwoSided = isTwoSided
         self.title = title
-        self.length = length
+        self.duration = length
         self.uuid = uuid
     }
 
@@ -57,7 +61,7 @@ struct Stretch: Hashable, Codable {
     enum CodingKeys: String, CodingKey {
         case uuid
         case title
-        case length
+        case duration
         case isTwoSided
     }
 }
