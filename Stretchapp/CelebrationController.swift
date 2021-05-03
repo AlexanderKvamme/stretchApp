@@ -48,10 +48,13 @@ final class CelebrationViewController: UIViewController {
         counterLabel.text = workout.duration.toString()
         counterLabel.textColor = .primaryContrast
         counterLabel.font = UIFont.round(.bold, 200)
-        textView.text = "Whee!\n You just finished a total of " + workout.duration.toString() + " stretching!"
         textView.font = UIFont.round(.regular, 24)
-        textView.alpha = 0.6
         textView.numberOfLines = 0
+
+        // Hack
+        DispatchQueue.main.async {
+            self.textView.attributedText = self.makeCelebrationText()
+        }
 
         button.addTarget(self, action: #selector(popToRoot), for: .touchUpInside)
     }
@@ -67,27 +70,43 @@ final class CelebrationViewController: UIViewController {
 
         textView.snp.makeConstraints { (make) in
             make.top.equalTo(counterLabel.snp.bottom)
-            make.left.right.equalToSuperview().inset(8)
+            make.left.right.equalToSuperview().inset(16)
         }
 
         button.snp.makeConstraints { (make) in
-            make.left.right.equalTo(textView)
+            make.left.right.equalTo(textView).inset(16)
             make.height.equalTo(58)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-16)
         }
     }
 
     @objc private func popToRoot() {
-//        dismiss(animated: true, completion: nil)
-//        self.navigationController?.popToRootViewController(animated: true)
-//        guard let vc = self.presentingViewController else { return }
-//
-//        while (vc.presentingViewController != nil) {
-//            vc.dismiss(animated: true, completion: nil)
-//        }
+        dismiss(animated: false, completion: nil)
+    }
 
-//        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        
+    private func makeCelebrationText() -> NSAttributedString {
+        let headerAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.primaryContrast,
+            .font: UIFont.round(.bold, 26)
+        ]
+        let boldAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.primaryContrast,
+            .font: UIFont.round(.bold, 20)
+        ]
+        let bodyAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.primaryContrast.withAlphaComponent(0.5),
+            .font: UIFont.round(.regular, 20)
+        ]
+        let header = NSAttributedString(string: "How wonderful!\n", attributes: headerAttributes)
+        let body1 = NSAttributedString(string: "You just finished a whopping total of " , attributes: bodyAttributes)
+        let body2 = NSAttributedString(string: " of stretching out!", attributes: bodyAttributes)
+        let boldStr = NSAttributedString(string: workout.duration.toString(), attributes: boldAttributes)
+        let combination = NSMutableAttributedString()
+        combination.append(header)
+        combination.append(body1)
+        combination.append(boldStr)
+        combination.append(body2)
+        return combination
     }
 
     func prepareAnimation() {

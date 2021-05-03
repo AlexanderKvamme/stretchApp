@@ -13,7 +13,7 @@ class StretchingViewController: UIViewController {
 
     // MARK: - Properties
 
-    var stretches: [Stretch]
+    var workout: Workout
     let navBarOver = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
     let navBarUnder = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
     let topView = ExerciceView(.light)
@@ -23,18 +23,18 @@ class StretchingViewController: UIViewController {
     let waveHeight: CGFloat = 80
     var currentAnimationIteration = 0
     var hasNextAnimation: Bool {
-        return currentAnimationIteration < stretches.count-1
+        return currentAnimationIteration < workout.stretches.count-1
     }
 
     // MARK: - Initializers
 
-    init(_ stretches: [Stretch]) {
-        self.stretches = stretches
+    init(_ workout: Workout) {
+        self.workout = workout
 
         super.init(nibName: nil, bundle: nil)
 
         view.backgroundColor = .background
-        setInitialStretch(from: stretches)
+        setInitialStretch(from: workout.stretches)
         navBarOver.xButton.alpha = 0
         navBarUnder.xButton.alpha = 0
 
@@ -112,7 +112,6 @@ class StretchingViewController: UIViewController {
             self.waveMask.layoutIfNeeded()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(animationDuration/2)) {
-                // your code here
                 self.topView.animateOut()
                 self.botView.animateIn()
 
@@ -121,7 +120,8 @@ class StretchingViewController: UIViewController {
                 }
             }
 
-            UIView.animate(withDuration: TimeInterval(animationDuration)) {
+            let duration = TimeInterval(animationDuration)
+            UIView.animate(withDuration: duration) {
                 self.setNextLayout()
                 self.view.layoutIfNeeded()
                 self.waveMask.layoutIfNeeded()
@@ -129,29 +129,47 @@ class StretchingViewController: UIViewController {
                 self.currentAnimationIteration += 1
                 self.playNextAnimation()
             }
+
+            // The final countdown
+            let isLastAnimation = currentAnimationIteration == workout.stretches.count-2
+            if isLastAnimation {
+                self.botView.textView.font = UIFont.round(.bold, 40)
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration-4) {
+                    self.botView.textView.text = "3"
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration-3) {
+                    self.botView.textView.text = "2"
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration-2) {
+                    self.botView.textView.text = "1"
+                }
+            }
         } else {
-            playCompletionAnimation()
+            presentCelebrationScreen()
         }
     }
 
     private func updateStretches() {
-        topView.setStretch(stretches[currentAnimationIteration])
+        topView.setStretch(workout.stretches[currentAnimationIteration])
 
-        if currentAnimationIteration+1 < stretches.count {
-            botView.setStretch(stretches[currentAnimationIteration+1])
+        if currentAnimationIteration+1 < workout.stretches.count {
+            botView.setStretch(workout.stretches[currentAnimationIteration+1])
         }
     }
 
-    private func playCompletionAnimation() {
+    private func presentCelebrationScreen() {
         Audioplayer.play(.congratulations)
-        let tapRec = UITapGestureRecognizer(target: self, action: #selector(resetScreen))
-        view.addGestureRecognizer(tapRec)
-    }
 
-    @objc private func resetScreen() {
-        let stretchViewController = StretchingViewController(stretches)
-        stretchViewController.modalPresentationStyle = .fullScreen
-        present(stretchViewController, animated: true, completion: nil)
+        let celebrationController = CelebrationViewController(workout: workout)
+        celebrationController.modalPresentationStyle = .fullScreen
+        weak var presentingViewController = self.presentingViewController
+
+        dismiss(animated: false, completion: {
+            presentingViewController?.present(celebrationController, animated: false, completion: nil)
+        })
     }
 
     private func resetViews() {

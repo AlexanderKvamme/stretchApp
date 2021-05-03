@@ -30,7 +30,7 @@ struct Stretch: Hashable, Codable {
     }
 
     static let dummy = Stretch(title: "This is a dummy stretch", length: Duration(amount: 30, type: .seconds))
-    static let completion = Stretch(title: "Congratulations", length: Duration(amount: 30, type: .seconds))
+    static let completion = Stretch(title: "Nearly there!", length: Duration(amount: 30, type: .seconds))
     static let defaultLength = Duration(amount: 90, type: .seconds)
     static let debugLength = Duration(amount: 10, type: .seconds)
     static let favourites = [
