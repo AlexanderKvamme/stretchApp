@@ -56,7 +56,7 @@ final class ExerciceView: UIView {
     // MARK: - Methods
 
     private func setup() {
-        textView.textContainerInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
 
     func setStyle(_ style: ExerciseSlideStyle) {

@@ -90,11 +90,11 @@ class StretchingViewController: UIViewController {
         self.updateStretches()
 
         if hasNextAnimation {
-            let nextStretch = stretches[currentAnimationIteration]
+            let nextStretch = workout.stretches[currentAnimationIteration]
             let stretchLength = nextStretch.duration
             Audioplayer.play(.newStretch)
-            navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(stretches.count-1))
-            navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(stretches.count-1))
+            navBarOver.fractionView.setFraction(String(currentAnimationIteration+2), String(workout.stretches.count-1))
+            navBarUnder.fractionView.setFraction(String(currentAnimationIteration+1), String(workout.stretches.count-1))
 
             let isMinuteStretch = stretchLength.type == .minutes
             var animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)

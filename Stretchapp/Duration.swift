@@ -30,4 +30,8 @@ struct Duration: Hashable, Codable {
     func inSeconds() -> Int {
         return type == DurationType.seconds ? amount : amount*60
     }
+
+    func toString() -> String {
+        "\(amount) \(type == DurationType.seconds ? "s" : "m")"
+    }
 }

@@ -25,6 +25,7 @@
 		DD1B7BB126067F7E00CB9AA4 /* DINRoundPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAC26067F7E00CB9AA4 /* DINRoundPro-Light.ttf */; };
 		DD1B7BB226067F7E00CB9AA4 /* DINRoundPro-Medi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */; };
 		DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */; };
+		DD22AF08263F13FC00369F70 /* CelebrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE88D1263EFC0E005E5D04 /* CelebrationController.swift */; };
 		DD5CF64A262B5E8D00997282 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF649262B5E8D00997282 /* VerticallyCenteredTextView.swift */; };
 		DD5CF64D262B5F9400997282 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF64C262B5F9400997282 /* TestViewController.swift */; };
 		DD5CF651262C1B8300997282 /* TextAnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF650262C1B8200997282 /* TextAnimationExtensions.swift */; };
@@ -101,6 +102,7 @@
 		DDADD2B62610F6D800AAC15B /* NewWorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutController.swift; sourceTree = "<group>"; };
 		DDADD2C926113A0900AAC15B /* StretchInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchInputController.swift; sourceTree = "<group>"; };
 		DDADD2CF26113E2C00AAC15B /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
+		DDBE88D1263EFC0E005E5D04 /* CelebrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CelebrationController.swift; path = Stretchapp/CelebrationController.swift; sourceTree = "<group>"; };
 		DDCA2624262301FC00E96EB9 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = ../../../../../../Desktop/data.json; sourceTree = "<group>"; };
 		DDCA2627262322D700E96EB9 /* x-icon-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "x-icon-data.json"; sourceTree = "<group>"; };
 		DDCAB0F92624DBD900F950D9 /* TextFieldWithCustomCaret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithCustomCaret.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		DD1B7B742606545F00CB9AA4 = {
 			isa = PBXGroup;
 			children = (
+				DDBE88D1263EFC0E005E5D04 /* CelebrationController.swift */,
 				DD9425582630B47700127C2C /* Stretch.swift */,
 				DD5CF65F262C2BEC00997282 /* StretchNavBarContainer.swift */,
 				DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */,
@@ -407,6 +410,7 @@
 				DD77FEC52618EBAB0071D81D /* TextInputScreen.swift in Sources */,
 				DD5E9475261B3DD20049DA57 /* Workout.swift in Sources */,
 				DD013FBE2609505100A396A3 /* Audioplayer.swift in Sources */,
+				DD22AF08263F13FC00369F70 /* CelebrationController.swift in Sources */,
 				DD5CF651262C1B8300997282 /* TextAnimationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,13 +560,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5GRZ5GU65;
+				DEVELOPMENT_TEAM = RMURDMDZGD;
 				INFOPLIST_FILE = Stretchapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AK.Stretchapp;
+				PRODUCT_BUNDLE_IDENTIFIER = AK2.Stretchapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -577,13 +581,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5GRZ5GU65;
+				DEVELOPMENT_TEAM = RMURDMDZGD;
 				INFOPLIST_FILE = Stretchapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AK.Stretchapp;
+				PRODUCT_BUNDLE_IDENTIFIER = AK.ZStretchapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
