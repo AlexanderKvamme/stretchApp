@@ -137,14 +137,20 @@ class StretchingViewController: UIViewController {
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + duration-4) {
                     self.botView.textView.text = "3"
+                    self.botView.textView.font = UIFont.round(DINWeights.bold, 40)
+                    self.botView.textView.layoutIfNeeded()
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + duration-3) {
                     self.botView.textView.text = "2"
+                    self.botView.textView.font = UIFont.round(DINWeights.bold, 60)
+                    self.botView.textView.layoutIfNeeded()
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + duration-2) {
                     self.botView.textView.text = "1"
+                    self.botView.textView.font = UIFont.round(DINWeights.bold, 100)
+                    self.botView.textView.layoutIfNeeded()
                 }
             }
         } else {
