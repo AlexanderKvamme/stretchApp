@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/alexanderkvamme/Documents/workspaces/code/swift/Stretchapp/Stretch.swift">
-   </FileRef>
-   <FileRef
       location = "group:Stretchapp.xcodeproj">
    </FileRef>
    <FileRef

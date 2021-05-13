@@ -10,6 +10,9 @@
 		DD013FBA2609503500A396A3 /* Toy_Up&Down1.caf in Resources */ = {isa = PBXBuildFile; fileRef = DD013FB82609503500A396A3 /* Toy_Up&Down1.caf */; };
 		DD013FBB2609503500A396A3 /* SpaceBall_Rise1.caf in Resources */ = {isa = PBXBuildFile; fileRef = DD013FB92609503500A396A3 /* SpaceBall_Rise1.caf */; };
 		DD013FBE2609505100A396A3 /* Audioplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD013FBD2609505000A396A3 /* Audioplayer.swift */; };
+		DD092A572641DD08000511B9 /* StretchappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD092A562641DD07000511B9 /* StretchappUITests.swift */; };
+		DD092A612641DD7F000511B9 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD092A602641DD7F000511B9 /* SnapshotHelper.swift */; };
+		DD092A6F2641E073000511B9 /* Stretch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD092A6E2641E073000511B9 /* Stretch.swift */; };
 		DD1B7B812606545F00CB9AA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B802606545F00CB9AA4 /* AppDelegate.swift */; };
 		DD1B7B832606545F00CB9AA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */; };
 		DD1B7B852606545F00CB9AA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1B7B842606545F00CB9AA4 /* ViewController.swift */; };
@@ -59,11 +62,26 @@
 		ECFAA075D6F0394559EE7A52 /* Pods_Stretchapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DD092A592641DD08000511B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD1B7B752606545F00CB9AA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD1B7B7C2606545F00CB9AA4;
+			remoteInfo = Stretchapp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		67679F1C50E3BBF0ADB0FA2D /* Pods_Stretchapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stretchapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD013FB82609503500A396A3 /* Toy_Up&Down1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Toy_Up&Down1.caf"; sourceTree = "<group>"; };
 		DD013FB92609503500A396A3 /* SpaceBall_Rise1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceBall_Rise1.caf; sourceTree = "<group>"; };
 		DD013FBD2609505000A396A3 /* Audioplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audioplayer.swift; sourceTree = "<group>"; };
+		DD092A542641DD07000511B9 /* StretchappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StretchappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD092A562641DD07000511B9 /* StretchappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchappUITests.swift; sourceTree = "<group>"; };
+		DD092A582641DD08000511B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD092A602641DD7F000511B9 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		DD092A6E2641E073000511B9 /* Stretch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stretch.swift; path = /Users/alexanderkvamme/Documents/workspaces/code/swift/Stretchapp/Stretch.swift; sourceTree = "<absolute>"; };
 		DD1B7B7D2606545F00CB9AA4 /* Stretchapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stretchapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1B7B802606545F00CB9AA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD1B7B822606545F00CB9AA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +135,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DD092A512641DD07000511B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD1B7B7A2606545F00CB9AA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,15 +171,27 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		DD092A552641DD07000511B9 /* StretchappUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DD092A602641DD7F000511B9 /* SnapshotHelper.swift */,
+				DD092A562641DD07000511B9 /* StretchappUITests.swift */,
+				DD092A582641DD08000511B9 /* Info.plist */,
+			);
+			path = StretchappUITests;
+			sourceTree = "<group>";
+		};
 		DD1B7B742606545F00CB9AA4 = {
 			isa = PBXGroup;
 			children = (
+				DD092A6E2641E073000511B9 /* Stretch.swift */,
 				DDBE88D1263EFC0E005E5D04 /* CelebrationController.swift */,
 				DD9425582630B47700127C2C /* Stretch.swift */,
 				DD5CF65F262C2BEC00997282 /* StretchNavBarContainer.swift */,
 				DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */,
 				DD5CF667262C2C4900997282 /* Stretch.swift */,
 				DD1B7B7F2606545F00CB9AA4 /* Stretchapp */,
+				DD092A552641DD07000511B9 /* StretchappUITests */,
 				DD1B7B7E2606545F00CB9AA4 /* Products */,
 				38E07659BDAA03A105A82E27 /* Pods */,
 				FE7CC40BA8D5B6596D614004 /* Frameworks */,
@@ -165,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				DD1B7B7D2606545F00CB9AA4 /* Stretchapp.app */,
+				DD092A542641DD07000511B9 /* StretchappUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,6 +293,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DD092A532641DD07000511B9 /* StretchappUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD092A5D2641DD08000511B9 /* Build configuration list for PBXNativeTarget "StretchappUITests" */;
+			buildPhases = (
+				DD092A502641DD07000511B9 /* Sources */,
+				DD092A512641DD07000511B9 /* Frameworks */,
+				DD092A522641DD07000511B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD092A5A2641DD08000511B9 /* PBXTargetDependency */,
+			);
+			name = StretchappUITests;
+			productName = StretchappUITests;
+			productReference = DD092A542641DD07000511B9 /* StretchappUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		DD1B7B7C2606545F00CB9AA4 /* Stretchapp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD1B7B912606546000CB9AA4 /* Build configuration list for PBXNativeTarget "Stretchapp" */;
@@ -280,9 +336,13 @@
 		DD1B7B752606545F00CB9AA4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					DD092A532641DD07000511B9 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = DD1B7B7C2606545F00CB9AA4;
+					};
 					DD1B7B7C2606545F00CB9AA4 = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -302,11 +362,19 @@
 			projectRoot = "";
 			targets = (
 				DD1B7B7C2606545F00CB9AA4 /* Stretchapp */,
+				DD092A532641DD07000511B9 /* StretchappUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DD092A522641DD07000511B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD1B7B7B2606545F00CB9AA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -372,6 +440,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DD092A502641DD07000511B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD092A572641DD08000511B9 /* StretchappUITests.swift in Sources */,
+				DD092A612641DD7F000511B9 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DD1B7B792606545F00CB9AA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -405,6 +482,7 @@
 				DD1B7B9A260655A500CB9AA4 /* AKExtensions.swift in Sources */,
 				DD1B7B832606545F00CB9AA4 /* SceneDelegate.swift in Sources */,
 				DDADD2B72610F6D800AAC15B /* NewWorkoutController.swift in Sources */,
+				DD092A6F2641E073000511B9 /* Stretch.swift in Sources */,
 				DD9425592630B47700127C2C /* Stretch.swift in Sources */,
 				DD5CF65D262C2B6E00997282 /* AnimatableButton.swift in Sources */,
 				DD77FEC52618EBAB0071D81D /* TextInputScreen.swift in Sources */,
@@ -416,6 +494,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD092A5A2641DD08000511B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD1B7B7C2606545F00CB9AA4 /* Stretchapp */;
+			targetProxy = DD092A592641DD08000511B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DD1B7B862606545F00CB9AA4 /* Main.storyboard */ = {
@@ -437,6 +523,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DD092A5B2641DD08000511B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 52VSB9N5CT;
+				INFOPLIST_FILE = StretchappUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = AK.StretchappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Stretchapp;
+			};
+			name = Debug;
+		};
+		DD092A5C2641DD08000511B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 52VSB9N5CT;
+				INFOPLIST_FILE = StretchappUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = AK.StretchappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Stretchapp;
+			};
+			name = Release;
+		};
 		DD1B7B8F2606546000CB9AA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -566,7 +700,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AK2.Stretchapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ALEKVA.Stretchapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -587,7 +721,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = AK.ZStretchapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ALEKVA.Stretchapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -598,6 +732,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DD092A5D2641DD08000511B9 /* Build configuration list for PBXNativeTarget "StretchappUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD092A5B2641DD08000511B9 /* Debug */,
+				DD092A5C2641DD08000511B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DD1B7B782606545F00CB9AA4 /* Build configuration list for PBXProject "Stretchapp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

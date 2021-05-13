@@ -28,12 +28,6 @@ class ViewController: UIViewController {
 
         setup()
         addSubviewsAndConstraints()
-
-        if DAO.getWorkouts().filter({ (workout) -> Bool in
-            workout.name == Workout.gabos.name
-        }).count == 0 {
-            DAO.saveWorkout(Workout.gabos)
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

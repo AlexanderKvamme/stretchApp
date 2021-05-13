@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct UITEST_CONSTANTS {
+    static let STRETCH_DURATION = Duration(amount: 24, type: .seconds)
+    static let STRETCH_NAME = "UITEST workout"
+}
+
+
 struct Stretch: Hashable, Codable {
 
     // MARK: - Properties
@@ -29,10 +35,14 @@ struct Stretch: Hashable, Codable {
         self.uuid = uuid
     }
 
-    static let dummy = Stretch(title: "This is a dummy stretch", length: Duration(amount: 30, type: .seconds))
+    static let forUITesting = [
+        Stretch(title: "Forward fold", length: UITEST_CONSTANTS.STRETCH_DURATION, isTwoSided: false),
+        Stretch(title: "Back bend", length: UITEST_CONSTANTS.STRETCH_DURATION, isTwoSided: false),
+        completion
+        ]
     static let completion = Stretch(title: "Nearly there!", length: Duration(amount: 30, type: .seconds))
     static let defaultLength = Duration(amount: 90, type: .seconds)
-    static let debugLength = Duration(amount: 10, type: .seconds)
+    static let debugLength = Duration(amount: 15, type: .seconds)
     static let favourites = [
         Stretch(title: "Pigeon pose", length: Self.defaultLength, isTwoSided: true),
         Stretch(title: "Hands folded behind back", length: defaultLength),

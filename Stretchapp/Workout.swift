@@ -17,12 +17,13 @@ struct Workout: Hashable, Codable {
     }
     let stretches: [Stretch]
 
-    static let dummy = Workout(name: "Test workout", stretches: Stretch.forDebugging)
+    static let forUITesting = Workout(name: "My favourites", stretches: Stretch.forUITesting)
     static let gabos = Workout(name: "Office worker stretches", stretches: Stretch.favourites)
-    static let dummies = [
-        Workout(name: "Forward folding", stretches: Stretch.forDebugging),
-        Workout(name: "Gabos Schnip", stretches: Stretch.favourites),
-        Workout(name: "Programmer stretches", stretches: Stretch.forDebugging)]
+    static let dummy = Workout(name: "Flexibility stretches", stretches: Stretch.favourites)
+//    static let dummies = [
+//        Workout(name: "Forward folding", stretches: Stretch.forDebugging),
+//        Workout(name: "Gabos Schnip", stretches: Stretch.favourites),
+//        Workout(name: "Programmer stretches", stretches: Stretch.forDebugging)]
 
     enum CodingKeys: String, CodingKey {
        case name

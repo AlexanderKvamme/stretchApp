@@ -21,7 +21,7 @@ class TestViewController: UIViewController {
         topView.frame = view.frame
         view.addSubview(topView)
 
-        topView.setStretch(Stretch.dummy)
+        
         topView.layoutIfNeeded()
 
 //        topView.alpha = 0

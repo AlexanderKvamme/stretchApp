@@ -103,6 +103,7 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
             // Takes data and uses content configuration to display it
             cell.workout = workout
             cell.backgroundConfiguration = self.makeBackgroundConfiguration()
+            cell.accessibilityIdentifier = "cell\(indexPath.row)"
         }
     }
 

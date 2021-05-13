@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        UITextField.appearance().tintColor = .primaryContrast
+        UITextField.appearance().tintColor = .black
+
+        seedDatabaseIfNeeded()
+
         return true
     }
 
@@ -27,12 +30,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    private func seedDatabaseIfNeeded() {
+
+        if DAO.getWorkouts().filter({ (workout) -> Bool in
+            workout.name == Workout.gabos.name
+        }).count == 0 {
+            DAO.saveWorkout(Workout.gabos)
+        } else {
+            guard UIApplication.isRunningTest else {
+                return
+            }
+
+            // Delete
+            DAO.getWorkouts().forEach{ DAO.deleteWorkout($0) }
+
+            // Seed
+            DAO.saveWorkout(Workout.gabos)
+            DAO.saveWorkout(Workout.forUITesting)
+            DAO.saveWorkout(Workout.dummy)
+        }
     }
-
-
 }
 
+extension UIApplication {
+    public static var isRunningTest: Bool {
+        return ProcessInfo().arguments.contains("--UITEST")
+    }
+}
