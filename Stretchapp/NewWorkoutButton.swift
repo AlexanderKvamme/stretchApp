@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 
 
-final class NewWorkoutButton: UIView {
+final class NewWorkoutButton: UIButton {
 
     // MARK: - Properties
 

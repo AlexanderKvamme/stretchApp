@@ -29,6 +29,9 @@ class Audioplayer: NSObject {
         let url = URL(fileURLWithPath: path)
 
         do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+            try AVAudioSession.sharedInstance().setActive(true)
+
             player = try AVAudioPlayer(contentsOf: url)
             player?.play()
         } catch {

@@ -54,6 +54,7 @@ final class NewWorkoutController: UIViewController, StretchInputDelegate, UIColl
 
     private func setup() {
         addButton.pulsateOnAppear = true
+        addButton.accessibilityIdentifier = "new-stretch-button"
         backButton.tintColor = .background
         nameLabel.textColor = .background
         nameLabel.textAlignment = .left
