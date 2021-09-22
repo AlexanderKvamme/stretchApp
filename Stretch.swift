@@ -42,17 +42,26 @@ struct Stretch: Hashable, Codable {
         ]
     static let completion = Stretch(title: "Nearly there!", length: Duration(amount: 30, type: .seconds))
     static let defaultLength = Duration(amount: 90, type: .seconds)
+    static let oneMinute = Duration(amount: 60, type: .seconds)
+    static let twoMinutes = Duration(amount: 120, type: .seconds)
+    static let threeMinutes = Duration(amount: 180, type: .seconds)
     static let debugLength = Duration(amount: 15, type: .seconds)
+    static let morning = [
+        Stretch(title: "Squats to folds", length: Self.threeMinutes),
+        Stretch(title: "Knees, chest up, one arm back", length: defaultLength),
+        Stretch(title: "Camel post", length: Self.oneMinute),
+        Stretch(title: "Arm up, rotate, wild thing", length: Self.threeMinutes),
+        Stretch.completion
+    ]
     static let favourites = [
         Stretch(title: "Pigeon pose", length: Self.defaultLength, isTwoSided: true),
         Stretch(title: "Hands folded behind back", length: defaultLength),
         Stretch(title: "Low squat", length: Self.defaultLength),
         Stretch(title: "Spinal twist", length: Self.defaultLength, isTwoSided: true),
         Stretch(title: "Back bend", length: Self.defaultLength),
-        Stretch(title: "Forward fold", length: Self.defaultLength),
+        Stretch(title: "Forward fold", length: Self.twoMinutes),
         Stretch(title: "Quad bends", length: Self.defaultLength),
         Stretch(title: "Happy baby", length: Duration(amount: Self.defaultLength.amount, type: .seconds)),
-        Stretch(title: "Back rollers", length: Duration(amount: Self.defaultLength.amount, type: .seconds)),
         Stretch.completion
     ]
     static let forDebugging = [

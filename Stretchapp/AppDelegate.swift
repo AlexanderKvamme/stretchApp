@@ -31,6 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func seedDatabaseIfNeeded() {
+        if DAO.getWorkouts().filter({ (workout) -> Bool in
+            workout.name == Workout.morning.name
+        }).count == 0 {
+            DAO.saveWorkout(Workout.morning)
+        }
+
 
         if DAO.getWorkouts().filter({ (workout) -> Bool in
             workout.name == Workout.gabos.name

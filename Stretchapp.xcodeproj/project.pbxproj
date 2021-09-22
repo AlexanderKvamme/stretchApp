@@ -31,7 +31,6 @@
 		DD22AF08263F13FC00369F70 /* CelebrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE88D1263EFC0E005E5D04 /* CelebrationController.swift */; };
 		DD5CF64A262B5E8D00997282 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF649262B5E8D00997282 /* VerticallyCenteredTextView.swift */; };
 		DD5CF64D262B5F9400997282 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF64C262B5F9400997282 /* TestViewController.swift */; };
-		DD5CF651262C1B8300997282 /* TextAnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF650262C1B8200997282 /* TextAnimationExtensions.swift */; };
 		DD5CF65A262C2AE300997282 /* CustomTextComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF659262C2AE300997282 /* CustomTextComponents.swift */; };
 		DD5CF65D262C2B6E00997282 /* AnimatableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF65C262C2B6D00997282 /* AnimatableButton.swift */; };
 		DD5CF660262C2BEC00997282 /* StretchNavBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF65F262C2BEC00997282 /* StretchNavBarContainer.swift */; };
@@ -101,7 +100,6 @@
 		DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.ttf"; sourceTree = "<group>"; };
 		DD5CF649262B5E8D00997282 /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
 		DD5CF64C262B5F9400997282 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		DD5CF650262C1B8200997282 /* TextAnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextAnimationExtensions.swift; path = ../../AKTV/TextAnimationExtensions.swift; sourceTree = "<group>"; };
 		DD5CF659262C2AE300997282 /* CustomTextComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextComponents.swift; sourceTree = "<group>"; };
 		DD5CF65C262C2B6D00997282 /* AnimatableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableButton.swift; sourceTree = "<group>"; };
 		DD5CF65F262C2BEC00997282 /* StretchNavBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchNavBarContainer.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				DD77FEC9261A0DC20071D81D /* ButtonWithBackground.swift */,
 				DDADD2C926113A0900AAC15B /* StretchInputController.swift */,
 				DD77FEC42618EBAB0071D81D /* TextInputScreen.swift */,
-				DD5CF650262C1B8200997282 /* TextAnimationExtensions.swift */,
 				DDCAB0F92624DBD900F950D9 /* TextFieldWithCustomCaret.swift */,
 				DDADD2CF26113E2C00AAC15B /* TimePicker.swift */,
 				DDEAAEB526068F560056D85C /* StretchingViewController.swift */,
@@ -489,7 +486,6 @@
 				DD5E9475261B3DD20049DA57 /* Workout.swift in Sources */,
 				DD013FBE2609505100A396A3 /* Audioplayer.swift in Sources */,
 				DD22AF08263F13FC00369F70 /* CelebrationController.swift in Sources */,
-				DD5CF651262C1B8300997282 /* TextAnimationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +690,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RMURDMDZGD;
+				DEVELOPMENT_TEAM = 52VSB9N5CT;
 				INFOPLIST_FILE = Stretchapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -715,7 +711,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RMURDMDZGD;
+				DEVELOPMENT_TEAM = 52VSB9N5CT;
 				INFOPLIST_FILE = Stretchapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
