@@ -67,6 +67,8 @@ class ViewController: UIViewController {
         let newWorkoutTap = UITapGestureRecognizer(target: self, action: #selector(createNewWorkout))
         newWorkoutButton.addGestureRecognizer(newWorkoutTap)
         workoutPickerShadow.opacity = 0.07
+
+        newWorkoutButton.accessibilityIdentifier = "new-workout-button"
     }
 
     private func addSubviewsAndConstraints() {

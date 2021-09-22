@@ -19,6 +19,7 @@ struct Workout: Hashable, Codable {
 
     static let forUITesting = Workout(name: "My favourites", stretches: Stretch.forUITesting)
     static let gabos = Workout(name: "Office worker stretches", stretches: Stretch.favourites)
+    static let morning = Workout(name: "Morning stretches", stretches: Stretch.morning)
     static let dummy = Workout(name: "Flexibility stretches", stretches: Stretch.favourites)
 //    static let dummies = [
 //        Workout(name: "Forward folding", stretches: Stretch.forDebugging),
