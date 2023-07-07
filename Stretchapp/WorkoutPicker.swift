@@ -11,9 +11,10 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
     // MARK: - Properties
 
     typealias WorkoutList = [Workout]
+    typealias WorkoutCellRegistration = UICollectionView.CellRegistration<WorkoutListCell, Workout>
 
     private lazy var collectionView = makeCollectionView()
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Workout>! = makeDataSource()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Workout>!
 
     // MARK: - Initializers
 
@@ -21,6 +22,7 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         super.init(nibName: nil, bundle: nil)
         setup()
         addSubviewsAndConstraints()
+        setupDiffableDatasource()
 
         let workouts = DAO.getWorkouts()
         updateSnapshot(workouts)
@@ -31,6 +33,24 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
     }
 
     // MARK: - Methods
+    
+    private func setupDiffableDatasource() {
+        let cellRegistration = UICollectionView.CellRegistration<WorkoutListCell, Workout> { (cell, indexPath, workout) in
+            // Takes data and uses content configuration to display it
+            cell.workout = workout
+            cell.backgroundConfiguration = self.makeBackgroundConfiguration()
+            
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource(
+            collectionView: collectionView,
+            cellProvider: { collectionView, indexPath, workout in
+                let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: workout)
+                return cell
+            }
+        )
+        
+    }
 
     private func setup() {
         view.backgroundColor = .clear
@@ -97,31 +117,10 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         present(alert, animated: true, completion:nil)
     }
 
-    typealias WorkoutCellRegistration = UICollectionView.CellRegistration<WorkoutListCell, Workout>
-    func makeCellRegistration() -> WorkoutCellRegistration {
-        return UICollectionView.CellRegistration<WorkoutListCell, Workout> { (cell, indexPath, workout) in
-            // Takes data and uses content configuration to display it
-            cell.workout = workout
-            cell.backgroundConfiguration = self.makeBackgroundConfiguration()
-        }
-    }
-
     func makeBackgroundConfiguration() -> UIBackgroundConfiguration {
-        var test = UIBackgroundConfiguration.listPlainCell()
-        test.backgroundColor = .clear
-
-        return test
-    }
-
-    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Workout> {
-        UICollectionViewDiffableDataSource(
-            collectionView: collectionView,
-            cellProvider: { collectionView, indexPath, workout in
-                let cellRegistration = self.makeCellRegistration()
-                let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: workout)
-                return cell
-            }
-        )
+        var conf = UIBackgroundConfiguration.listPlainCell()
+        conf.backgroundColor = .clear
+        return conf
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

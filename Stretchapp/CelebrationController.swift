@@ -14,7 +14,7 @@ final class CelebrationViewController: UIViewController {
     let counterLabel = UITextView.make(.exercise)
     let textView = UILabel.make(.exercise)
     let button = ButtonWithBackground("Nice!")
-    private var snapshots: [UIImageView] = []
+    private var snapshots: [UIView] = []
     var style: ExerciseSlideStyle = .light
     private var workout: Workout
 
@@ -114,6 +114,7 @@ final class CelebrationViewController: UIViewController {
         view.layoutIfNeeded()
 
         counterLabel.alpha = 1
+        
         let snapshotRects = counterLabel.getFramesForCharacters()
         snapshots = snapshotRects.map({ counterLabel.wrappedSnap(at: $0)! })
         snapshots.forEach({ $0.tintColor = style.foregroundColor })

@@ -36,7 +36,7 @@ final class ExerciceView: UIView {
 
     var style: ExerciseSlideStyle
     let textView = UITextView.make(.exercise)
-    private var snapshots: [UIImageView] = []
+    private var snapshots: [UIView] = []
 
     // MARK: - Initializers
 
@@ -79,14 +79,15 @@ final class ExerciceView: UIView {
         setNeedsLayout()
         layoutIfNeeded()
         prepareAnimation()
-        textView.alpha = 0
     }
 
     func prepareAnimation() {
         textView.alpha = 1
+        
         let snapshotRects = textView.getFramesForCharacters()
         snapshots = snapshotRects.map({ textView.wrappedSnap(at: $0)! })
         snapshots.forEach({ $0.tintColor = style.foregroundColor })
+        snapshots.forEach({ $0.backgroundColor = .orange })
     }
 
     /// When the topview appears, it should immediately be set equal to the bottomviews endstate, for the transition to appear seamless
@@ -95,46 +96,40 @@ final class ExerciceView: UIView {
     func setAnimationEndState() {
         textView.alpha = 1
     }
-
+    
     func animateIn() {
-        let animationDuration = 1.0
-        let interItemDelayFactor  = 0.01
-
-        textView.alpha = 0
-
-        snapshots.enumerated().forEach { (i, selectionRect) in
+        // Make snapshots and place them on top of the views
+        let rects = textView.getFramesForCharacters()
+        
+        rects.enumerated().forEach { (i, selectionRect) in
             // Make and add snap
-            let iv = snapshots[i]
-            let offsetY = abs(textView.contentOffset.y)
-            iv.frame.origin.y += CGFloat(offsetY)
-            iv.transform = CGAffineTransform(translationX: 0, y: 10)
-            iv.alpha = 0
-
+            let iv = textView.wrappedSnap(at: selectionRect)!
+            iv.frame = selectionRect
+            iv.transform = CGAffineTransform(translationX: 0, y: 40)
+            iv.backgroundColor = .random()
             addSubview(iv)
-
-            // Animate words up, overshooting position
-            UIView.animate(withDuration: animationDuration*0.3, delay: Double(i)*interItemDelayFactor, options: .curveEaseInOut, animations: {
-                iv.transform = CGAffineTransform(translationX: 0, y: -20)
-                iv.alpha = 1
-            }, completion: { _ in
-                // Move down to final position
-                UIView.animate(withDuration: animationDuration*0.7, delay: 0, options: .curveEaseInOut, animations: {
-                    iv.transform = CGAffineTransform(translationX: 0, y: 0)
-                }, completion: {_ in
-                    // Remove all snaphots and show the textView
-                    if (i == self.snapshots.count-1) {
-                        self.textView.alpha = 1
-                        self.snapshots.forEach({ $0.removeFromSuperview() })
-                        self.snapshots.removeAll()
-                    }
-                })
-            })
+            
+            // Animate
+//            DispatchQueue.main.async {
+//                UIView.animate(withDuration: 0.4, delay: Double(i)*0.075, options: .curveEaseInOut, animations: {
+//                    iv.transform = CGAffineTransform(translationX: 0, y: 0)
+//                    iv.alpha = 1
+//                }, completion: { _ in
+//                    //                    iv.removeFromSuperview()
+//                    //                    UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
+//                    //                        print("done")
+//                    //                        iv.transform = CGAffineTransform(translationX: 0, y: 0)
+//                    //                    })
+//                })
+//            }
         }
+        
+        textView.alpha = 0
     }
 
     func animateOut() {
         UIView.animate(withDuration: 0.8) {
-            self.textView.alpha = 0
+//            self.textView.alpha = 0
         }
     }
 }

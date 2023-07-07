@@ -101,7 +101,7 @@ class StretchingViewController: UIViewController {
             animationDuration = animationDuration * (nextStretch.isTwoSided ? 2 : 1)
 
             if isFirstAnimation {
-                topView.textView.alpha = 0
+//                topView.textView.alpha = 0
                 topView.animateIn()
             } else {
                 topView.textView.alpha = 1

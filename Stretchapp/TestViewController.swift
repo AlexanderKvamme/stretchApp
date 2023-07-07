@@ -8,55 +8,56 @@
 import UIKit
 
 
-
 class TestViewController: UIViewController {
 
     // MARK: - Properties
 
-    let topView = ExerciceView(.dark)
+    let exerciseView = ExerciceView(.dark)
 
     // MARK: - Methods
 
     override func viewDidAppear(_ animated: Bool) {
-        topView.frame = view.frame
-        view.addSubview(topView)
-
-        topView.setStretch(Stretch.dummy)
-        topView.layoutIfNeeded()
-
-//        topView.alpha = 0
         view.backgroundColor = .primaryContrast
-//        testAnimateIn(topView.textView)
+        exerciseView.frame = view.frame
+        view.addSubview(exerciseView)
 
-//        topView.alpha = 0
-        topView.animateIn()
+        exerciseView.setStretch(Stretch.dummy)
+//        topView.animateIn()
+        test()
     }
-
-//    func testAnimateIn(_ textView: UITextView) {
-//        let rects = textView.getFramesForWords()
-//        rects.enumerated().forEach { (i, selectionRect) in
-//            // Make and add snap
-//            let iv = textView.wrappedSnap(at: selectionRect)!
-//            let offsetY = abs(textView.contentOffset.y)
-//            iv.frame = selectionRect
-//            iv.frame.origin.y += CGFloat(offsetY)
-//            iv.transform = CGAffineTransform(translationX: 0, y: 40)
-//            iv.alpha = 0
-//            view.addSubview(iv)
-//
-//            // Animate
-//            UIView.animate(withDuration: 0.4, delay: Double(i)*0.075, options: .curveEaseInOut, animations: {
-//                iv.transform = CGAffineTransform(translationX: 0, y: 0)
-//                iv.alpha = 1
-//            }, completion: { _ in
-////                iv.removeFromSuperview()
-//
-//                UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
-//                    iv.transform = CGAffineTransform(translationX: 0, y: -10)
-//                    iv.alpha = 0
-//                })
-//            })
-//        }
-//    }
+    
+    
+    
+    
+    func test() {
+        // Make snapshots and place them on top of the views
+        let textView = exerciseView.textView
+        let rects = textView.getFramesForCharacters()
+        
+        rects.enumerated().forEach { (i, selectionRect) in
+            // Make and add snap
+            let iv = textView.wrappedSnap(at: selectionRect)!
+            iv.frame = selectionRect
+            iv.transform = CGAffineTransform(translationX: 0, y: 40)
+            iv.backgroundColor = .random()
+            view.addSubview(iv)
+            
+            // Animate
+            //            DispatchQueue.main.async {
+            //                UIView.animate(withDuration: 0.4, delay: Double(i)*0.075, options: .curveEaseInOut, animations: {
+            //                    iv.transform = CGAffineTransform(translationX: 0, y: 0)
+            //                    iv.alpha = 1
+            //                }, completion: { _ in
+            //                    //                    iv.removeFromSuperview()
+            //                    //                    UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
+            //                    //                        print("done")
+            //                    //                        iv.transform = CGAffineTransform(translationX: 0, y: 0)
+            //                    //                    })
+            //                })
+            //            }
+        }
+        
+        textView.alpha = 0
+    }
 }
 
