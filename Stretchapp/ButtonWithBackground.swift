@@ -32,7 +32,6 @@ final class ButtonWithBackground: UIButton {
     // MARK: - Methods
 
     func setup() {
-        backgroundColor = .green
         layer.cornerRadius = 16
         layer.cornerCurve = .continuous
 

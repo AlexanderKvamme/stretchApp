@@ -33,7 +33,7 @@ extension UITextView {
             let glyphRectInTextView = CGRect(origin: boundingRect.origin, size: boundingRect.size)
             
             // Adjust the glyph rect for the text view's content offset and insets
-            let glyphRectInTextViewAdjusted = glyphRectInTextView.offsetBy(dx: textContainerInset.left, dy: -self.contentOffset.y)
+            let glyphRectInTextViewAdjusted = glyphRectInTextView.offsetBy(dx: textContainerInset.left, dy: -textContainerInset.top)
             
             // Get the final frame of the glyph
             let glyphFrame = glyphRectInTextViewAdjusted.integral
@@ -45,7 +45,9 @@ extension UITextView {
     
     func wrappedSnap(at rect: CGRect) -> UIView? {
         backgroundColor = .clear
-        let test = self.resizableSnapshotView(from: CGRect(x: rect.origin.x, y: 0, width: rect.width, height: rect.height), afterScreenUpdates: true, withCapInsets: .zero)!
+        let test = self.resizableSnapshotView(from: rect,
+                                              afterScreenUpdates: true,
+                                              withCapInsets: .zero)!
         test.frame = rect
         return test
     }

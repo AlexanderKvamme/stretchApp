@@ -40,8 +40,6 @@ class StretchingViewController: UIViewController {
 
         setup()
         addSubviewsAndConstraints()
-        topView.backgroundColor = .background
-        botView.backgroundColor = .background
     }
 
     required init?(coder: NSCoder) {
@@ -73,9 +71,6 @@ class StretchingViewController: UIViewController {
         navBarUnder.animateInXButton()
         navBarOver.fractionView.animate()
         navBarUnder.fractionView.animate()
-
-        navBarOver.animateInXButton()
-        navBarUnder.animateInXButton()
     }
 
     private func playNextAnimation() {
@@ -103,8 +98,9 @@ class StretchingViewController: UIViewController {
             if isFirstAnimation {
 //                topView.textView.alpha = 0
                 topView.animateIn()
+                botView.animateIn()
             } else {
-                topView.textView.alpha = 1
+//                topView.textView.alpha = 1
                 topView.setAnimationEndState()
             }
 

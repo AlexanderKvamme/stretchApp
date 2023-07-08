@@ -76,8 +76,6 @@ final class ExerciceView: UIView {
 
     func setStretch(_ stretch: Stretch) {
         textView.text = stretch.title
-        setNeedsLayout()
-        layoutIfNeeded()
         prepareAnimation()
     }
 
@@ -94,34 +92,45 @@ final class ExerciceView: UIView {
     /// The aniamtion is basically the botview, moving up to replace the topview, so the botview's endstate must be equal to the
     /// topView's beginning state
     func setAnimationEndState() {
-        textView.alpha = 1
+//        textView.alpha = 1
     }
     
     func animateIn() {
+        
+        textView.alpha = 1
+
+        setNeedsLayout()
+        layoutIfNeeded()
+        
         // Make snapshots and place them on top of the views
         let rects = textView.getFramesForCharacters()
+        let verticalOffset = textView.contentOffset.y
+        let slideInOffset = 40.0
         
         rects.enumerated().forEach { (i, selectionRect) in
-            // Make and add snap
+            // Make and add snapshot
             let iv = textView.wrappedSnap(at: selectionRect)!
             iv.frame = selectionRect
-            iv.transform = CGAffineTransform(translationX: 0, y: 40)
-            iv.backgroundColor = .random()
+            iv.frame.origin.y -= verticalOffset // Fit over origal text
+            iv.transform = CGAffineTransform(translationX: 0, y: slideInOffset)
             addSubview(iv)
             
+//            textView.alpha = 0
+            
             // Animate
-//            DispatchQueue.main.async {
-//                UIView.animate(withDuration: 0.4, delay: Double(i)*0.075, options: .curveEaseInOut, animations: {
-//                    iv.transform = CGAffineTransform(translationX: 0, y: 0)
-//                    iv.alpha = 1
-//                }, completion: { _ in
-//                    //                    iv.removeFromSuperview()
-//                    //                    UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
-//                    //                        print("done")
-//                    //                        iv.transform = CGAffineTransform(translationX: 0, y: 0)
-//                    //                    })
-//                })
-//            }
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3, delay: Double(i)*0.02, options: .curveEaseInOut, animations: {
+                    iv.transform = .identity
+                    iv.alpha = 1
+//                    iv.backgroundColor = .random()
+                }, completion: { _ in
+                    //                    iv.removeFromSuperview()
+                    //                    UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
+                    //                        print("done")
+                    //                        iv.transform = CGAffineTransform(translationX: 0, y: 0)
+                    //                    })
+                })
+            }
         }
         
         textView.alpha = 0
@@ -129,7 +138,7 @@ final class ExerciceView: UIView {
 
     func animateOut() {
         UIView.animate(withDuration: 0.8) {
-//            self.textView.alpha = 0
+            self.textView.alpha = 0
         }
     }
 }
