@@ -12,7 +12,7 @@ class TestViewController: UIViewController {
 
     // MARK: - Properties
 
-    let exerciseView = ExerciceView(.dark)
+    let exerciseView = ExerciseView(.dark)
 
     // MARK: - Methods
 

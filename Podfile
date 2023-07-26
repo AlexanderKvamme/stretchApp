@@ -8,6 +8,5 @@ target 'Stretchapp' do
   # Pods for Stretchapp
   pod 'SnapKit'
   pod 'lottie-ios'
-  pod 'WXWaveView'
 
 end

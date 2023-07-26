@@ -48,7 +48,7 @@ extension UITextView {
         let test = self.resizableSnapshotView(from: rect,
                                               afterScreenUpdates: true,
                                               withCapInsets: .zero)!
-        test.frame = rect
+//        test.frame = rect
         return test
     }
     

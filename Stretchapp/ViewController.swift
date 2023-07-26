@@ -47,6 +47,8 @@ class ViewController: UIViewController {
 
         newWorkoutButton.animate()
         animateInLogo()
+        
+//        present(TestViewController(), animated: false)
     }
 
     // MARK: - Methods

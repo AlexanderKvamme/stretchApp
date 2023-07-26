@@ -16,8 +16,8 @@ class StretchingViewController: UIViewController {
     var workout: Workout
     let navBarOver = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .primaryContrast)
     let navBarUnder = StretchNavBarContainer(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100), color: .background)
-    let topView = ExerciceView(.light)
-    let botView = ExerciceView(.dark)
+    let topView = ExerciseView(.light)
+    let botView = ExerciseView(.dark)
     var wave = WaveView(frame: .zero)
     var waveMask = WaveView(frame: .zero, additionalHeight: screenHeight)
     let waveHeight: CGFloat = 80
@@ -33,12 +33,12 @@ class StretchingViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        view.backgroundColor = .background
+        view.backgroundColor = .blue
         setInitialStretch(from: workout.stretches)
         navBarOver.xButton.alpha = 0
         navBarUnder.xButton.alpha = 0
 
-        setup()
+        addGestureRecognizers()
         addSubviewsAndConstraints()
     }
 
@@ -53,11 +53,18 @@ class StretchingViewController: UIViewController {
 
         fadeInViews()
         playNextAnimation()
+        
+        // FIXME: Do the same with topView - Working
+        
+//        topView.setStretch(workout.stretches.first!)
+//        topView.frame = view.frame
+//        view.addSubview(topView)
+//        topView.animateIn()
     }
 
     // MARK: - Methods
 
-    private func setup() {
+    private func addGestureRecognizers() {
         navBarOver.xButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
         navBarUnder.xButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
     }
@@ -77,12 +84,7 @@ class StretchingViewController: UIViewController {
         let isFirstAnimation = currentAnimationIteration == 0
         resetViews()
 
-        topView.prepareAnimation()
-        botView.prepareAnimation()
-
-        view.layoutIfNeeded()
-
-        self.updateStretches()
+        updateStretches()
 
         if hasNextAnimation {
             let nextStretch = workout.stretches[currentAnimationIteration]
@@ -95,10 +97,17 @@ class StretchingViewController: UIViewController {
             var animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
             animationDuration = animationDuration * (nextStretch.isTwoSided ? 2 : 1)
 
+            botView.backgroundColor = .green
+            botView.textView.backgroundColor = .red
+            
             if isFirstAnimation {
 //                topView.textView.alpha = 0
-                topView.animateIn()
-                botView.animateIn()
+                
+                topView.backgroundColor = .green
+                topView.alpha = 1
+                topView.textView.backgroundColor = .green
+//                topView.animateIn()
+//                botView.animateIn()
             } else {
 //                topView.textView.alpha = 1
                 topView.setAnimationEndState()
@@ -127,6 +136,7 @@ class StretchingViewController: UIViewController {
             }
 
             // The final countdown
+            // FIXME: Move out of here
             let isLastAnimation = currentAnimationIteration == workout.stretches.count-2
             if isLastAnimation {
                 self.botView.textView.font = UIFont.round(.bold, 40)
@@ -224,6 +234,8 @@ class StretchingViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
+        topView.frame = view.frame
+        botView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: screenHeight)
         view.addSubview(topView)
         view.addSubview(botView)
         view.addSubview(wave)

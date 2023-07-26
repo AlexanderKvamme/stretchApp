@@ -30,7 +30,7 @@ enum ExerciseSlideStyle {
 
 
 
-final class ExerciceView: UIView {
+final class ExerciseView: UIView {
 
     // MARK: - Properties
 
@@ -63,6 +63,7 @@ final class ExerciceView: UIView {
         self.style = style
         textView.textColor = style.foregroundColor
         backgroundColor = style.backgroundColor
+        backgroundColor = .purple
     }
 
     private func addSubviewsAndConstraints() {
@@ -76,16 +77,17 @@ final class ExerciceView: UIView {
 
     func setStretch(_ stretch: Stretch) {
         textView.text = stretch.title
-        prepareAnimation()
+        reset()
     }
 
-    func prepareAnimation() {
+    func reset() {
         textView.alpha = 1
         
-        let snapshotRects = textView.getFramesForCharacters()
-        snapshots = snapshotRects.map({ textView.wrappedSnap(at: $0)! })
-        snapshots.forEach({ $0.tintColor = style.foregroundColor })
-        snapshots.forEach({ $0.backgroundColor = .orange })
+//        let snapshotRects = textView.getFramesForCharacters()
+//        print("snapshot rects: ", snapshotRects)
+//        snapshots = snapshotRects.map({ textView.wrappedSnap(at: $0)! })
+//        snapshots.forEach({ $0.tintColor = style.foregroundColor })
+//        snapshots.forEach({ $0.backgroundColor = .orange })
     }
 
     /// When the topview appears, it should immediately be set equal to the bottomviews endstate, for the transition to appear seamless
@@ -96,9 +98,10 @@ final class ExerciceView: UIView {
     }
     
     func animateIn() {
+        return
         
         textView.alpha = 1
-
+        
         setNeedsLayout()
         layoutIfNeeded()
         
@@ -115,14 +118,11 @@ final class ExerciceView: UIView {
             iv.transform = CGAffineTransform(translationX: 0, y: slideInOffset)
             addSubview(iv)
             
-//            textView.alpha = 0
-            
             // Animate
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.3, delay: Double(i)*0.02, options: .curveEaseInOut, animations: {
                     iv.transform = .identity
                     iv.alpha = 1
-//                    iv.backgroundColor = .random()
                 }, completion: { _ in
                     //                    iv.removeFromSuperview()
                     //                    UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
@@ -132,7 +132,8 @@ final class ExerciceView: UIView {
                 })
             }
         }
-        
+       
+        // Hide textView to only show character views
         textView.alpha = 0
     }
 

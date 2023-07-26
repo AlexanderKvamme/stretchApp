@@ -1,24 +1,20 @@
 PODS:
   - lottie-ios (3.2.1)
   - SnapKit (5.0.1)
-  - WXWaveView (1.0.1)
 
 DEPENDENCIES:
   - lottie-ios
   - SnapKit
-  - WXWaveView
 
 SPEC REPOS:
   trunk:
     - lottie-ios
     - SnapKit
-    - WXWaveView
 
 SPEC CHECKSUMS:
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  WXWaveView: f8424284812536a3842bc5dd9afb943e53e911a8
 
-PODFILE CHECKSUM: 1abfaa536d88c22ceaec4417757722218df5e93d
+PODFILE CHECKSUM: 9e70e449d9d18670c7ab379f1f936d0626d5b712
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3
