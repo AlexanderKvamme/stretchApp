@@ -177,22 +177,11 @@ final class ExerciseView: UIView {
     }
 
     func animateOut() {
-        
-        
-        // FIXME: Do this
-        return;
-        
         snapshots.enumerated().forEach { (i, snapshot) in
-            UIView.animate(withDuration: 0.8, delay: Double(i)*0.5, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.5, delay: Double(i)*0.03, options: .curveEaseInOut, animations: {
+                snapshot.transform = snapshot.transform.translatedBy(x: 0, y: -10)
                 snapshot.alpha = 0
             })
         }
-        
-        // FIXME: This should not be needed
-        // Because we should be using the snapshots, and not setting the endstate to a textView
-        UIView.animate(withDuration: 0.8) {
-            self.textView.alpha = 0
-        }
-        
     }
 }
