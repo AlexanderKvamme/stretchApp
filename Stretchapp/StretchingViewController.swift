@@ -33,13 +33,15 @@ class StretchingViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        view.backgroundColor = .blue
         setInitialStretch(from: workout.stretches)
         navBarOver.xButton.alpha = 0
         navBarUnder.xButton.alpha = 0
 
         addGestureRecognizers()
         addSubviewsAndConstraints()
+        
+        topView.prepareAnimation()
+        botView.prepareAnimation()
     }
 
     required init?(coder: NSCoder) {
@@ -53,13 +55,6 @@ class StretchingViewController: UIViewController {
 
         fadeInViews()
         playNextAnimation()
-        
-        // FIXME: Do the same with topView - Working
-        
-//        topView.setStretch(workout.stretches.first!)
-//        topView.frame = view.frame
-//        view.addSubview(topView)
-//        topView.animateIn()
     }
 
     // MARK: - Methods
@@ -96,21 +91,11 @@ class StretchingViewController: UIViewController {
             let isMinuteStretch = stretchLength.type == .minutes
             var animationDuration = stretchLength.amount * (isMinuteStretch ? 60 : 1)
             animationDuration = animationDuration * (nextStretch.isTwoSided ? 2 : 1)
-
-            botView.backgroundColor = .green
-            botView.textView.backgroundColor = .red
             
             if isFirstAnimation {
-//                topView.textView.alpha = 0
-                
-                topView.backgroundColor = .green
-                topView.alpha = 1
-                topView.textView.backgroundColor = .green
-//                topView.animateIn()
-//                botView.animateIn()
+                topView.animateIn()
             } else {
-//                topView.textView.alpha = 1
-                topView.setAnimationEndState()
+                topView.animateIn(skipToEnd: true)
             }
 
             self.view.layoutIfNeeded()
@@ -166,9 +151,11 @@ class StretchingViewController: UIViewController {
 
     private func updateStretches() {
         topView.setStretch(workout.stretches[currentAnimationIteration])
+        topView.prepareAnimation()
 
         if currentAnimationIteration+1 < workout.stretches.count {
             botView.setStretch(workout.stretches[currentAnimationIteration+1])
+            botView.prepareAnimation()
         }
     }
 

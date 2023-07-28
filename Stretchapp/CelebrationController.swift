@@ -115,9 +115,10 @@ final class CelebrationViewController: UIViewController {
 
         counterLabel.alpha = 1
         
-        let snapshotRects = counterLabel.getFramesForCharacters()
-        snapshots = snapshotRects.map({ counterLabel.wrappedSnap(at: $0)! })
-        snapshots.forEach({ $0.tintColor = style.foregroundColor })
+        // FIXME: This must work
+//        let snapshotRects = counterLabel.getFramesForCharacters()
+//        snapshots = snapshotRects.map({ counterLabel.wrappedSnap(at: $0)! })
+//        snapshots.forEach({ $0.tintColor = style.foregroundColor })
     }
 
     /// When the topview appears, it should immediately be set equal to the bottomviews endstate, for the transition to appear seamless

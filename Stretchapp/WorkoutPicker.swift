@@ -74,7 +74,6 @@ final class WorkoutPicker: UIViewController, UICollectionViewDelegate {
         let layoutConfig = makeSwipeableLayoutConfig()
         let layout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .purple
         return collectionView
     }
 

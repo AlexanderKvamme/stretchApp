@@ -7,6 +7,46 @@
 
 import UIKit
 
+enum LogType: String {
+    case start = "START"
+    case end   = "END"
+}
+
+final class TimeLogger {
+    
+    // MARK: - Properties
+    
+    private static var logDict = [String: Date]()
+    
+    // MARK: - Methods
+    
+    static func log(_ type: LogType, title: String) {
+        let key = "\(title)"
+        
+        switch type {
+        case .start:
+            logDict[key] = Date()
+        case .end:
+            let endTime = Date()
+            guard let startTime = logDict[key] else {
+                print("❌ Could not log end of non-existant network call")
+                return
+            }
+            let duration = endTime.timeIntervalSince1970-startTime.timeIntervalSince1970
+            print("⏰ \(key) timed to \(duration.rounded(toPlaces: 1)) seconds.")
+            logDict.removeValue(forKey: key)
+        }
+    }
+    
+}
+
+private extension Double {
+    func rounded(toPlaces places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
 enum ExerciseSlideStyle {
     case light
     case dark
@@ -28,7 +68,13 @@ enum ExerciseSlideStyle {
     }
 }
 
-
+extension UIView {
+    func copyView<T: UIView>() -> T {
+        let copy = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
+        copy.accessibilityIdentifier = accessibilityIdentifier
+        return copy
+    }
+}
 
 final class ExerciseView: UIView {
 
@@ -36,7 +82,7 @@ final class ExerciseView: UIView {
 
     var style: ExerciseSlideStyle
     let textView = UITextView.make(.exercise)
-    private var snapshots: [UIView] = []
+    private var snapshots: [UITextView] = []
 
     // MARK: - Initializers
 
@@ -62,8 +108,8 @@ final class ExerciseView: UIView {
     func setStyle(_ style: ExerciseSlideStyle) {
         self.style = style
         textView.textColor = style.foregroundColor
+        textView.backgroundColor = .clear
         backgroundColor = style.backgroundColor
-        backgroundColor = .purple
     }
 
     private func addSubviewsAndConstraints() {
@@ -77,69 +123,76 @@ final class ExerciseView: UIView {
 
     func setStretch(_ stretch: Stretch) {
         textView.text = stretch.title
-        reset()
     }
 
     func reset() {
-        textView.alpha = 1
-        
-//        let snapshotRects = textView.getFramesForCharacters()
-//        print("snapshot rects: ", snapshotRects)
-//        snapshots = snapshotRects.map({ textView.wrappedSnap(at: $0)! })
-//        snapshots.forEach({ $0.tintColor = style.foregroundColor })
-//        snapshots.forEach({ $0.backgroundColor = .orange })
+        snapshots.forEach({ $0.removeFromSuperview() })
+        snapshots = []
     }
 
-    /// When the topview appears, it should immediately be set equal to the bottomviews endstate, for the transition to appear seamless
-    /// The aniamtion is basically the botview, moving up to replace the topview, so the botview's endstate must be equal to the
-    /// topView's beginning state
-    func setAnimationEndState() {
-//        textView.alpha = 1
-    }
-    
-    func animateIn() {
-        return
-        
-        textView.alpha = 1
-        
-        setNeedsLayout()
-        layoutIfNeeded()
-        
-        // Make snapshots and place them on top of the views
+    func prepareAnimation() {
+        reset()
         let rects = textView.getFramesForCharacters()
-        let verticalOffset = textView.contentOffset.y
-        let slideInOffset = 40.0
-        
         rects.enumerated().forEach { (i, selectionRect) in
             // Make and add snapshot
-            let iv = textView.wrappedSnap(at: selectionRect)!
-            iv.frame = selectionRect
-            iv.frame.origin.y -= verticalOffset // Fit over origal text
+            let tv = UITextView.make(.exercise)
+            let entireText = self.textView.text!
+            let idx = entireText.index(entireText.startIndex, offsetBy: i)
+            let char = entireText[idx]
+            tv.text.insert(char, at: entireText.startIndex)
+            tv.frame = selectionRect
+            tv.textColor = style.foregroundColor
+            snapshots.append(tv)
+        }
+        textView.alpha = 0
+    }
+    
+    func animateIn(skipToEnd: Bool = false) {
+        let verticalOffset = textView.contentOffset.y
+        let slideInOffset = 40.0
+
+        // Use stored snapshots
+        snapshots.enumerated().forEach { (i, iv) in
+            // Make and add snapshot
+            iv.backgroundColor = .clear
+            iv.frame.origin.y -= verticalOffset
             iv.transform = CGAffineTransform(translationX: 0, y: slideInOffset)
             addSubview(iv)
             
-            // Animate
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.3, delay: Double(i)*0.02, options: .curveEaseInOut, animations: {
-                    iv.transform = .identity
-                    iv.alpha = 1
-                }, completion: { _ in
-                    //                    iv.removeFromSuperview()
-                    //                    UIView.animate(withDuration: 0.3, delay: 2, options: .curveEaseInOut, animations: {
-                    //                        print("done")
-                    //                        iv.transform = CGAffineTransform(translationX: 0, y: 0)
-                    //                    })
-                })
+            if skipToEnd {
+                iv.transform = .identity
+                iv.alpha = 1
+            } else {
+                // Animate in
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.3, delay: Double(i)*0.02, options: .curveEaseInOut, animations: {
+                        iv.transform = .identity
+                        iv.alpha = 1
+                    }, completion: { _ in
+                        // No need to do anything in particular
+                    })
+                }
             }
         }
-       
-        // Hide textView to only show character views
-        textView.alpha = 0
     }
 
     func animateOut() {
+        
+        
+        // FIXME: Do this
+        return;
+        
+        snapshots.enumerated().forEach { (i, snapshot) in
+            UIView.animate(withDuration: 0.8, delay: Double(i)*0.5, options: .curveEaseInOut, animations: {
+                snapshot.alpha = 0
+            })
+        }
+        
+        // FIXME: This should not be needed
+        // Because we should be using the snapshots, and not setting the endstate to a textView
         UIView.animate(withDuration: 0.8) {
             self.textView.alpha = 0
         }
+        
     }
 }

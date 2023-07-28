@@ -44,11 +44,9 @@ extension UITextView {
     }
     
     func wrappedSnap(at rect: CGRect) -> UIView? {
-        backgroundColor = .clear
         let test = self.resizableSnapshotView(from: rect,
                                               afterScreenUpdates: true,
                                               withCapInsets: .zero)!
-//        test.frame = rect
         return test
     }
     

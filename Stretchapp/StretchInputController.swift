@@ -8,7 +8,7 @@
 import UIKit
 
 let stepperFrame = CGRect(x: 0, y: 0, width: 222, height: 64)
-let testOptions = ["30 s", "45 s", "60 s", "90 s", "2 m", "3 m", "4 m", "5 m", "6 m", "7 m", "8 m", "9 m"]
+let testOptions = ["10 s", "30 s", "45 s", "60 s", "90 s", "2 m", "3 m", "4 m", "5 m", "6 m", "7 m", "8 m", "9 m"]
 
 
 protocol StretchInputDelegate {
