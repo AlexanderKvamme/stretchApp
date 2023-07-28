@@ -10,7 +10,7 @@ import UIKit
 
 extension UITextView {
     
-    func getFramesForCharacters() -> [CGRect] {
+    func getFramesForCharacters(in suppliedView: UIView? = nil) -> [CGRect] {
         
         setNeedsLayout()
         layoutIfNeeded()
@@ -36,11 +36,26 @@ extension UITextView {
             let glyphRectInTextViewAdjusted = glyphRectInTextView.offsetBy(dx: textContainerInset.left, dy: -textContainerInset.top)
             
             // Get the final frame of the glyph
-            let glyphFrame = glyphRectInTextViewAdjusted.integral
-            characterFrames.append(glyphFrame)
+            var glyphFrame = glyphRectInTextViewAdjusted.integral
+            
+            if let v = suppliedView {
+                let converted = self.convert(glyphFrame, to: v)
+                glyphFrame.origin.y = converted.origin.y * -1 + getVerticalInsetForCenterAlignment()
+                characterFrames.append(glyphFrame)
+            } else {
+                characterFrames.append(glyphFrame)
+            }
+            
         }
         
         return characterFrames
+    }
+    
+    private func getVerticalInsetForCenterAlignment() -> CGFloat {
+        let textHeight = contentSize.height
+        let textViewHeight = bounds.size.height
+        let verticalInset = (textViewHeight - textHeight) / 2.0
+        return verticalInset
     }
     
     func wrappedSnap(at rect: CGRect) -> UIView? {

@@ -25,6 +25,9 @@ class TestViewController: UIViewController {
         exerciseView.setStretch(Stretch.dummy)
         exerciseView.animateIn()
         
+        let test = ConfettiView()
+        view.addSubview(test)
+        test.startConfetti()
     }
     
 }

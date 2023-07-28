@@ -11,7 +11,7 @@ final class CelebrationViewController: UIViewController {
 
     // MARK: - Initializers
 
-    let counterLabel = UITextView.make(.exercise)
+    let header = UITextView.make(.exercise)
     let textView = UILabel.make(.exercise)
     let button = ButtonWithBackground("Nice!")
     private var snapshots: [UIView] = []
@@ -45,9 +45,9 @@ final class CelebrationViewController: UIViewController {
     private func setup() {
         view.backgroundColor = .background
 
-        counterLabel.text = workout.duration.toString()
-        counterLabel.textColor = .primaryContrast
-        counterLabel.font = UIFont.round(.bold, 200)
+        header.text = workout.duration.toString()
+        header.textColor = .primaryContrast
+        header.font = UIFont.round(.bold, 140)
         textView.font = UIFont.round(.regular, 24)
         textView.numberOfLines = 0
 
@@ -60,16 +60,18 @@ final class CelebrationViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-        [counterLabel, textView, button].forEach({ view.addSubview($0) })
+        [header, textView, button].forEach({ view.addSubview($0) })
 
-        counterLabel.snp.makeConstraints { (make) in
+        header.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.height.equalTo(240)
             make.bottom.equalTo(view.snp.centerY)
         }
+        
+        header.backgroundColor = .clear
 
         textView.snp.makeConstraints { (make) in
-            make.top.equalTo(counterLabel.snp.bottom)
+            make.top.equalTo(header.snp.bottom)
             make.left.right.equalToSuperview().inset(16)
         }
 
@@ -110,60 +112,66 @@ final class CelebrationViewController: UIViewController {
     }
 
     func prepareAnimation() {
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-
-        counterLabel.alpha = 1
+        let rects = header.getFramesForCharacters(in: view)
         
-        // FIXME: This must work
-//        let snapshotRects = counterLabel.getFramesForCharacters()
-//        snapshots = snapshotRects.map({ counterLabel.wrappedSnap(at: $0)! })
-//        snapshots.forEach({ $0.tintColor = style.foregroundColor })
+        rects.enumerated().forEach { (i, selectionRect) in
+            // Make and add snapshot
+            let tv = header.copyView() as! UITextView
+            let entireText = self.header.text!
+            let idx = entireText.index(entireText.startIndex, offsetBy: i)
+            let char = entireText[idx]
+            tv.text.insert(char, at: entireText.startIndex)
+            tv.frame = selectionRect
+            tv.textColor = style.foregroundColor
+            snapshots.append(tv)
+        }
+        
+        header.alpha = 0
     }
-
-    /// When the topview appears, it should immediately be set equal to the bottomviews endstate, for the transition to appear seamless
-    /// The aniamtion is basically the botview, moving up to replace the topview, so the botview's endstate must be equal to the
-    /// topView's beginning state
-    func setAnimationEndState() {
-        counterLabel.alpha = 1
+    
+    func getVerticalInsetForCenterAlignment(textView: UITextView) -> CGFloat {
+        // Get the content size of the text in the UITextView
+        let textHeight = textView.contentSize.height
+        
+        // Get the height of the UITextView
+        let textViewHeight = textView.bounds.size.height
+        
+        // Calculate the vertical inset
+        let verticalInset = (textViewHeight - textHeight) / 2.0
+        
+        return verticalInset
     }
-
-    func animateIn() {
-        let animationDuration = 0.8
-        let interItemDelayFactor  = 0.1
-
-        counterLabel.alpha = 0
-
-        snapshots.enumerated().forEach { (i, selectionRect) in
-            // Make and add  snap
-            let iv = snapshots[i]
-            let offsetY = abs(counterLabel.contentOffset.y) + counterLabel.frame.minY
-            iv.frame.origin.y += CGFloat(offsetY)
-            iv.transform = CGAffineTransform(translationX: 0, y: 10)
-            iv.alpha = 0
-
+    
+    func animateIn(skipToEnd: Bool = false) {
+        let slideInOffset = 40.0
+        
+        // Use stored snapshots
+        snapshots.enumerated().forEach { (i, iv) in
+            // Make and add snapshot
             iv.backgroundColor = .clear
-            iv.clipsToBounds = false
-
+            iv.transform = CGAffineTransform(translationX: 0, y: slideInOffset)
             view.addSubview(iv)
-
-            // Animate words up, overshooting position
-            UIView.animate(withDuration: animationDuration*0.3, delay: Double(i)*interItemDelayFactor, options: .curveEaseInOut, animations: {
-                iv.transform = CGAffineTransform(translationX: 0, y: -25)
+            
+            if skipToEnd {
+                iv.transform = .identity
                 iv.alpha = 1
-            }, completion: { _ in
-                // Move down to final position
-                UIView.animate(withDuration: animationDuration*0.7, delay: 0, options: .curveEaseInOut, animations: {
-                    iv.transform = CGAffineTransform(translationX: 0, y: 0)
-                }, completion: {_ in
-                    // Remove all snaphots and show the textView
-                    if (i == self.snapshots.count-1) {
-                        self.counterLabel.alpha = 1
-                        self.snapshots.forEach({ $0.removeFromSuperview() })
-                        self.snapshots.removeAll()
-                    }
+            } else {
+                // Animate words up, overshooting position
+                let animationDuration = 0.8
+                let interItemDelayFactor = 0.025
+                UIView.animate(withDuration: animationDuration*0.3, delay: Double(i)*interItemDelayFactor, options: .curveEaseInOut, animations: {
+                    iv.transform = CGAffineTransform(translationX: 0, y: -25)
+                    iv.alpha = 1
+                }, completion: { _ in
+                    // Move down to final position
+                    UIView.animate(withDuration: animationDuration*0.7, delay: 0, options: .curveEaseInOut, animations: {
+                        iv.transform = .identity
+                    }, completion: {_ in
+                        // Remove all snaphots and show the textView
+                    })
                 })
-            })
+
+            }
         }
     }
 

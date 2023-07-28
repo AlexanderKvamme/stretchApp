@@ -48,7 +48,10 @@ class ViewController: UIViewController {
         newWorkoutButton.animate()
         animateInLogo()
         
-//        present(TestViewController(), animated: false)
+        // Present TestViewController
+//        let testVC = CelebrationViewController(workout: .dummy)
+//        testVC.modalPresentationStyle = .fullScreen
+//        present(testVC, animated: false)
     }
 
     // MARK: - Methods
