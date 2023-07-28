@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AKKIT
 
 final class CelebrationViewController: UIViewController {
 
@@ -17,6 +18,8 @@ final class CelebrationViewController: UIViewController {
     private var snapshots: [UIView] = []
     var style: ExerciseSlideStyle = .light
     private var workout: Workout
+    
+    let confettiView = ConfettiView()
 
     // MARK: - Properties
 
@@ -38,6 +41,7 @@ final class CelebrationViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         animateIn()
+        confettiView.startConfetti()
     }
 
     // MARK: - Methods
@@ -50,6 +54,7 @@ final class CelebrationViewController: UIViewController {
         header.font = UIFont.round(.bold, 140)
         textView.font = UIFont.round(.regular, 24)
         textView.numberOfLines = 0
+        confettiView.frame = view.frame
 
         // Hack
         DispatchQueue.main.async {
@@ -60,7 +65,7 @@ final class CelebrationViewController: UIViewController {
     }
 
     private func addSubviewsAndConstraints() {
-        [header, textView, button].forEach({ view.addSubview($0) })
+        [header, textView, button, confettiView].forEach({ view.addSubview($0) })
 
         header.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
@@ -167,7 +172,7 @@ final class CelebrationViewController: UIViewController {
                     UIView.animate(withDuration: animationDuration*0.7, delay: 0, options: .curveEaseInOut, animations: {
                         iv.transform = .identity
                     }, completion: {_ in
-                        // Remove all snaphots and show the textView
+                        // No need to do anything
                     })
                 })
 

@@ -149,7 +149,7 @@ final class ExerciseView: UIView {
     
     func animateIn(skipToEnd: Bool = false) {
         let verticalOffset = textView.contentOffset.y
-        let slideInOffset = 40.0
+        let slideInOffset = 16.0
 
         // Use stored snapshots
         snapshots.enumerated().forEach { (i, iv) in
@@ -163,15 +163,20 @@ final class ExerciseView: UIView {
                 iv.transform = .identity
                 iv.alpha = 1
             } else {
-                // Animate in
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.3, delay: Double(i)*0.02, options: .curveEaseInOut, animations: {
+                // Animate words up, overshooting position
+                let animationDuration = 0.8
+                let interItemDelayFactor = 0.025
+                UIView.animate(withDuration: animationDuration*0.3, delay: Double(i)*interItemDelayFactor, options: .curveEaseInOut, animations: {
+                    iv.transform = CGAffineTransform(translationX: 0, y: -15)
+                    iv.alpha = 1
+                }, completion: { _ in
+                    // Move down to final position
+                    UIView.animate(withDuration: animationDuration*0.7, delay: 0, options: .curveEaseInOut, animations: {
                         iv.transform = .identity
-                        iv.alpha = 1
-                    }, completion: { _ in
-                        // No need to do anything in particular
+                    }, completion: {_ in
+                        // No need to do anything
                     })
-                }
+                })
             }
         }
     }
