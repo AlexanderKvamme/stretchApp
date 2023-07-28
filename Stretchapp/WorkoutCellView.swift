@@ -12,8 +12,8 @@ final class WorkoutCellView: UIView {
 
     // MARK: - Properties
 
-    let leftLabel = UILabel.make(.header)
-    let rightLabel = UILabel.make(.header)
+    let leftLabel = UILabel.makeStretchLabel(.header)
+    let rightLabel = UILabel.makeStretchLabel(.header)
     let background = UIView()
 
     // MARK: - Initializers

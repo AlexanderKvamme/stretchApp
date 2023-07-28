@@ -15,7 +15,7 @@ final class TextInputScreen: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
 
-    private let nameLabel = UILabel.make(.inputHeader)
+    private let nameLabel = UILabel.makeStretchLabel(.inputHeader)
     private let input = TextFieldWithCustomCaret(placeholder: "Workout name")
     private let backButton = UIButton.make(.back)
 

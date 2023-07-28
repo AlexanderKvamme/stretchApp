@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AKKIT
 
 
 class TestViewController: UIViewController {
@@ -23,6 +24,7 @@ class TestViewController: UIViewController {
 
         exerciseView.setStretch(Stretch.dummy)
         exerciseView.animateIn()
+        
     }
     
 }

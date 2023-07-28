@@ -12,7 +12,7 @@ final class ButtonWithBackground: UIButton {
 
     // MARK: - Properties
 
-    private let label = UILabel.make(.exercise)
+    private let label = UILabel.makeStretchLabel(.exercise)
 
     // MARK: - Initializers
 

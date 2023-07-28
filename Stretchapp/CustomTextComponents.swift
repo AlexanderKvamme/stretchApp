@@ -21,6 +21,7 @@ extension UITextView {
         textView.font = UIFont.round(.bold, 12)
         textView.textAlignment = .center
         textView.textColor = .primaryContrast
+        textView.clipsToBounds = false
 
         switch style {
         case .exercise:
@@ -33,7 +34,7 @@ extension UITextView {
 
 extension UILabel {
 
-    enum LabelStyle {
+    enum StretchLabelStyle {
         case fraction
         case standard
         case exercise
@@ -41,7 +42,7 @@ extension UILabel {
         case inputHeader
     }
 
-    static func make(_ style: LabelStyle, text: String = "") -> UILabel {
+    static func makeStretchLabel(_ style: StretchLabelStyle, text: String = "") -> UILabel {
         let lbl = UILabel()
         lbl.text = text
         lbl.font = UIFont.round(.bold, 12)

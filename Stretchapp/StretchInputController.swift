@@ -20,7 +20,7 @@ final class StretchInputController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
 
-    private let nameLabel = UILabel.make(.inputHeader)
+    private let nameLabel = UILabel.makeStretchLabel(.inputHeader)
     private let input = TextFieldWithCustomCaret(placeholder: "Something")
     private let twoSideToggle = UISwitch.make(.temp)
     private let backButton = UIButton.make(.back)
