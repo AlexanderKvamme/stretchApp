@@ -89,11 +89,7 @@ final class CelebrationViewController: UIViewController {
     }
 
     @objc private func popToRoot() {
-//        dismiss(animated: false, completion: nil)
-        print("tryna POP")
-//        navigationController?.dismiss(animated: false)
         navigationController?.popToRootViewController(animated: true)
-//        dismiss(animated: false)
     }
 
     private func makeCelebrationText() -> NSAttributedString {

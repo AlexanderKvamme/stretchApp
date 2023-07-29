@@ -70,7 +70,7 @@ class StretchingViewController: UIViewController {
     }
 
     @objc private func exit() {
-        dismiss(animated: false)
+        navigationController?.popViewController(animated: true)
     }
 
     private func fadeInViews() {
