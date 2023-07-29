@@ -33,6 +33,7 @@ class StretchingViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
+        setup()
         setInitialStretch(from: workout.stretches)
         navBarOver.xButton.alpha = 0
         navBarUnder.xButton.alpha = 0
@@ -58,6 +59,10 @@ class StretchingViewController: UIViewController {
     }
 
     // MARK: - Methods
+    
+    private func setup() {
+        modalPresentationStyle = .fullScreen
+    }
 
     private func addGestureRecognizers() {
         navBarOver.xButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
@@ -69,6 +74,9 @@ class StretchingViewController: UIViewController {
     }
 
     private func fadeInViews() {
+        navBarOver.layoutIfNeeded()
+        navBarUnder.layoutIfNeeded()
+        
         navBarOver.animateInXButton()
         navBarUnder.animateInXButton()
         navBarOver.fractionView.animate()
@@ -163,12 +171,7 @@ class StretchingViewController: UIViewController {
         Audioplayer.play(.congratulations)
 
         let celebrationController = CelebrationViewController(workout: workout)
-        celebrationController.modalPresentationStyle = .fullScreen
-        weak var presentingViewController = self.presentingViewController
-
-        dismiss(animated: false, completion: {
-            presentingViewController?.present(celebrationController, animated: false, completion: nil)
-        })
+        navigationController?.pushViewController(celebrationController, animated: false)
     }
 
     private func resetViews() {

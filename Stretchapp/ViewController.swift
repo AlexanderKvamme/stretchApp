@@ -51,7 +51,6 @@ class ViewController: UIViewController {
         // Present TestViewController
 //        let testVC = CelebrationViewController(workout: .dummy)
 //        testVC.modalPresentationStyle = .fullScreen
-//        present(testVC, animated: false)
     }
 
     // MARK: - Methods

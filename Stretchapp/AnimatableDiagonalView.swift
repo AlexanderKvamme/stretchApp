@@ -28,8 +28,10 @@ class AnimatableDiagonalView: UIView {
 
         let path = UIBezierPath()
         let frame = self.frame
-        path.move(to: CGPoint(x: 0, y: frame.height))
-        path.addLine(to: CGPoint(x: frame.width, y: 0))
+        let from = CGPoint(x: 0, y: frame.height)
+        let to = CGPoint(x: frame.width, y: 0)
+        path.move(to: from)
+        path.addLine(to: to)
 
         // create shape layer for that path
         let shapeLayer = CAShapeLayer()

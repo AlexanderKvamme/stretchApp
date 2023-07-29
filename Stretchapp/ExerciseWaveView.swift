@@ -161,6 +161,7 @@ final class ExerciseView: UIView {
             
             if skipToEnd {
                 iv.transform = .identity
+                iv.transform = iv.transform.translatedBy(x: 0, y: -safeAreaInsets.top)
                 iv.alpha = 1
             } else {
                 // Animate words up, overshooting position

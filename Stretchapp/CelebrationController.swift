@@ -48,6 +48,7 @@ final class CelebrationViewController: UIViewController {
 
     private func setup() {
         view.backgroundColor = .background
+        modalPresentationStyle = .fullScreen
 
         header.text = workout.duration.toString()
         header.textColor = .primaryContrast
@@ -88,7 +89,11 @@ final class CelebrationViewController: UIViewController {
     }
 
     @objc private func popToRoot() {
-        dismiss(animated: false, completion: nil)
+//        dismiss(animated: false, completion: nil)
+        print("tryna POP")
+//        navigationController?.dismiss(animated: false)
+        navigationController?.popToRootViewController(animated: true)
+//        dismiss(animated: false)
     }
 
     private func makeCelebrationText() -> NSAttributedString {
