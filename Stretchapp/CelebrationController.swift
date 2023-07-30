@@ -40,8 +40,20 @@ final class CelebrationViewController: UIViewController {
     // MARK: - Life Cycle
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         animateIn()
         confettiView.startConfetti()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        confettiView.stopConfetti()
+        UIView.animate(withDuration: 0.3) {
+            self.confettiView.alpha = 0
+            self.confettiView.transform = self.confettiView.transform.scaledBy(x: 0.9, y: 0.9)
+        }
     }
 
     // MARK: - Methods

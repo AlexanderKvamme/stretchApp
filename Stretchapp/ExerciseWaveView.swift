@@ -142,6 +142,7 @@ final class ExerciseView: UIView {
             tv.text.insert(char, at: entireText.startIndex)
             tv.frame = selectionRect
             tv.textColor = style.foregroundColor
+            tv.alpha = 0
             snapshots.append(tv)
         }
         textView.alpha = 0
@@ -167,8 +168,10 @@ final class ExerciseView: UIView {
                 // Animate words up, overshooting position
                 let animationDuration = 0.8
                 let interItemDelayFactor = 0.025
+                let scaleFactor = 1.15
                 UIView.animate(withDuration: animationDuration*0.3, delay: Double(i)*interItemDelayFactor, options: .curveEaseInOut, animations: {
                     iv.transform = CGAffineTransform(translationX: 0, y: -15)
+                        .scaledBy(x: scaleFactor, y: scaleFactor)
                     iv.alpha = 1
                 }, completion: { _ in
                     // Move down to final position
