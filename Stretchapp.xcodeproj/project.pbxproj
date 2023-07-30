@@ -36,6 +36,7 @@
 		DD5E9472261B3DB70049DA57 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9471261B3DB70049DA57 /* Duration.swift */; };
 		DD5E9475261B3DD20049DA57 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9474261B3DD20049DA57 /* Workout.swift */; };
 		DD5E9478261B533B0049DA57 /* WorkoutCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5E9477261B533B0049DA57 /* WorkoutCellView.swift */; };
+		DD6743652A76D881008D18AB /* FontAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6743642A76D881008D18AB /* FontAnimation.swift */; };
 		DD77FEC52618EBAB0071D81D /* TextInputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77FEC42618EBAB0071D81D /* TextInputScreen.swift */; };
 		DD77FECA261A0DC20071D81D /* ButtonWithBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77FEC9261A0DC20071D81D /* ButtonWithBackground.swift */; };
 		DD77FECD261A1B380071D81D /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD77FECC261A1B380071D81D /* DAO.swift */; };
@@ -89,6 +90,7 @@
 		DD5E9471261B3DB70049DA57 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		DD5E9474261B3DD20049DA57 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		DD5E9477261B533B0049DA57 /* WorkoutCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCellView.swift; sourceTree = "<group>"; };
+		DD6743642A76D881008D18AB /* FontAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAnimation.swift; sourceTree = "<group>"; };
 		DD77FEC42618EBAB0071D81D /* TextInputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputScreen.swift; sourceTree = "<group>"; };
 		DD77FEC9261A0DC20071D81D /* ButtonWithBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithBackground.swift; sourceTree = "<group>"; };
 		DD77FECC261A1B380071D81D /* DAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				DD0BF5442A56D49400021216 /* Stretch.swift */,
+				DD6743642A76D881008D18AB /* FontAnimation.swift */,
 				DD0BF53E2A56BECF00021216 /* UITextview+Extensions.swift */,
 				DD1B7B802606545F00CB9AA4 /* AppDelegate.swift */,
 				DD5CF64C262B5F9400997282 /* TestViewController.swift */,
@@ -381,6 +384,7 @@
 				DDEAAEB626068F560056D85C /* StretchingViewController.swift in Sources */,
 				DDEAAEB3260687C80056D85C /* StretchButton.swift in Sources */,
 				DD77FECA261A0DC20071D81D /* ButtonWithBackground.swift in Sources */,
+				DD6743652A76D881008D18AB /* FontAnimation.swift in Sources */,
 				DDADD2B42610F63900AAC15B /* WobbleView.swift in Sources */,
 				DD5CF660262C2BEC00997282 /* StretchNavBarContainer.swift in Sources */,
 				DD5E9478261B533B0049DA57 /* WorkoutCellView.swift in Sources */,

@@ -16,7 +16,8 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let animationView = AnimationView.init(name: "data")
+//    private let animationView = AnimationView.init(name: "data")
+    private let animationView = VFontAnimationVC_1()
     private let workoutPicker = WorkoutPicker()
     private let workoutPickerShadow = ShadowView(frame: CGRect(x: 0, y: 0, width: screenWidth-48, height: workoutPickerHeight))
     private let newWorkoutButton = NewWorkoutButton()
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        animationView.transform = CGAffineTransform.identity
+//        animationView.transform = CGAffineTransform.identity
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,19 +57,19 @@ class ViewController: UIViewController {
     // MARK: - Methods
 
     @objc func playAnimation() {
-        animationView.play()
+//        animationView.play()
     }
 
     private func addTapGestures() {
-        let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
-        animationView.addGestureRecognizer(tr)
+//        let tr = UITapGestureRecognizer(target: self, action: #selector(playAnimation))
+//        animationView.addGestureRecognizer(tr)
     }
 
     private func animateInLogo() {
-        UIView.animate(withDuration: 0.6) {
-            let scale: CGFloat = 0.99
-            self.animationView.transform = self.animationView.transform.scaledBy(x: scale, y: scale).translatedBy(x: 0, y: -5)
-        }
+//        UIView.animate(withDuration: 0.6) {
+//            let scale: CGFloat = 0.99
+//            self.animationView.transform = self.animationView.transform.scaledBy(x: scale, y: scale).translatedBy(x: 0, y: -5)
+//        }
     }
 
     private func setup() {
@@ -87,8 +88,8 @@ class ViewController: UIViewController {
             make.size.equalTo(workoutButtonSize)
         }
 
-        view.addSubview(animationView)
-        animationView.snp.makeConstraints { (make) in
+        view.addSubview(animationView.view)
+        animationView.view.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview().inset(24)
             make.top.equalTo(newWorkoutButton.snp.bottom).offset(16)
             make.height.equalTo(200)
