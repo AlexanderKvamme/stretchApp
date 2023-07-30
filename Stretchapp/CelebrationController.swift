@@ -43,6 +43,7 @@ final class CelebrationViewController: UIViewController {
         super.viewDidAppear(animated)
         
         animateIn()
+        Audioplayer.play(.congratulations)
         confettiView.startConfetti()
     }
     

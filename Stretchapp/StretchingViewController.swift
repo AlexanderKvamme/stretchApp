@@ -84,6 +84,7 @@ class StretchingViewController: UIViewController {
     }
 
     private func playNextAnimation() {
+        print("bam playNextAnimation")
         let isFirstAnimation = currentAnimationIteration == 0
         resetViews()
 
@@ -123,9 +124,11 @@ class StretchingViewController: UIViewController {
                 self.setNextLayout()
                 self.view.layoutIfNeeded()
                 self.waveMask.layoutIfNeeded()
-            } completion: { (_) in
-                self.currentAnimationIteration += 1
-                self.playNextAnimation()
+            } completion: { [weak self] finished in
+                guard finished else { return }
+                
+                self?.currentAnimationIteration += 1
+                self?.playNextAnimation()
             }
 
             // The final countdown
