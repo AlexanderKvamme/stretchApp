@@ -36,16 +36,16 @@ public final class VFontAnimationVC_1: UIViewController {
             make.center.equalToSuperview()
         }
         
-        label1.currentTickerValue = 1/1
-        runTimer()
+        label1.currentTickerValue = 0
+        start()
     }
     
-    func runTimer() {
+    func start() {
         timer = Timer.scheduledTimer(timeInterval: 1/100, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimer() {
-        label1.updateTimer()
+        label1.updateTimer(timer)
     }
     
 }
@@ -53,14 +53,11 @@ public final class VFontAnimationVC_1: UIViewController {
 final class AnimatedLabel_1: UIView {
     //    var font = Inter(size: 64)
     var font = CrimsonFont(size: 64)
-    //    var font = Sono(size: 64)
-    //    var font = AnybodyFont(size: 64)
-    //    var font = FaustinaFont(size: 64)
-    //    var font = EpilogueFont(size: 64)
     var tick = 0.01
     var currentTickerValue = 0.5
     var textLabel: UILabel
     var isTimerRunning = false
+    var autoreverse = false
     
     override init(frame: CGRect) {
         textLabel = UILabel(frame: frame)
@@ -88,11 +85,15 @@ final class AnimatedLabel_1: UIView {
     }
     
     // Tick from 0 to 1 with autoreverse
-    @objc func updateTimer() {
+    @objc func updateTimer(_ timer: Timer) {
         let minValue: Double = 0
         let maxValue: Double = 1
         if currentTickerValue >= maxValue || currentTickerValue <= minValue {
-            tick = tick * -1
+            if autoreverse {
+                tick = tick * -1
+            } else {
+                timer.invalidate()
+            }
         }
         
         currentTickerValue += tick

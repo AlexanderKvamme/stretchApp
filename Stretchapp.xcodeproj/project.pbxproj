@@ -28,6 +28,7 @@
 		DD1B7BB226067F7E00CB9AA4 /* DINRoundPro-Medi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */; };
 		DD1B7BB326067F7E00CB9AA4 /* DINRoundPro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */; };
 		DD22AF08263F13FC00369F70 /* CelebrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE88D1263EFC0E005E5D04 /* CelebrationController.swift */; };
+		DD2FE3032A7FAAE100F5E0A9 /* happy-bending-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = DD2FE3022A7FAAE100F5E0A9 /* happy-bending-animation.json */; };
 		DD5CF64A262B5E8D00997282 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF649262B5E8D00997282 /* VerticallyCenteredTextView.swift */; };
 		DD5CF64D262B5F9400997282 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF64C262B5F9400997282 /* TestViewController.swift */; };
 		DD5CF65A262C2AE300997282 /* CustomTextComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CF659262C2AE300997282 /* CustomTextComponents.swift */; };
@@ -82,6 +83,7 @@
 		DD1B7BAC26067F7E00CB9AA4 /* DINRoundPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Light.ttf"; sourceTree = "<group>"; };
 		DD1B7BAD26067F7E00CB9AA4 /* DINRoundPro-Medi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Medi.ttf"; sourceTree = "<group>"; };
 		DD1B7BAE26067F7E00CB9AA4 /* DINRoundPro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.ttf"; sourceTree = "<group>"; };
+		DD2FE3022A7FAAE100F5E0A9 /* happy-bending-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "happy-bending-animation.json"; sourceTree = "<group>"; };
 		DD5CF649262B5E8D00997282 /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
 		DD5CF64C262B5F9400997282 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		DD5CF659262C2AE300997282 /* CustomTextComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextComponents.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		DD1B7B742606545F00CB9AA4 = {
 			isa = PBXGroup;
 			children = (
+				DD2FE3022A7FAAE100F5E0A9 /* happy-bending-animation.json */,
 				DDBE88D1263EFC0E005E5D04 /* CelebrationController.swift */,
 				DD5CF65F262C2BEC00997282 /* StretchNavBarContainer.swift */,
 				DD1B7B99260655A500CB9AA4 /* AKExtensions.swift */,
@@ -315,6 +318,7 @@
 				DD1B7B8D2606546000CB9AA4 /* LaunchScreen.storyboard in Resources */,
 				DD1B7BB026067F7E00CB9AA4 /* DINRoundPro-Bold.ttf in Resources */,
 				DD0BF53B2A55C4A300021216 /* Fulbo-Argenta.ttf in Resources */,
+				DD2FE3032A7FAAE100F5E0A9 /* happy-bending-animation.json in Resources */,
 				DD1B7B8A2606546000CB9AA4 /* Assets.xcassets in Resources */,
 				DD1B7BAF26067F7E00CB9AA4 /* DINRoundPro.ttf in Resources */,
 				DD013FBA2609503500A396A3 /* Toy_Up&Down1.caf in Resources */,

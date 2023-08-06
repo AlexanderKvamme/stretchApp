@@ -158,6 +158,7 @@ final class ExerciseView: UIView {
             iv.backgroundColor = .clear
             iv.frame.origin.y -= verticalOffset
             iv.transform = CGAffineTransform(translationX: 0, y: slideInOffset)
+                .rotated(by: -CGFloat.pi/20)
             addSubview(iv)
             
             if skipToEnd {

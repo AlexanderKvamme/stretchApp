@@ -16,8 +16,7 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
 
-//    private let animationView = AnimationView.init(name: "data")
-    private let animationView = VFontAnimationVC_1()
+    private let animationView = AnimationView.init(name: "happy-bending-animation")
     private let workoutPicker = WorkoutPicker()
     private let workoutPickerShadow = ShadowView(frame: CGRect(x: 0, y: 0, width: screenWidth-48, height: workoutPickerHeight))
     private let newWorkoutButton = NewWorkoutButton()
@@ -48,10 +47,7 @@ class ViewController: UIViewController {
 
         newWorkoutButton.animate()
         animateInLogo()
-        
-        // Present TestViewController
-//        let testVC = CelebrationViewController(workout: .dummy)
-//        testVC.modalPresentationStyle = .fullScreen
+        animationView.play()
     }
 
     // MARK: - Methods
@@ -88,8 +84,8 @@ class ViewController: UIViewController {
             make.size.equalTo(workoutButtonSize)
         }
 
-        view.addSubview(animationView.view)
-        animationView.view.snp.makeConstraints { (make) in
+        view.addSubview(animationView)
+        animationView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview().inset(24)
             make.top.equalTo(newWorkoutButton.snp.bottom).offset(16)
             make.height.equalTo(200)
