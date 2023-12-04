@@ -8,6 +8,6 @@ target 'Stretchapp' do
   # Pods for Stretchapp
   pod 'SnapKit'
   pod 'lottie-ios'
-  pod 'AKKIT', :path => '~/Documents/workspaces/code/swift/AKKIT'
+  pod 'AKKIT', :path => '/Users/alexanderkvamme/Documents/workspaces/code/privat/swift/AKKIT'
 
 end

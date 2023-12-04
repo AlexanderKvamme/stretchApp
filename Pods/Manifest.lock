@@ -7,7 +7,7 @@ PODS:
   - VFont (0.6.1)
 
 DEPENDENCIES:
-  - AKKIT (from `~/Documents/workspaces/code/swift/AKKIT`)
+  - AKKIT (from `/Users/alexanderkvamme/Documents/workspaces/code/privat/swift/AKKIT`)
   - lottie-ios
   - SnapKit
 
@@ -19,7 +19,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   AKKIT:
-    :path: "~/Documents/workspaces/code/swift/AKKIT"
+    :path: "/Users/alexanderkvamme/Documents/workspaces/code/privat/swift/AKKIT"
 
 SPEC CHECKSUMS:
   AKKIT: c2fbb992709a68348f2ee548ce6e42fe96e0bbb0
@@ -27,6 +27,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   VFont: ed3c3640a2c348487533718b479b03efc9ce9881
 
-PODFILE CHECKSUM: 2cb9156fe21ddb5bc679efc12ea0936c215f35d0
+PODFILE CHECKSUM: 617118d5fb933f6683dc8e1820740c6888f6763b
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.13.0
